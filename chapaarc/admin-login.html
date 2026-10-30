@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso Restrito — Presidência | Chapa ARC 07</title>
+
+  <!-- Otimizações de Conexão e Desempenho (Preconnect & DNS-Prefetch) -->
+  <link rel="dns-prefetch" href="https://mwjrivlmeixfysfycedj.supabase.co" />
+  <link rel="preconnect" href="https://mwjrivlmeixfysfycedj.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Supabase JS CDN (Universal / Sem Bloqueio de CORS de Módulos) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            arc: {
+              pink: '#ff007f',
+              magenta: '#ec4899',
+              yellow: '#ffe600',
+              gold: '#eab308',
+              dark: '#09090b',
+              card: '#121218',
+            }
+          },
+          boxShadow: {
+            'neon-pink': '0 0 30px rgba(255, 0, 127, 0.45)',
+            'neon-yellow': '0 0 30px rgba(255, 230, 0, 0.35)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.65)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f8fafc;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 20% 25%, rgba(255, 0, 127, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 80% 75%, rgba(255, 230, 0, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* Liquid Glass styling */
+    .liquid-glass {
+      background: rgba(18, 18, 26, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .liquid-glass-glow {
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), 
+                  0 0 25px rgba(255, 0, 127, 0.25), 
+                  0 0 45px rgba(255, 230, 0, 0.12);
+    }
+
+    .text-gradient-arc {
+      background: linear-gradient(90deg, #ff007f 0%, #ff4da6 40%, #ffe600 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glowing badge animation */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 18px rgba(255, 0, 127, 0.5), 0 0 35px rgba(255, 230, 0, 0.25); }
+      50% { box-shadow: 0 0 32px rgba(255, 0, 127, 0.85), 0 0 50px rgba(255, 230, 0, 0.5); }
+    }
+    .glow-arc {
+      animation: pulseGlow 3.5s infinite;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 antialiased selection:bg-arc-pink selection:text-white relative">
+
+  <!-- Ambient background glow elements -->
+  <div class="fixed top-1/4 -left-20 w-72 h-72 bg-arc-pink/20 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-1/4 -right-20 w-72 h-72 bg-arc-yellow/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Main Login Card -->
+  <div class="w-full max-w-md relative z-10">
+
+    <!-- Back to site link -->
+    <div class="mb-5 flex items-center justify-between">
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-arc-yellow transition px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-arc-yellow/40">
+        <i class="bi bi-arrow-left"></i>
+        <span>Voltar ao Site Oficial</span>
+      </a>
+      <span class="text-[11px] font-mono text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-arc-yellow animate-pulse"></span>
+        ARC-07 Secure Auth
+      </span>
+    </div>
+
+    <!-- Liquid Glass Card Container -->
+    <div class="liquid-glass liquid-glass-glow rounded-3xl p-7 sm:p-9 border border-white/15 relative overflow-hidden">
+      
+      <!-- Top Subtle Gradient Border Highlight -->
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-arc-pink via-arc-yellow to-arc-pink"></div>
+
+      <!-- Header with Emblem & Title -->
+      <div class="text-center mb-8">
+        
+        <!-- Logo Emblem -->
+        <div class="relative w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-arc-pink via-arc-yellow to-arc-pink glow-arc flex items-center justify-center mb-4">
+          <svg viewBox="0 0 100 100" class="w-full h-full bg-black rounded-full p-1">
+            <circle cx="50" cy="50" r="47" fill="#09090b" stroke="#ff007f" stroke-width="4"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#ffe600" stroke-width="2" stroke-dasharray="12 6"/>
+            <!-- Stylized Macaw Head -->
+            <path d="M20,65 C15,40 30,18 55,18 C72,18 82,28 82,42 C72,36 60,36 52,44 C45,52 44,68 32,78 Z" fill="#ff007f"/>
+            <path d="M26,48 C32,26 48,20 68,24 C56,28 45,35 38,52 Z" fill="#ffe600"/>
+            <path d="M44,34 C56,30 68,34 72,44 C64,48 55,52 46,48 Z" fill="#FFFFFF"/>
+            <circle cx="56" cy="39" r="4.5" fill="#ffe600" stroke="#000" stroke-width="2"/>
+            <circle cx="56" cy="39" r="2" fill="#000"/>
+            <path d="M68,36 C82,39 88,52 78,66 C74,56 68,50 60,50 Z" fill="#18181b" stroke="#FFFFFF" stroke-width="1.5"/>
+            <text x="43" y="84" font-family="Montserrat, sans-serif" font-weight="900" font-style="italic" font-size="30" fill="#FFFFFF" stroke="#ff007f" stroke-width="2">07</text>
+          </svg>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-arc-pink/20 border border-arc-pink/50 text-arc-pink text-[11px] font-display font-extrabold uppercase tracking-widest mb-2">
+          <i class="bi bi-shield-lock-fill"></i>
+          <span>Painel Administrativo</span>
+        </div>
+        
+        <h1 class="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+          Acesso Restrito — <span class="text-gradient-arc">Presidência</span>
+        </h1>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1.5">
+          Entre com as credenciais da diretoria da Chapa ARC 07.
+        </p>
+      </div>
+
+      <!-- Visual Alert Box (Hidden by default, shown on failure) -->
+      <div id="alertBox" class="hidden mb-6 p-3.5 rounded-2xl bg-arc-pink/15 border border-arc-pink/50 text-pink-200 text-xs flex items-start gap-3 animate-fade-in">
+        <i class="bi bi-exclamation-octagon-fill text-arc-pink text-base shrink-0 mt-0.5"></i>
+        <div class="flex-1">
+          <strong class="block font-bold text-white mb-0.5">Falha na Autenticação</strong>
+          <span id="alertMessage">E-mail ou senha incorretos. Verifique suas credenciais.</span>
+        </div>
+        <button type="button" onclick="fecharAlerta()" class="text-pink-300 hover:text-white text-sm">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="adminLoginForm" class="space-y-4">
+        
+        <!-- Email field -->
+        <div>
+          <label for="adminEmail" class="block text-xs font-bold text-zinc-300 mb-1.5 uppercase tracking-wider flex items-center justify-between">
+            <span>E-mail do Administrador</span>
+            <i class="bi bi-envelope text-zinc-500"></i>
+          </label>
+          <div class="relative">
+            <input 
+              type="email" 
+              id="adminEmail" 
+              required 
+              autocomplete="email"
+              placeholder="presidencia@chapaarc07.com" 
+              class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-arc-pink focus:ring-1 focus:ring-arc-pink transition"
+            />
+          </div>
+        </div>
+
+        <!-- Password field -->
+        <div>
+          <label for="adminPassword" class="block text-xs font-bold text-zinc-300 mb-1.5 uppercase tracking-wider flex items-center justify-between">
+            <span>Senha de Acesso</span>
+            <i class="bi bi-key text-zinc-500"></i>
+          </label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="adminPassword" 
+              required 
+              autocomplete="current-password"
+              placeholder="••••••••••••" 
+              class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 pr-11 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-arc-yellow focus:ring-1 focus:ring-arc-yellow transition"
+            />
+            <button 
+              type="button" 
+              id="togglePasswordBtn"
+              onclick="togglePasswordVisibility()" 
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-arc-yellow p-1 transition"
+              title="Mostrar / ocultar senha"
+            >
+              <i id="togglePasswordIcon" class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button with Loading State -->
+        <button 
+          type="submit" 
+          id="loginSubmitBtn"
+          class="w-full mt-2 py-3.5 px-6 rounded-xl font-display font-black text-sm uppercase tracking-wider text-black bg-gradient-to-r from-arc-yellow via-yellow-400 to-amber-400 hover:brightness-110 shadow-neon-yellow hover:scale-[1.01] active:scale-[0.99] transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <span id="btnText" class="flex items-center gap-2">
+            <span>Entrar no Painel</span>
+            <i class="bi bi-arrow-right-short text-xl"></i>
+          </span>
+          <span id="btnSpinner" class="hidden flex items-center gap-2">
+            <svg class="animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Autenticando...</span>
+          </span>
+        </button>
+
+      </form>
+
+      <!-- Footer Info -->
+      <div class="mt-7 pt-5 border-t border-white/10 text-center">
+        <p class="text-[11px] text-zinc-500">
+          Chapa ARC 07 • Assistência, Revolução e Cooperação<br/>
+          Acesso monitorado por Row Level Security (RLS)
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Logic & Supabase Integration -->
+  <script>
+    const SUPABASE_URL = 'https://mwjrivlmeixfysfycedj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13anJpdmxtZWl4ZnlzZnljZWRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxMjI0MTcsImV4cCI6MjEwODY5ODQxN30._zir0suagC0tNpW9QHSo2NYWpSiMR8fP5UUGv0fh1SE';
+
+    const supabaseClient = (window.supabase && window.supabase.createClient)
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
+
+    // 1. Verificação de sessão existente ao carregar a página
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        if (supabaseClient && supabaseClient.auth) {
+          const { data: { session }, error } = await supabaseClient.auth.getSession();
+          if (session && session.user) {
+            // Sessão ativa encontrada -> Redireciona imediatamente
+            window.location.href = 'admin-dashboard.html';
+          }
+        }
+      } catch (err) {
+        console.warn('Verificação de sessão:', err);
+      }
+    });
+
+    // 2. Manipulação do formulário de Login
+    const form = document.getElementById('adminLoginForm');
+    const emailInput = document.getElementById('adminEmail');
+    const passwordInput = document.getElementById('adminPassword');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const alertBox = document.getElementById('alertBox');
+    const alertMessage = document.getElementById('alertMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) return;
+
+      // Ativa estado de carregamento
+      setLoading(true);
+      ocultarAlerta();
+
+      try {
+        if (!supabaseClient || !supabaseClient.auth) {
+          throw new Error('Supabase pendente de inicialização.');
+        }
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (!error && data?.session) {
+          // Sucesso -> Redireciona para o dashboard
+          btnText.innerHTML = `<i class="bi bi-check2-circle text-lg"></i> Acesso Autorizado!`;
+          btnSpinner.classList.add('hidden');
+          btnText.classList.remove('hidden');
+          submitBtn.classList.replace('from-arc-yellow', 'from-emerald-400');
+          submitBtn.classList.replace('to-amber-400', 'to-emerald-500');
+          
+          setTimeout(() => {
+            window.location.href = 'admin-dashboard.html';
+          }, 350);
+        } else {
+          // Falha de autenticação
+          let msg = 'E-mail ou senha incorretos. Verifique suas credenciais.';
+          if (error?.message?.includes('Invalid login credentials')) {
+            msg = 'Credenciais inválidas. Verifique o e-mail e a senha cadastrados no Supabase.';
+          } else if (error?.message?.includes('Email not confirmed')) {
+            msg = 'E-mail cadastrado ainda não foi confirmado no Supabase.';
+          }
+          mostrarAlerta(msg);
+        }
+      } catch (error) {
+        console.error('Erro no login:', error);
+        mostrarAlerta('Erro de conexão ao autenticar. Tente novamente.');
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    function setLoading(isLoading) {
+      submitBtn.disabled = isLoading;
+      if (isLoading) {
+        btnText.classList.add('hidden');
+        btnSpinner.classList.remove('hidden');
+      } else {
+        btnText.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    }
+
+    function mostrarAlerta(msg) {
+      alertMessage.textContent = msg;
+      alertBox.classList.remove('hidden');
+    }
+
+    window.fecharAlerta = function() {
+      ocultarAlerta();
+    };
+
+    function ocultarAlerta() {
+      alertBox.classList.add('hidden');
+    }
+
+    // Toggle de visibilidade da senha
+    window.togglePasswordVisibility = function() {
+      const icon = document.getElementById('togglePasswordIcon');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.className = 'bi bi-eye-slash text-arc-yellow';
+      } else {
+        passwordInput.type = 'password';
+        icon.className = 'bi bi-eye';
+      }
+    };
+  </script>
+
+</body>
+</html>

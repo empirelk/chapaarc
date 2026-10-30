@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>CHAPA ARC 07 — Mais que uma chapa, uma equipe! | Grêmio Estudantil</title>
+  
+  <!-- Otimizações de Conexão e Desempenho (Preconnect & DNS-Prefetch) -->
+  <link rel="dns-prefetch" href="https://mwjrivlmeixfysfycedj.supabase.co" />
+  <link rel="preconnect" href="https://mwjrivlmeixfysfycedj.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter, Montserrat & Permanent Marker (para toque urbano/graffiti) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Permanent+Marker&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Tema Especial de Halloween (Ativado dinamicamente via Painel ADM) -->
+  <link rel="stylesheet" href="css/halloween.css?v=arc07_hw" />
+  <script src="js/halloween.js?v=arc07_hw"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+            graffiti: ['Permanent Marker', 'cursive'],
+          },
+          colors: {
+            arc: {
+              pink: '#FF007F',
+              magenta: '#EC4899',
+              yellow: '#FACC15',
+              gold: '#EAB308',
+              dark: '#09090b',
+              card: '#121218',
+            }
+          },
+          boxShadow: {
+            'neon-pink': '0 0 25px rgba(255, 0, 127, 0.45)',
+            'neon-yellow': '0 0 25px rgba(250, 204, 21, 0.4)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --arc-pink: #FF007F;
+      --arc-yellow: #FACC15;
+      --arc-dark: #09090b;
+    }
+
+    body {
+      background-color: #09090b;
+      color: #f8fafc;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 12% 15%, rgba(255, 0, 127, 0.16) 0%, transparent 35%),
+        radial-gradient(circle at 88% 22%, rgba(250, 204, 21, 0.14) 0%, transparent 35%),
+        radial-gradient(circle at 50% 65%, rgba(236, 72, 153, 0.10) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* Liquid Glass / Glassmorphism */
+    .liquid-glass {
+      background: rgba(18, 18, 26, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .liquid-glass-pink {
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.16) 0%, rgba(18, 18, 26, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 0, 127, 0.35);
+    }
+
+    .liquid-glass-yellow {
+      background: linear-gradient(135deg, rgba(250, 204, 21, 0.15) 0%, rgba(18, 18, 26, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+    }
+
+    /* Brush stroke effect inspired by the ARC 07 poster */
+    .brush-badge-pink {
+      background: linear-gradient(90deg, #FF007F 0%, #db2777 100%);
+      clip-path: polygon(2% 0%, 100% 3%, 98% 98%, 0% 95%);
+    }
+
+    .brush-badge-yellow {
+      background: linear-gradient(90deg, #FACC15 0%, #eab308 100%);
+      clip-path: polygon(0% 4%, 98% 0%, 100% 96%, 2% 100%);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #FF007F, #FACC15);
+      border-radius: 9999px;
+    }
+
+    /* Floating animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    /* Pulse glow */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 127, 0.4), 0 0 30px rgba(250, 204, 21, 0.2); }
+      50% { box-shadow: 0 0 28px rgba(255, 0, 127, 0.75), 0 0 45px rgba(250, 204, 21, 0.45); }
+    }
+    .glow-arc {
+      animation: pulseGlow 3s infinite;
+    }
+
+    .text-gradient-arc {
+      background: linear-gradient(90deg, #FF007F 0%, #ff4da6 45%, #FACC15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .edit-mode-active .editable-ring {
+      outline: 2px dashed #FACC15;
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-arc-pink selection:text-white">
+
+  <!-- BANNER ESPECIAL DE HALLOWEEN (Visível quando o Modo Halloween estiver ativo no Painel ADM) -->
+  <div class="halloween-announcement-banner w-full bg-gradient-to-r from-orange-600 via-purple-700 to-orange-600 text-white font-display font-extrabold text-xs sm:text-sm py-2 px-4 shadow-lg items-center justify-center gap-2 text-center tracking-wide relative z-50">
+    <span class="spooky-float">🎃</span>
+    <span>EDIÇÃO ESPECIAL DE HALLOWEEN • CHAPA ARC 07 • VOTAÇÃO OFICIAL DIA 03 DE NOVEMBRO!</span>
+    <span class="spooky-float">👻</span>
+  </div>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-gradient-to-r from-arc-pink via-pink-600 to-arc-yellow text-black font-display font-extrabold text-xs sm:text-sm py-2 px-4 text-center relative z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="bg-black text-arc-yellow px-2 py-0.5 rounded-full text-[11px] uppercase tracking-wider flex items-center gap-1">
+        <i class="bi bi-megaphone-fill text-arc-pink"></i> Eleições Grêmio
+      </span>
+      <span class="text-white drop-shadow-sm">CHAPA ARC 07 • Assistência, Revolução e Cooperação!</span>
+      <a href="#propostas" class="underline text-black bg-white/90 hover:bg-white px-2.5 py-0.5 rounded-full text-xs font-black transition">
+        Conhecer Propostas →
+      </a>
+    </div>
+  </div>
+
+  <!-- STICKY LIQUID GLASS NAVBAR -->
+  <header class="sticky top-0 z-40 liquid-glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="relative w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-arc-pink via-arc-yellow to-arc-pink glow-arc flex items-center justify-center overflow-hidden shrink-0">
+          <!-- Custom Mini Arara Emblem SVG or Uploaded Emblem -->
+          <img id="navEmblemImg" src="" alt="Logo ARC 07" decoding="async" class="w-full h-full object-cover rounded-full hidden" />
+          <svg id="navEmblemSvg" viewBox="0 0 100 100" class="w-full h-full bg-black rounded-full p-1">
+            <circle cx="50" cy="50" r="47" fill="#09090b" stroke="#FF007F" stroke-width="4"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#FACC15" stroke-width="2" stroke-dasharray="12 6"/>
+            <!-- Stylized Macaw Head -->
+            <path d="M20,65 C15,40 30,18 55,18 C72,18 82,28 82,42 C72,36 60,36 52,44 C45,52 44,68 32,78 Z" fill="#FF007F"/>
+            <path d="M26,48 C32,26 48,20 68,24 C56,28 45,35 38,52 Z" fill="#FACC15"/>
+            <!-- White Face Patch -->
+            <path d="M44,34 C56,30 68,34 72,44 C64,48 55,52 46,48 Z" fill="#FFFFFF"/>
+            <!-- Eye -->
+            <circle cx="56" cy="39" r="4.5" fill="#FACC15" stroke="#000" stroke-width="2"/>
+            <circle cx="56" cy="39" r="2" fill="#000"/>
+            <!-- Black Curved Beak -->
+            <path d="M68,36 C82,39 88,52 78,66 C74,56 68,50 60,50 Z" fill="#18181b" stroke="#FFFFFF" stroke-width="1.5"/>
+            <!-- 07 Badge -->
+            <text x="43" y="84" font-family="Montserrat, sans-serif" font-weight="900" font-style="italic" font-size="30" fill="#FFFFFF" stroke="#FF007F" stroke-width="2">07</text>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-black text-lg sm:text-xl tracking-tight text-white">CHAPA <span class="text-arc-pink">ARC</span></span>
+            <span class="bg-arc-yellow text-black font-display font-black text-sm px-2 py-0.5 rounded-md shadow-sm">07</span>
+          </div>
+          <p class="text-[11px] text-zinc-400 font-medium hidden sm:block">Mais que uma chapa, uma equipe!</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1.5 text-xs xl:text-sm font-semibold text-zinc-300">
+        <a href="#comunicados" id="navLinkComunicados" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-pink transition flex items-center gap-1 whitespace-nowrap"><i class="bi bi-megaphone-fill text-arc-pink text-xs"></i><span>Comunicados</span></a>
+        <a href="#pilares" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-yellow transition whitespace-nowrap">Pilares</a>
+        <a href="#propostas" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-pink transition whitespace-nowrap">11 Propostas</a>
+        <a href="#cursos" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-yellow transition flex items-center gap-1 whitespace-nowrap"><i class="bi bi-mortarboard text-arc-yellow text-xs"></i><span>Cursos Grátis</span></a>
+        <a href="#comercio" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-yellow transition whitespace-nowrap">Comércio 07</a>
+        <a href="#salanota10" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-pink transition whitespace-nowrap">Sala Nota 10</a>
+        <a href="#vozdoaluno" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-yellow transition whitespace-nowrap">Voz do Aluno</a>
+        <a href="#equipe" class="px-2 xl:px-2.5 py-1.5 rounded-xl hover:bg-white/10 hover:text-arc-pink transition whitespace-nowrap">Equipe <span id="navTeamCount">(16)</span></a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Vote 07 CTA -->
+        <a href="#comovotar" class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-display font-black text-xs sm:text-sm bg-gradient-to-r from-arc-pink to-pink-600 text-white shadow-neon-pink hover:scale-105 transition flex items-center gap-1.5 shrink-0">
+          <span>VOTE 07!</span>
+          <i class="bi bi-check2-circle text-arc-yellow text-sm sm:text-base"></i>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" aria-label="Abrir menu" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 shrink-0">
+          <i id="mobileMenuIcon" class="bi bi-list text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2">
+      <div class="grid grid-cols-2 gap-2 pt-2">
+        <a href="#comunicados" id="mobileNavLinkComunicados" onclick="toggleMobileMenu()" class="col-span-2 p-3 rounded-xl bg-arc-pink/15 hover:bg-arc-pink/25 text-pink-300 hover:text-white border border-arc-pink/30 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-megaphone-fill text-arc-yellow"></i> Comunicados da Presidência
+        </a>
+        <a href="#pilares" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-lightning-charge-fill text-arc-yellow"></i> Os 3 Pilares
+        </a>
+        <a href="#propostas" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-journal-check text-arc-pink"></i> 11 Propostas
+        </a>
+        <a href="#cursos" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-yellow/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-mortarboard-fill text-arc-yellow"></i> Cursos Grátis
+        </a>
+        <a href="#comercio" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-shop text-arc-yellow"></i> Comércio 07
+        </a>
+        <a href="#salanota10" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-trophy-fill text-arc-pink"></i> Sala Nota 10
+        </a>
+        <a href="#vozdoaluno" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-chat-heart-fill text-arc-yellow"></i> Voz do Aluno
+        </a>
+        <a href="#equipe" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 hover:bg-arc-pink/20 text-sm font-bold flex items-center gap-2">
+          <i class="bi bi-people-fill text-arc-pink"></i> Equipe <span id="mobileNavTeamCount">(16)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-8 pb-16 md:py-20 overflow-hidden">
+    <!-- Decorative Background Graffiti Splashes -->
+    <div class="pointer-events-none absolute -top-24 -left-24 w-96 h-96 bg-arc-pink/20 rounded-full blur-3xl"></div>
+    <div class="pointer-events-none absolute top-1/3 -right-24 w-96 h-96 bg-arc-yellow/15 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        
+        <!-- Left Column: Impact Text & Actions -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-pink text-xs sm:text-sm font-bold text-white shadow-neon-pink">
+            <span class="w-2.5 h-2.5 rounded-full bg-arc-yellow animate-ping"></span>
+            <span>ELEIÇÕES GRÊMIO ESTUDANTIL • VOTE 07!</span>
+          </div>
+
+          <div class="space-y-2">
+            <p class="font-graffiti text-arc-yellow text-xl sm:text-2xl tracking-wide rotate-[-1deg] inline-block">
+              “Juntos por uma escola melhor!” ♥
+            </p>
+            <h1 class="font-display font-black text-4xl sm:text-6xl xl:text-7xl tracking-tight leading-[1.03] uppercase">
+              CHAPA <span class="text-gradient-arc">ARC 07</span>
+              <span class="block text-2xl sm:text-4xl xl:text-5xl text-white mt-2 font-extrabold">
+                Mais que uma chapa, <span class="underline decoration-arc-pink decoration-4 underline-offset-4">uma equipe!</span>
+              </span>
+            </h1>
+          </div>
+
+          <p class="text-zinc-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Chega de promessas vazias que ninguém cumpre. A <strong class="text-white">ARC 07</strong> traz autonomia com o nosso <strong class="text-arc-yellow">Comércio Escolar</strong> para comprar bolas, redes e mesa de ping-pong, além de <strong class="text-arc-pink">banheiros dignos, filas rápidas, dias temáticos e torneios interclasses!</strong>
+          </p>
+
+          <!-- Pillars Mini Badges -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-1">
+            <div class="px-4 py-2 rounded-xl bg-arc-pink/15 border border-arc-pink/40 flex items-center gap-2 text-xs sm:text-sm font-bold text-white">
+              <i class="bi bi-lightbulb-fill text-arc-pink text-base"></i>
+              <span><strong class="text-arc-pink">A</strong>SSISTÊNCIA</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-arc-yellow/15 border border-arc-yellow/40 flex items-center gap-2 text-xs sm:text-sm font-bold text-white">
+              <i class="bi bi-hand-index-thumb-fill text-arc-yellow text-base"></i>
+              <span><strong class="text-arc-yellow">R</strong>EVOLUÇÃO</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-arc-pink/15 border border-arc-pink/40 flex items-center gap-2 text-xs sm:text-sm font-bold text-white">
+              <i class="bi bi-people-fill text-arc-pink text-base"></i>
+              <span><strong class="text-arc-pink">C</strong>OOPERAÇÃO</span>
+            </div>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+            <a href="#propostas" class="w-full sm:w-auto px-7 py-4 rounded-2xl font-display font-black text-base bg-gradient-to-r from-arc-pink via-pink-600 to-arc-pink text-white shadow-neon-pink hover:scale-[1.02] active:scale-95 transition flex items-center justify-center gap-2.5">
+              <i class="bi bi-rocket-takeoff-fill text-arc-yellow text-xl"></i>
+              <span>VER AS 9 PROPOSTAS</span>
+            </a>
+
+            <a href="#vozdoaluno" class="w-full sm:w-auto px-6 py-4 rounded-2xl font-display font-bold text-base liquid-glass border border-arc-yellow/50 text-arc-yellow hover:bg-arc-yellow hover:text-black transition flex items-center justify-center gap-2">
+              <i class="bi bi-chat-square-quote-fill"></i>
+              <span>CAIXINHA & ENQUETE</span>
+            </a>
+
+            <button onclick="shareCampaignWhatsApp()" class="w-full sm:w-auto px-5 py-4 rounded-2xl font-bold text-sm bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500 hover:text-black transition flex items-center justify-center gap-2" title="Compartilhar no grupo da sala">
+              <i class="bi bi-whatsapp text-lg"></i>
+              <span class="sm:hidden lg:inline">Mandar no Grupo</span>
+            </button>
+          </div>
+
+          <!-- Countdown Timer & Live Support Counter -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">
+            <!-- Election Countdown -->
+            <div class="liquid-glass rounded-2xl p-4 border border-white/10">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+                  <i class="bi bi-alarm-fill text-arc-pink"></i> Contagem para a Votação
+                </span>
+                <span class="text-[11px] bg-arc-yellow/20 text-arc-yellow px-2 py-0.5 rounded-md font-bold">03 de Novembro</span>
+              </div>
+              <div class="grid grid-cols-4 gap-1.5 sm:gap-2 text-center">
+                <div class="bg-black/60 rounded-xl py-2 px-1 border border-white/5">
+                  <span id="cd-days" class="font-display font-black text-lg sm:text-2xl text-white">--</span>
+                  <span class="block text-[9px] sm:text-[10px] text-zinc-400 uppercase">Dias</span>
+                </div>
+                <div class="bg-black/60 rounded-xl py-2 px-1 border border-white/5">
+                  <span id="cd-hours" class="font-display font-black text-lg sm:text-2xl text-arc-yellow">--</span>
+                  <span class="block text-[9px] sm:text-[10px] text-zinc-400 uppercase">Horas</span>
+                </div>
+                <div class="bg-black/60 rounded-xl py-2 px-1 border border-white/5">
+                  <span id="cd-mins" class="font-display font-black text-lg sm:text-2xl text-arc-pink">--</span>
+                  <span class="block text-[9px] sm:text-[10px] text-zinc-400 uppercase">Min</span>
+                </div>
+                <div class="bg-black/60 rounded-xl py-2 px-1 border border-white/5">
+                  <span id="cd-secs" class="font-display font-black text-lg sm:text-2xl text-white">--</span>
+                  <span class="block text-[9px] sm:text-[10px] text-zinc-400 uppercase">Seg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Apoio Digital Counter -->
+            <div class="liquid-glass-pink rounded-2xl p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-pink-200 flex items-center gap-1.5">
+                  <i class="bi bi-fire text-arc-yellow"></i> Apoio dos Alunos
+                </span>
+                <span class="text-xs font-bold text-arc-yellow">Vote 07!</span>
+              </div>
+              <div class="my-1 flex items-baseline gap-2">
+                <span id="heroTotalSupporters" class="font-display font-black text-3xl text-white">116</span>
+                <span class="text-xs text-zinc-300">apoios registrados para a Chapa ARC 07</span>
+              </div>
+              <button onclick="declareSupportHero()" id="heroSupportBtn" class="w-full py-2 rounded-xl bg-white text-black hover:bg-arc-yellow font-display font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 shadow">
+                <i class="bi bi-hand-thumbs-up-fill text-arc-pink"></i> Declarar Meu Apoio à ARC 07
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Official Poster / Mascot Showcase Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md">
+            <!-- Outer Neon Frame -->
+            <div class="absolute -inset-1.5 bg-gradient-to-tr from-arc-pink via-arc-yellow to-arc-pink rounded-3xl blur-md opacity-70 animate-pulse"></div>
+            
+            <!-- Main Poster Card -->
+            <div class="relative liquid-glass rounded-3xl p-4 sm:p-5 border-2 border-white/15 overflow-hidden shadow-2xl">
+              
+              <!-- Top Ribbon inside Card -->
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-3 py-1 rounded-full bg-arc-pink/20 border border-arc-pink/50 text-xs font-display font-black text-white flex items-center gap-1.5">
+                  <i class="bi bi-patch-check-fill text-arc-yellow"></i> IDENTIDADE OFICIAL
+                </span>
+                <span class="text-[11px] font-bold text-arc-yellow uppercase tracking-wider flex items-center gap-1">
+                  <i class="bi bi-award-fill"></i> Chapa 07
+                </span>
+              </div>
+
+              <!-- Poster Container: Displays uploaded poster OR Custom High-Impact SVG Recreation of the Chapa ARC 07 Macaw Poster -->
+              <div class="relative rounded-2xl overflow-hidden bg-zinc-950 border border-white/10 aspect-[4/5] flex items-center justify-center group">
+                
+                <!-- Uploaded Image Preview (if user selects their poster file) -->
+                <img id="heroPosterImg" src="" alt="Cartaz Oficial Chapa ARC 07" loading="lazy" decoding="async" class="w-full h-full object-cover hidden" />
+
+                <!-- Built-in Vector Poster Matching the Exact Chapa ARC 07 Arara Artwork -->
+                <div id="heroPosterArtwork" class="w-full h-full relative bg-[#f6f5f0] text-black p-4 flex flex-col justify-between select-none overflow-hidden">
+                  <!-- Diagonal Pink & Yellow Graffiti Streaks -->
+                  <div class="absolute -top-10 -left-16 w-64 h-24 bg-[#FF007F] -rotate-45 opacity-90"></div>
+                  <div class="absolute top-4 -left-12 w-60 h-8 bg-[#FACC15] -rotate-45"></div>
+                  <div class="absolute -bottom-10 -right-16 w-72 h-24 bg-[#FF007F] -rotate-45 opacity-90"></div>
+                  <div class="absolute bottom-6 -right-12 w-64 h-10 bg-[#FACC15] -rotate-45"></div>
+
+                  <!-- Top Right Slogan -->
+                  <div class="relative z-10 flex justify-between items-start">
+                    <div class="bg-black text-white px-2.5 py-1 rounded-lg text-[10px] font-display font-black uppercase tracking-wider shadow">
+                      Grêmio 2026
+                    </div>
+                    <div class="text-right font-graffiti text-xs sm:text-sm leading-tight rotate-[-6deg] text-black">
+                      Juntos<br/>por uma<br/>escola<br/>melhor! ♥
+                    </div>
+                  </div>
+
+                  <!-- Center Arara + CHAPA ARC 07 Graphic -->
+                  <div class="relative z-10 my-auto grid grid-cols-12 items-center gap-1">
+                    <!-- Stylized Pink/Yellow Arara Vector -->
+                    <div class="col-span-6 -ml-4">
+                      <svg viewBox="0 0 260 320" class="w-full h-auto drop-shadow-md">
+                        <!-- Crown -->
+                        <path d="M135,32 L145,10 L160,26 L176,8 L175,36 Z" fill="none" stroke="#000" stroke-width="5" stroke-linejoin="round"/>
+                        <!-- Head & Neck Feathers -->
+                        <path d="M35,150 C20,85 65,25 135,28 C178,30 202,55 198,85 C175,70 135,70 115,100 C95,130 85,180 40,220 Z" fill="#FF007F" stroke="#000" stroke-width="4"/>
+                        <!-- Yellow Feather Highlights -->
+                        <path d="M55,110 C70,58 115,38 168,45 C135,55 105,72 82,118 Z" fill="#FACC15" stroke="#000" stroke-width="3"/>
+                        <!-- White Eye Patch with Zebra Lines -->
+                        <path d="M108,65 C138,54 172,62 185,86 C165,102 135,108 112,96 Z" fill="#FFFFFF" stroke="#000" stroke-width="3.5"/>
+                        <path d="M122,82 Q145,86 165,78 M125,90 Q148,94 168,85" fill="none" stroke="#000" stroke-width="2.5"/>
+                        <!-- Golden Eye -->
+                        <circle cx="142" cy="72" r="9" fill="#FACC15" stroke="#000" stroke-width="3.5"/>
+                        <circle cx="142" cy="72" r="4" fill="#000"/>
+                        <!-- Mighty Black Beak -->
+                        <path d="M172,68 C212,75 225,115 195,152 C188,125 172,108 148,108 Z" fill="#111" stroke="#000" stroke-width="4"/>
+                        <path d="M148,108 C165,115 175,130 165,148 C148,138 138,122 142,108 Z" fill="#222" stroke="#000" stroke-width="3.5"/>
+                        <!-- Wing Feathers Pink & Yellow -->
+                        <path d="M15,295 C5,210 35,140 105,140 C150,140 175,185 162,250 C135,215 95,220 65,295 Z" fill="#FF007F" stroke="#000" stroke-width="4"/>
+                        <path d="M35,265 C35,205 65,168 118,172 C105,210 82,240 48,280 Z" fill="#FACC15" stroke="#000" stroke-width="3.5"/>
+                        <path d="M68,260 C78,215 108,195 145,205 C135,235 112,260 85,282 Z" fill="#FF007F" stroke="#000" stroke-width="3.5"/>
+                      </svg>
+                    </div>
+
+                    <!-- Right Side Typography: CHAPA ARC 07 -->
+                    <div class="col-span-6 text-center space-y-1 -ml-2">
+                      <div class="brush-badge-pink px-3 py-1 inline-block -rotate-6 shadow">
+                        <span class="font-display font-black text-lg sm:text-xl text-black tracking-wider">CHAPA</span>
+                      </div>
+                      <div class="font-display font-black text-4xl sm:text-5xl text-black tracking-tighter leading-none -rotate-6 drop-shadow">
+                        ARC
+                      </div>
+                      <div class="relative inline-block -rotate-3 pt-1">
+                        <span class="font-display font-black text-6xl sm:text-7xl italic text-black" style="-webkit-text-stroke: 3px #FF007F; text-shadow: 4px 4px 0px #FACC15;">07</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bottom Slogan & 3 Pillars Badges on Poster -->
+                  <div class="relative z-10 space-y-2">
+                    <div class="bg-black text-white px-3 py-1.5 rounded-xl inline-block -rotate-3 text-[11px] font-graffiti">
+                      Mais que uma chapa, uma equipe! ♥
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-1 text-center pt-1">
+                      <div class="bg-[#FF007F] text-black rounded-lg p-1.5 font-display font-black text-[9px] uppercase shadow">
+                        <i class="bi bi-lightbulb-fill block text-white text-sm"></i>
+                        Assistência
+                      </div>
+                      <div class="bg-[#FACC15] text-black rounded-lg p-1.5 font-display font-black text-[9px] uppercase shadow">
+                        <i class="bi bi-hand-thumbs-up-fill block text-white text-sm"></i>
+                        Revolução
+                      </div>
+                      <div class="bg-[#FF007F] text-black rounded-lg p-1.5 font-display font-black text-[9px] uppercase shadow">
+                        <i class="bi bi-people-fill block text-white text-sm"></i>
+                        Cooperação
+                      </div>
+                    </div>
+
+                    <p class="text-[10px] font-bold text-center text-zinc-900 bg-white/90 rounded-lg py-1 px-2 border border-black/15">
+                      Criar um comércio escolar para ajudar os alunos e contribuir com as necessidades da escola.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Card Footer Info -->
+              <div class="mt-3 flex items-center justify-between text-xs text-zinc-400 px-1">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-arc-pink"></span>
+                  Mascote Oficial: <strong class="text-white">Arara ARC 07</strong>
+                </span>
+                <span class="font-display font-black text-arc-yellow">VOTE 07! ♥</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: COMUNICADOS & NOTÍCIAS OFICIAIS DA PRESIDÊNCIA -->
+  <section id="comunicados" class="py-12 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="px-3.5 py-1 rounded-full bg-arc-pink/20 border border-arc-pink/40 text-arc-pink text-xs font-display font-extrabold uppercase tracking-widest flex items-center gap-1.5 w-max">
+            <i class="bi bi-broadcast"></i> Comunicados da Presidência
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight mt-2 text-white">
+            Notícias & <span class="text-gradient-arc">Avisos Oficiais</span>
+          </h2>
+        </div>
+        <span class="text-xs text-zinc-400 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          Canal Direto da Chapa ARC 07
+        </span>
+      </div>
+
+      <div id="listaComunicadosPublicos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: OS 3 PILARES DA CHAPA ARC 07 -->
+  <section id="pilares" class="py-14 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-arc-yellow/15 border border-arc-yellow/40 text-arc-yellow text-xs font-display font-extrabold uppercase tracking-widest">
+          O Que Significa ARC?
+        </span>
+        <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+          Os 3 Pilares da <span class="text-gradient-arc">Nossa Gestão</span>
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base">
+          Cada letra da <strong class="text-white">CHAPA ARC 07</strong> representa um compromisso real com você e com a nossa escola.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- A: ASSISTÊNCIA -->
+        <div class="liquid-glass-pink rounded-3xl p-7 relative overflow-hidden group hover:-translate-y-1.5 transition duration-300">
+          <div class="absolute -right-6 -top-6 text-8xl font-display font-black text-arc-pink/15 select-none">A</div>
+          <div class="w-14 h-14 rounded-2xl bg-arc-pink text-white flex items-center justify-center text-2xl shadow-neon-pink mb-5">
+            <i class="bi bi-lightbulb-fill"></i>
+          </div>
+          <div class="inline-block px-2.5 py-0.5 rounded-md bg-arc-pink/20 text-arc-pink text-xs font-bold mb-2">
+            PILAR 01
+          </div>
+          <h3 class="font-display font-black text-2xl text-white mb-3">ASSISTÊNCIA</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed mb-4">
+            Cuidar do básico que todo estudante merece todos os dias: <strong class="text-white">papel higiênico e higiene garantida nos banheiros</strong>, filas organizadas na merenda e campanhas solidárias para apoiar quem precisa.
+          </p>
+          <ul class="space-y-2 text-xs text-zinc-200 font-medium">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Banheiros abastecidos e monitorados</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Filas rápidas e organizadas no recreio</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Ações solidárias na comunidade escolar</li>
+          </ul>
+        </div>
+
+        <!-- R: REVOLUÇÃO -->
+        <div class="liquid-glass-yellow rounded-3xl p-7 relative overflow-hidden group hover:-translate-y-1.5 transition duration-300">
+          <div class="absolute -right-6 -top-6 text-8xl font-display font-black text-arc-yellow/15 select-none">R</div>
+          <div class="w-14 h-14 rounded-2xl bg-arc-yellow text-black flex items-center justify-center text-2xl shadow-neon-yellow mb-5">
+            <i class="bi bi-lightning-charge-fill"></i>
+          </div>
+          <div class="inline-block px-2.5 py-0.5 rounded-md bg-arc-yellow/20 text-arc-yellow text-xs font-bold mb-2">
+            PILAR 02
+          </div>
+          <h3 class="font-display font-black text-2xl text-white mb-3">REVOLUÇÃO</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed mb-4">
+            Tirar a escola da mesmice! Criaremos o <strong class="text-arc-yellow">Comércio Escolar (Vendinha)</strong> para gerar verba própria e comprar bolas de futebol, vôlei, redes, mesa de ping-pong, raquetes e coletes coloridos.
+          </p>
+          <ul class="space-y-2 text-xs text-zinc-200 font-medium">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-pink"></i> Comércio escolar revertido 100% aos alunos</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-pink"></i> Mesa de ping-pong, bolas e redes novas</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-pink"></i> Dias temáticos, cinema e música no recreio</li>
+          </ul>
+        </div>
+
+        <!-- C: COOPERAÇÃO -->
+        <div class="liquid-glass-pink rounded-3xl p-7 relative overflow-hidden group hover:-translate-y-1.5 transition duration-300">
+          <div class="absolute -right-6 -top-6 text-8xl font-display font-black text-arc-pink/15 select-none">C</div>
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-arc-pink to-arc-yellow text-black flex items-center justify-center text-2xl shadow-neon-pink mb-5">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div class="inline-block px-2.5 py-0.5 rounded-md bg-arc-pink/20 text-arc-pink text-xs font-bold mb-2">
+            PILAR 03
+          </div>
+          <h3 class="font-display font-black text-2xl text-white mb-3">COOPERAÇÃO</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed mb-4">
+            Um grêmio que governa junto com os representantes e turmas: <strong class="text-white">Prêmio mensal para a Sala Mais Limpa</strong>, caixinha de sugestões ativa para escolher eventos e gincanas integrando toda a escola.
+          </p>
+          <ul class="space-y-2 text-xs text-zinc-200 font-medium">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Premiação mensal para a Sala Mais Limpa</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Caixinha de sugestões física e digital</li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-arc-yellow"></i> Torneios e gincanas entre as turmas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: AS 9 PROPOSTAS OFICIAIS (INTERACTIVE FILTER + UPVOTES + WHATSAPP SHARE) -->
+  <section id="propostas" class="py-16 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="space-y-3">
+          <span class="px-3.5 py-1 rounded-full bg-arc-pink/20 border border-arc-pink/50 text-arc-pink text-xs font-display font-extrabold uppercase tracking-widest">
+            Plano de Gestão 100% Realista
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+            As 11 Propostas da <span class="text-gradient-arc">ARC 07</span>
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base max-w-2xl">
+            Vote nas propostas que você mais quer ver funcionando na escola e envie direto no grupo da sua turma no WhatsApp!
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2" id="proposalFilters">
+          <button onclick="filterProposals('all')" data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-arc-pink text-white shadow-neon-pink transition">
+            Todas (11)
+          </button>
+          <button onclick="filterProposals('esporte')" data-filter="esporte" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            💰 Comércio & Esporte
+          </button>
+          <button onclick="filterProposals('estrutura')" data-filter="estrutura" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            🧼 Filas, Banheiro & Limpeza
+          </button>
+          <button onclick="filterProposals('eventos')" data-filter="eventos" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            🎬 Eventos & Recreio
+          </button>
+          <button onclick="filterProposals('natureza')" data-filter="natureza" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            🌱 Convivência & Natureza
+          </button>
+          <button onclick="filterProposals('comunidade')" data-filter="comunidade" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            🗣️ Voz & Solidariedade
+          </button>
+          <button onclick="filterProposals('educacao')" data-filter="educacao" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition">
+            🎓 Cursos & Futuro
+          </button>
+        </div>
+      </div>
+
+      <!-- Proposals Grid (Rendered dynamically via JS) -->
+      <div id="proposalsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    </div>
+  </section>
+
+  <!-- SECTION: ÁREA EXCLUSIVA DE DIVULGAÇÃO DE CURSOS GRATUITOS -->
+  <section id="cursos" class="py-16 relative border-t border-white/10 bg-gradient-to-b from-transparent via-yellow-500/5 to-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-arc-yellow/20 border border-arc-yellow/50 text-arc-yellow text-xs font-display font-extrabold uppercase tracking-widest">
+            <i class="bi bi-mortarboard-fill"></i> Qualificação Profissional & Futuro
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+            Cursos <span class="text-arc-yellow">Gratuitos</span> para Alunos
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed">
+            Amplie suas oportunidades de aprendizagem e prepare-se para o mercado de trabalho com instituições de excelência como <strong class="text-white">Sebrae</strong>, <strong class="text-white">SENAI</strong> e plataformas parceiras.
+            <span class="text-arc-pink font-semibold block sm:inline"> Cursos 100% gratuitos, com certificado e sem taxas ou mensalidades!</span>
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2.5 rounded-2xl bg-zinc-900/80 border border-arc-yellow/30 text-xs sm:text-sm text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-shield-check text-arc-yellow text-lg"></i>
+            <span>Apenas Cursos 100% Gratuitos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Courses Grid (Rendered dynamically via JS) -->
+      <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <!-- Bottom Tip Banner -->
+      <div class="mt-8 p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 text-zinc-300 text-xs sm:text-sm">
+          <i class="bi bi-info-circle-fill text-arc-yellow text-xl shrink-0"></i>
+          <span>Novos cursos gratuitos são adicionados frequentemente pelo Grêmio Estudantil ARC 07. Conhece algum curso confiável gratuito? Envie na nossa Caixinha de Sugestões!</span>
+        </div>
+        <a href="#vozdoaluno" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs whitespace-nowrap transition flex items-center gap-1.5">
+          <i class="bi bi-chat-text"></i> Sugerir Curso
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION: PAINEL INTERATIVO "COMÉRCIO ESCOLAR ARC 07" -->
+  <section id="comercio" class="py-16 relative border-t border-white/10 bg-gradient-to-b from-transparent via-arc-pink/5 to-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="liquid-glass rounded-3xl p-6 sm:p-10 border border-arc-yellow/30 relative overflow-hidden">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left Explanation: How the Vendinha Works -->
+          <div class="lg:col-span-6 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-arc-yellow text-black font-display font-black text-xs uppercase">
+              <i class="bi bi-shop-window"></i> Projeto Carro-Chefe • Chapa 07
+            </div>
+
+            <h2 class="font-display font-black text-3xl sm:text-4xl uppercase leading-tight">
+              Comércio Escolar <span class="text-arc-yellow">ARC 07</span>: Da Nossa Vendinha Direto pro Seu Recreio!
+            </h2>
+
+            <p class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+              Como outras chapas prometem coisas sem ter dinheiro? A <strong class="text-white">ARC 07</strong> pensou diferente: vamos criar uma <strong class="text-arc-yellow">vendinha dentro da escola</strong> e usar <strong class="text-arc-pink">100% do valor arrecadado</strong> para comprar equipamentos esportivos e de lazer para os alunos!
+            </p>
+
+            <!-- Flow Steps -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                <span class="w-8 h-8 rounded-lg bg-arc-pink text-white font-display font-black flex items-center justify-center text-sm mb-2">1</span>
+                <h4 class="font-bold text-sm text-white">Vendinha na Escola</h4>
+                <p class="text-xs text-zinc-400 mt-1">Vendas organizadas em dias combinados com preços acessíveis.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                <span class="w-8 h-8 rounded-lg bg-arc-yellow text-black font-display font-black flex items-center justify-center text-sm mb-2">2</span>
+                <h4 class="font-bold text-sm text-white">Caixa Transparente</h4>
+                <p class="text-xs text-zinc-400 mt-1">Todo o lucro é divulgado no mural para a escola inteira acompanhar.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500 text-black font-display font-black flex items-center justify-center text-sm mb-2">3</span>
+                <h4 class="font-bold text-sm text-white">Compra dos Materiais</h4>
+                <p class="text-xs text-zinc-400 mt-1">Bolas, redes, mesa de ping-pong, raquetes e coletes novos!</p>
+              </div>
+            </div>
+
+            <!-- Item Badges Checklist -->
+            <div class="pt-2">
+              <p class="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2.5">Lista Oficial de Compras com o Dinheiro da Vendinha:</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  ⚽ Bola de Futebol
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🏐 Bola de Vôlei
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🥅 Rede de Futebol
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🕸️ Rede de Vôlei
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🏓 Mesa de Ping-Pong
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🏓 Raquetes & Bolinhas
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+                  🎽 Coletes Coloridos p/ Jogos
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Poll: Vote on What to Buy First -->
+          <div class="lg:col-span-6">
+            <div class="bg-zinc-950/90 rounded-2xl p-6 border border-white/15 shadow-xl space-y-5">
+              <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <span class="text-xs font-bold text-arc-pink uppercase tracking-wider">Decisão dos Alunos</span>
+                  <h3 class="font-display font-black text-xl text-white">O que devemos comprar PRIMEIRO?</h3>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-arc-yellow/15 text-arc-yellow text-xs font-bold" id="storeTotalVotesBadge">
+                  0 votos
+                </span>
+              </div>
+
+              <p class="text-xs text-zinc-400">
+                Clique no kit que a sua turma mais quer usar no recreio e nas aulas. O mais votado será a meta nº 1 da nossa vendinha!
+              </p>
+
+              <!-- Store Priority Voting Options -->
+              <div id="storePriorityList" class="space-y-3"></div>
+
+              <div class="p-3.5 rounded-xl bg-arc-pink/10 border border-arc-pink/30 text-xs text-pink-200 flex items-center gap-2.5">
+                <i class="bi bi-shield-check text-arc-yellow text-lg shrink-0"></i>
+                <span>Compromisso ARC 07: Todos os 4 kits serão comprados ao longo da gestão com prestação de contas mensal!</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CONCURSO SALA NOTA 10 (SALA MAIS LIMPA DO MÊS) + FILAS E BANHEIROS -->
+  <section id="salanota10" class="py-16 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-arc-yellow/20 border border-arc-yellow/40 text-arc-yellow text-xs font-display font-extrabold uppercase tracking-widest">
+          Organização, Limpeza & Dignidade
+        </span>
+        <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+          Filas Rápidas, Banheiros Dignos & <span class="text-gradient-arc">Sala Mais Limpa</span>
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base">
+          Organizar a escola não precisa ser chato: com a <strong class="text-white">ARC 07</strong>, a sala mais limpa do mês ganha um <strong class="text-arc-yellow">prêmio especial</strong>!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: How the Monthly Cleanest Classroom Contest Works + Simulator -->
+        <div class="lg:col-span-7 liquid-glass rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-arc-yellow text-black flex items-center justify-center text-2xl font-black shadow-neon-yellow">
+                <i class="bi bi-trophy-fill"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-black text-xl sm:text-2xl text-white">Troféu Mensal: Sala Mais Limpa</h3>
+                <p class="text-xs text-zinc-400">A turma que melhor cuidar da sala leva um prêmio todo final de mês!</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
+              Premiação Mensal
+            </span>
+          </div>
+
+          <!-- 4 Criteria Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-3">
+              <i class="bi bi-trash3-fill text-arc-pink text-xl mt-0.5"></i>
+              <div>
+                <h4 class="font-bold text-sm text-white">Zero Lixo no Chão</h4>
+                <p class="text-xs text-zinc-400 mt-0.5">Papéis e embalagens descartados corretamente na lixeira no fim das aulas.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-3">
+              <i class="bi bi-grid-3x3-gap-fill text-arc-yellow text-xl mt-0.5"></i>
+              <div>
+                <h4 class="font-bold text-sm text-white">Carteiras Alinhadas</h4>
+                <p class="text-xs text-zinc-400 mt-0.5">Mesas e cadeiras organizadas e sem rabiscos ao final do turno.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-3">
+              <i class="bi bi-easel2-fill text-arc-pink text-xl mt-0.5"></i>
+              <div>
+                <h4 class="font-bold text-sm text-white">Quadro & Cuidado Geral</h4>
+                <p class="text-xs text-zinc-400 mt-0.5">Lousa apagada na troca de professores e materiais conservados.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-3">
+              <i class="bi bi-gift-fill text-arc-yellow text-xl mt-0.5"></i>
+              <div>
+                <h4 class="font-bold text-sm text-white">Prêmio Todo Mês!</h4>
+                <p class="text-xs text-zinc-400 mt-0.5">Sessão de cinema exclusiva, kit lanche/doces para a turma ou mimo especial.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Ranking Preview: Vote for Your Classroom -->
+          <div class="bg-black/60 rounded-2xl p-5 border border-white/10 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h4 class="font-display font-bold text-sm text-arc-yellow uppercase flex items-center gap-1.5">
+                  <i class="bi bi-stars"></i> Ranking de Torcida: Qual sala vai ganhar no 1º mês?
+                </h4>
+                <p class="text-xs text-zinc-400">Clique na sua turma (ou adicione a sua sala) para mostrar que vocês vão levar o prêmio!</p>
+              </div>
+            </div>
+
+            <div id="classroomLeaderboard" class="space-y-2.5"></div>
+
+            <!-- Add Custom Classroom Input -->
+            <div class="flex flex-col sm:flex-row gap-2 pt-2">
+              <input type="text" id="newClassroomInput" placeholder="Não achou sua turma? Digite aqui (Ex: 1º D, Técnico)..." class="w-full sm:flex-1 bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-arc-pink" />
+              <button onclick="addCustomClassroom()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-arc-pink hover:bg-pink-600 text-white font-bold text-xs shrink-0 transition flex items-center justify-center gap-1.5 shadow-md">
+                <i class="bi bi-plus-lg"></i>
+                <span>Incluir Minha Sala</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Filas Organizadas + Banheiros Abastecidos -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Card: Organização nas Filas -->
+          <div class="liquid-glass-pink rounded-3xl p-6 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-arc-pink text-white flex items-center justify-center text-xl shrink-0">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase text-arc-yellow">Fim do Empurra-Empurra</span>
+                <h3 class="font-display font-black text-lg text-white">Filas Mais Arrumadas e Rápidas</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+              Ninguém merece perder metade do recreio preso numa fila bagunçada. Vamos organizar o fluxo com sinalização clara e apoio dos membros da <strong class="text-white">ARC 07</strong> para deixar a fila mais fácil, justa e muito mais rápida!
+            </p>
+          </div>
+
+          <!-- Card: Papel Higiênico em Todos os Banheiros + Botão de Alerta -->
+          <div class="liquid-glass-yellow rounded-3xl p-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-arc-yellow text-black flex items-center justify-center text-xl shrink-0">
+                <i class="bi bi-heart-pulse-fill"></i>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase text-arc-pink">Respeito Básico ao Aluno</span>
+                <h3 class="font-display font-black text-lg text-white">Papel Higiênico em TODOS os Banheiros</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+              Chega de banheiro sem o básico! A nossa chapa fará fiscalização diária junto à direção para garantir <strong class="text-arc-yellow">reposição constante de papel higiênico e organização</strong> em todos os banheiros masculinos e femininos.
+            </p>
+            <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 flex items-center justify-between gap-3">
+              <div class="text-xs">
+                <strong class="text-white block">Faltou papel ou sabonete?</strong>
+                <span class="text-zinc-400">Avise a chapa em 5 segundos pelo site!</span>
+              </div>
+              <button id="btnAlertaBanheiro" type="button" class="px-3.5 py-2 rounded-xl bg-arc-yellow text-black font-display font-black text-xs hover:scale-105 transition shrink-0 cursor-pointer flex items-center gap-1.5 shadow-sm">
+                <i class="bi bi-megaphone-fill text-arc-pink"></i>
+                <span>Avisar Agora</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CENTRAL "VOZ DOS ESTUDANTES" (CAIXINHA DIGITAL + ENQUETE DE EVENTOS) -->
+  <section id="vozdoaluno" class="py-16 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="px-3.5 py-1 rounded-full bg-arc-pink/20 border border-arc-pink/50 text-arc-pink text-xs font-display font-extrabold uppercase tracking-widest">
+          Proposta #09 Já Funcionando Agora!
+        </span>
+        <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+          Voz dos Estudantes & <span class="text-gradient-arc">Caixinha de Sugestões</span>
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base">
+          Outras chapas prometem te ouvir depois da eleição. A <strong class="text-white">CHAPA ARC 07</strong> já abriu a Caixinha Digital e a votação do primeiro evento agora mesmo!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Column: Caixinha de Sugestões Form -->
+        <div class="lg:col-span-5 liquid-glass rounded-3xl p-6 sm:p-7 border border-arc-pink/30 space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-arc-pink text-white flex items-center justify-center text-xl shadow-neon-pink">
+              <i class="bi bi-mailbox2-flag"></i>
+            </div>
+            <div>
+              <h3 class="font-display font-black text-xl text-white">Caixinha de Sugestões ARC 07</h3>
+              <p class="text-xs text-zinc-400">Escolha os próximos eventos ou relate um problema da sua sala</p>
+            </div>
+          </div>
+
+          <form id="suggestionForm" onsubmit="submitStudentSuggestion(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1">Seu Nome (ou Anônimo)</label>
+                <input type="text" id="sugName" placeholder="Ex: Lucas ou Anônimo" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-arc-pink" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1">Sua Sala / Turma *</label>
+                <input type="text" id="sugTurma" required placeholder="Ex: 8º A, 1º B, 3º A..." class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-arc-pink" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">Tema da Sugestão *</label>
+              <select id="sugCategory" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-arc-pink">
+                <option value="🎉 Ideia de Evento / Dia Temático">🎉 Ideia de Evento / Dia Temático</option>
+                <option value="⚽ Torneio Esportivo / Recreio">⚽ Torneio Esportivo / Recreio</option>
+                <option value="🧻 Alerta: Banheiro / Papel Higiênico">🧻 Alerta: Banheiro / Papel Higiênico</option>
+                <option value="🍫 Sugestão para a Vendinha (Comércio 07)">🍫 Sugestão para a Vendinha (Comércio 07)</option>
+                <option value="💡 Melhoria para a Escola">💡 Melhoria para a Escola</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">Sua Ideia ou Pedido *</label>
+              <textarea id="sugMessage" required rows="3" placeholder="Conta pra gente: qual dia temático, filme, campeonato ou melhoria sua sala mais quer?" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-arc-pink"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-arc-pink to-pink-600 text-white font-display font-black text-sm uppercase tracking-wider shadow-neon-pink hover:scale-[1.01] transition flex items-center justify-center gap-2">
+              <i class="bi bi-send-check-fill text-arc-yellow"></i>
+              <span>Enviar para a Caixinha da ARC 07</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Column: Enquete Rápida de Eventos + Mural Ao Vivo de Pedidos -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Quick Event Poll -->
+          <div class="liquid-glass rounded-3xl p-6 border border-white/10 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div>
+                <span class="text-xs font-bold text-arc-yellow uppercase">Enquete Oficial de Eventos</span>
+                <h3 class="font-display font-black text-lg sm:text-xl text-white">Qual evento você quer logo no 1º mês da ARC 07?</h3>
+              </div>
+              <span id="eventPollTotalBadge" class="px-3 py-1 rounded-full bg-white/10 text-xs font-bold text-zinc-300">0 votos</span>
+            </div>
+
+            <div id="eventPollList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          </div>
+
+          <!-- Live Suggestions Wall -->
+          <div class="liquid-glass rounded-3xl p-6 border border-white/10 space-y-4">
+            <div class="flex items-center justify-between">
+              <h4 class="font-display font-bold text-base text-white flex items-center gap-2">
+                <i class="bi bi-chat-dots-fill text-arc-pink"></i>
+                Mural da Caixinha dos Alunos
+              </h4>
+              <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Aberto para todas as salas
+              </span>
+            </div>
+
+            <div id="suggestionsWall" class="space-y-3 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: EQUIPE CHAPA ARC 07 (14 INTEGRANTES COM UPLOAD DE FOTO FÁCIL) -->
+  <section id="equipe" class="py-16 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="space-y-3">
+          <span class="px-3.5 py-1 rounded-full bg-arc-yellow/20 border border-arc-yellow/50 text-arc-yellow text-xs font-display font-extrabold uppercase tracking-widest">
+            Mais que uma chapa, uma equipe!
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight">
+            Conheça os <span class="text-gradient-arc" id="teamTotalDisplay">16 Integrantes</span> da ARC 07
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base max-w-2xl">
+            Uma equipe unida, representativa de todas as turmas e pronta para trabalhar todos os dias pela nossa escola com compromisso e transparência.
+          </p>
+        </div>
+      </div>
+
+      <!-- 13 Members Responsive Grid -->
+      <div id="teamGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5"></div>
+
+    </div>
+  </section>
+
+  <!-- SECTION: COMO VOTAR & KIT DE DIVULGAÇÃO PARA REPRESENTANTES -->
+  <section id="comovotar" class="py-16 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="liquid-glass-pink rounded-3xl p-6 sm:p-10 border border-arc-pink/40">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-5">
+            <span class="px-3.5 py-1 rounded-full bg-arc-yellow text-black font-display font-black text-xs uppercase">
+              Passo a Passo da Vitória
+            </span>
+            <h2 class="font-display font-black text-3xl sm:text-5xl uppercase leading-tight">
+              Na Hora de Votar, Escolha quem Faz: <span class="text-arc-yellow">VOTE CHAPA ARC 07!</span>
+            </h2>
+            <p class="text-zinc-200 text-sm sm:text-base leading-relaxed">
+              A mudança nos intervalos, nos esportes, nos banheiros e nos eventos da escola está nas suas mãos. Compartilhe com os seus amigos e representantes de turma!
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+              <div class="p-4 rounded-2xl bg-black/60 border border-white/10">
+                <div class="text-arc-yellow font-display font-black text-2xl mb-1">01.</div>
+                <h4 class="font-bold text-sm text-white">Compareça à Votação</h4>
+                <p class="text-xs text-zinc-400 mt-1">Fique atento à chamada da sua turma no dia da eleição do grêmio.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/60 border border-white/10">
+                <div class="text-arc-pink font-display font-black text-2xl mb-1">02.</div>
+                <h4 class="font-bold text-sm text-white">Marque CHAPA ARC 07</h4>
+                <p class="text-xs text-zinc-400 mt-1">Procure pela Arara Rosa e Amarela — Número <strong class="text-white">07</strong>!</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-black/60 border border-white/10">
+                <div class="text-emerald-400 font-display font-black text-2xl mb-1">03.</div>
+                <h4 class="font-bold text-sm text-white">Participe da Gestão</h4>
+                <p class="text-xs text-zinc-400 mt-1">Acompanhe a vendinha, os torneios e os prêmios da Sala Mais Limpa!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Box: Ready-to-copy message for WhatsApp Groups -->
+          <div class="lg:col-span-5">
+            <div class="bg-zinc-950/90 rounded-2xl p-5 sm:p-6 border border-white/15 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                  <i class="bi bi-whatsapp text-emerald-400"></i>
+                  Mensagem Pronta para Grupos de Sala
+                </h3>
+                <span class="text-[11px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">1 Clique</span>
+              </div>
+
+              <div id="whatsappCopyBox" class="p-3.5 rounded-xl bg-black border border-white/10 text-xs text-zinc-300 font-mono leading-relaxed select-all">
+🦜🔥 *CHAPA ARC 07 — MAIS QUE UMA CHAPA, UMA EQUIPE!* 💛🩷
+Galera, confiram as propostas da *ARC 07* para o Grêmio:
+✅ *Comércio Escolar (Vendinha)* p/ comprar bolas de futebol e vôlei, redes, mesa de ping-pong, raquetes e coletes!
+✅ *Papel higiênico garantido* em todos os banheiros e *filas organizadas*!
+✅ *Prêmio todo mês* para a Sala Mais Limpa!
+✅ *Dias temáticos, cinema, torneios interclasses, música e jogos no recreio!*
+🗳️ Juntos por uma escola melhor: *VOTE 07!*
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <button onclick="copyCampaignMessage()" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                  <i class="bi bi-clipboard-check text-arc-yellow"></i>
+                  <span>Copiar Texto</span>
+                </button>
+                <button onclick="shareCampaignWhatsApp()" class="py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-display font-black text-xs flex items-center justify-center gap-2 transition">
+                  <i class="bi bi-whatsapp"></i>
+                  <span>Enviar no WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 py-10 bg-black/80 text-center text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto px-4 space-y-4">
+      <div class="flex items-center justify-center gap-2">
+        <span class="font-display font-black text-lg text-white">CHAPA <span class="text-arc-pink">ARC</span></span>
+        <span class="bg-arc-yellow text-black font-display font-black px-2 py-0.5 rounded text-sm">07</span>
+      </div>
+      <p class="text-zinc-300 font-medium">
+        “Mais que uma chapa, uma equipe!” • Assistência • Revolução • Cooperação
+      </p>
+      <p class="text-zinc-500">
+        Campanha Oficial ao Grêmio Estudantil • Juntos por uma escola melhor! ♥ Vote 07!
+      </p>
+      <div>
+        <a href="admin-login.html" class="inline-flex items-center gap-1.5 text-[11px] text-zinc-500 hover:text-arc-yellow transition px-3 py-1 rounded-full bg-white/5 border border-white/5 hover:border-arc-yellow/30">
+          <i class="bi bi-shield-lock"></i>
+          <span>Acesso Restrito (Presidência)</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BADGE FLUTUANTE DEPLOYED FOR (ESTILO NETLIFY - CANTO INFERIOR ESQUERDO) -->
+  <a 
+    id="devFloatingBadge"
+    href="https://instagram.com/sexcdarskinarchiives_"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="fixed bottom-4 left-4 z-40 group flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/15 hover:border-arc-yellow/60 shadow-xl text-[11px] sm:text-xs text-zinc-300 transition-all duration-300 hover:scale-105 hover:bg-black select-none"
+    title="Desenvolvedor: Gustavo Agostinho • Clique para ver o Instagram"
+  >
+    <span class="relative flex h-2 w-2 shrink-0">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-arc-pink opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-arc-yellow"></span>
+    </span>
+    <span id="devBadgeContent" class="transition-opacity duration-300 opacity-100 flex items-center gap-1.5 whitespace-nowrap">
+      <span class="text-zinc-400">Deployed for:</span>
+      <span class="text-white font-bold">Gustavo Agostinho</span>
+    </span>
+  </a>
+
+  <!-- TOAST NOTIFICATION BOX (No alert() used!) -->
+  <div id="toastNotification" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-sm z-50 liquid-glass border border-arc-yellow/60 rounded-2xl p-4 shadow-2xl transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3">
+    <div class="w-9 h-9 rounded-xl bg-arc-yellow text-black flex items-center justify-center text-lg font-bold shrink-0">
+      <i class="bi bi-check2-circle"></i>
+    </div>
+    <div class="text-xs sm:text-sm font-semibold text-white" id="toastMessage">Ação realizada com sucesso!</div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // ==========================================
+    // 1. OFFICIAL 9 PROPOSALS DATA (CHAPA ARC 07)
+    // ==========================================
+    const defaultProposals = [
+      {
+        id: 'prop-1',
+        number: '01',
+        category: 'esporte',
+        categoryLabel: 'Finanças & Esporte',
+        badge: 'Carro-Chefe ARC 07',
+        icon: 'bi-shop',
+        accent: 'pink',
+        title: 'Comércio Escolar (Vendinha ARC 07)',
+        summary: 'Criação de uma vendinha dentro da escola para arrecadar fundos próprios e comprar materiais para o recreio e jogos.',
+        howItWorks: 'Faremos uma vendinha organizada pelo grêmio e, com 100% do valor arrecadado, compraremos: bola de futebol, bola de vôlei, rede de vôlei, rede de futebol, mesa de ping-pong, raquetes de ping-pong e coletes coloridos para jogos!',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-2',
+        number: '02',
+        category: 'estrutura',
+        categoryLabel: 'Organização & Estrutura',
+        badge: 'Ação Imediata',
+        icon: 'bi-people-fill',
+        accent: 'yellow',
+        title: 'Organização e Agilidade nas Filas',
+        summary: 'Deixar a fila mais arrumada, fácil e rápida para ninguém perder o intervalo esperando.',
+        howItWorks: 'Organização prática do fluxo da fila com apoio dos integrantes do grêmio nos horários de pico, evitando bagunça e garantindo mais tempo livre de recreio.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-3',
+        number: '03',
+        category: 'estrutura',
+        categoryLabel: 'Organização & Estrutura',
+        badge: 'Prioridade Diária',
+        icon: 'bi-droplet-half',
+        accent: 'pink',
+        title: 'Papel Higiênico em Todos os Banheiros',
+        summary: 'Garantir organização e reposição de papel higiênico em todos os banheiros da escola.',
+        howItWorks: 'Monitoramento diário junto à direção e equipe da escola para que nenhum banheiro fique sem papel higiênico, além de botão de alerta rápido aqui no site.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-4',
+        number: '04',
+        category: 'estrutura',
+        categoryLabel: 'Organização & Estrutura',
+        badge: 'Prêmio Todo Mês',
+        icon: 'bi-trophy-fill',
+        accent: 'yellow',
+        title: 'Prêmio Mensal: A Sala Mais Limpa',
+        summary: 'Incentivo positivo: a sala mais limpa e conservada da escola ganha um prêmio especial todo mês!',
+        howItWorks: 'Avaliação justa de limpeza e conservação das salas ao longo do mês. No final de cada mês, a turma vencedora recebe uma premiação coletiva!',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-5',
+        number: '05',
+        category: 'eventos',
+        categoryLabel: 'Eventos & Cultura',
+        badge: 'Cultura & Diversão',
+        icon: 'bi-film',
+        accent: 'pink',
+        title: 'Mais Eventos, Dias Temáticos e Cinema',
+        summary: 'Realização de dias temáticos criativos, feiras culturais e sessões de cinema na escola.',
+        howItWorks: 'Calendário bimestral com temas escolhidos pelos alunos (Dia do Pijama, Personagens, Camisa de Time), mostras de talentos e sessões de cinema.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-6',
+        number: '06',
+        category: 'esporte',
+        categoryLabel: 'Finanças & Esporte',
+        badge: 'Interclasses',
+        icon: 'bi-dribbble',
+        accent: 'yellow',
+        title: 'Torneios, Copas e Gincanas',
+        summary: 'Competições esportivas organizadas e desafios empolgantes entre todas as turmas.',
+        howItWorks: 'Campeonatos de futsal, vôlei, ping-pong e queimada usando os novos materiais comprados pela vendinha, além de gincanas valendo pontos para as salas.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-7',
+        number: '07',
+        category: 'eventos',
+        categoryLabel: 'Eventos & Cultura',
+        badge: 'Intervalo Top',
+        icon: 'bi-music-note-beamed',
+        accent: 'pink',
+        title: 'Recreio Mais Divertido',
+        summary: 'Jogos, música e atividades recreativas para transformar o intervalo todos os dias.',
+        howItWorks: 'Ping-pong liberado no intervalo, jogos de mesa, desafios rápidos e playlist colaborativa escolhida pelos estudantes.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-8',
+        number: '08',
+        category: 'comunidade',
+        categoryLabel: 'Comunidade & Voz',
+        badge: 'Cooperação',
+        icon: 'bi-heart-fill',
+        accent: 'yellow',
+        title: 'Ações Solidárias',
+        summary: 'Campanhas de arrecadação e apoio verdadeiro à nossa comunidade escolar.',
+        howItWorks: 'Mutirões solidários de arrecadação de alimentos, agasalhos e materiais escolares para ajudar estudantes e famílias da comunidade.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-9',
+        number: '09',
+        category: 'comunidade',
+        categoryLabel: 'Comunidade & Voz',
+        badge: 'Gestão Participativa',
+        icon: 'bi-mailbox2',
+        accent: 'pink',
+        title: 'Voz dos Estudantes (Caixinha de Sugestões)',
+        summary: 'Caixinha de sugestões física e digital para os alunos ajudarem a escolher os próximos eventos.',
+        howItWorks: 'Toda decisão de evento, tema de festa ou compra de materiais passa pela escolha direta dos alunos na Caixinha de Sugestões.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-10',
+        number: '10',
+        category: 'educacao',
+        categoryLabel: 'Futuro & Oportunidade',
+        badge: '100% Gratuito & Certificado',
+        icon: 'bi-mortarboard-fill',
+        accent: 'yellow',
+        title: 'Cursos Gratuitos (Sebrae, SENAI & Plataformas Confiáveis)',
+        summary: 'Área exclusiva no site do Grêmio para divulgar cursos gratuitos e preparar os alunos para o mercado de trabalho.',
+        howItWorks: 'Divulgação contínua de opções de cursos 100% gratuitos oferecidos por instituições de excelência como Sebrae, SENAI e Fundação Bradesco. Inscrições diretas, certificados oficiais, sem qualquer taxa ou mensalidade.',
+        votes: 0,
+        voted: false
+      },
+      {
+        id: 'prop-11',
+        number: '11',
+        category: 'natureza',
+        categoryLabel: 'Sustentabilidade & Bem-Estar',
+        badge: 'Espaço Verde & Acolhedor',
+        icon: 'bi-tree-fill',
+        accent: 'pink',
+        title: 'Jardim de Conexão com a Natureza',
+        summary: 'Espaço verde de convivência na escola para os alunos terem momentos de contato com a natureza, mexer na terra, plantar flores e cultivar plantas.',
+        howItWorks: 'Criação de um espaço verde acolhedor com canteiros de flores, grama cuidada e mudas onde os estudantes possam mexer na terra, cultivar plantas, relaxar no intervalo, despertar a criatividade e promover a sustentabilidade na escola.',
+        votes: 0,
+        voted: false
+      }
+    ];
+
+    // ==========================================
+    // 2. DEFAULT FREE COURSES DATA (SEBRAE, SENAI & PARCEIROS)
+    // ==========================================
+    const defaultCourses = [
+      {
+        id: 'curso-1',
+        title: 'Empreendedorismo e Criação de Negócios',
+        institution: 'Sebrae',
+        category: 'Gestão & Negócios',
+        duration: '15 horas',
+        description: 'Aprenda os passos práticos para transformar ideias em projetos e empreendimentos com metodologia do Sebrae.',
+        link: 'https://sebrae.com.br/sites/PortalSebrae/cursosonline'
+      },
+      {
+        id: 'curso-2',
+        title: 'Inteligência Artificial e Tecnologias Digitais',
+        institution: 'SENAI',
+        category: 'Tecnologia & TI',
+        duration: '20 horas',
+        description: 'Conceitos de IA, automação e inovação tecnológica para estudantes se destacarem no mercado atual.',
+        link: 'https://www.mundosenai.com.br/cursos/gratuitos/'
+      },
+      {
+        id: 'curso-3',
+        title: 'Comunicação Assertiva e Falar em Público',
+        institution: 'Fundação Bradesco',
+        category: 'Desenvolvimento Pessoal',
+        duration: '10 horas',
+        description: 'Como apresentar seminários e trabalhos com clareza, perder a timidez e dominar a comunicação oral.',
+        link: 'https://www.ev.org.br/cursos'
+      },
+      {
+        id: 'curso-4',
+        title: 'Marketing Digital e Redes Sociais',
+        institution: 'Sebrae',
+        category: 'Marketing & Mídias',
+        duration: '12 horas',
+        description: 'Como criar presença profissional nas redes sociais, produzir conteúdo de qualidade e atrair oportunidades.',
+        link: 'https://sebrae.com.br/sites/PortalSebrae/cursosonline'
+      },
+      {
+        id: 'curso-5',
+        title: 'Lógica de Programação para Iniciantes',
+        institution: 'SENAI',
+        category: 'Tecnologia & Programação',
+        duration: '14 horas',
+        description: 'Fundamentos de programação, algoritmos e raciocínio lógico computacional para jovens que querem aprender a programar.',
+        link: 'https://www.mundosenai.com.br/cursos/gratuitos/'
+      },
+      {
+        id: 'curso-6',
+        title: 'Excel do Básico ao Intermediário',
+        institution: 'Fundação Bradesco',
+        category: 'Produtividade',
+        duration: '15 horas',
+        description: 'Planilhas, fórmulas essenciais, gráficos dinâmicos e organização de dados para a escola e o mercado de trabalho.',
+        link: 'https://www.ev.org.br/cursos'
+      }
+    ];
+
+    // ==========================================
+    // 3. STORE PRIORITY POLL DATA
+    // ==========================================
+    const defaultStoreItems = [
+      { id: 'kit-pingpong', name: '🏓 Mesa de Ping-Pong + Raquetes e Bolinhas', votes: 0 },
+      { id: 'kit-futsal', name: '⚽ Bolas de Futebol + Redes Novas de Futebol', votes: 0 },
+      { id: 'kit-volei', name: '🏐 Bolas de Vôlei + Rede de Vôlei', votes: 0 },
+      { id: 'kit-coletes', name: '🎽 Coletes Coloridos para Jogos e Interclasse', votes: 0 }
+    ];
+
+    // ==========================================
+    // 3. CLASSROOM LEADERBOARD DATA (Salas Oficiais: 1A, 1B, 1C, 2A, 2B, 2C, 3A, 3B, 3C)
+    // ==========================================
+    const defaultClassrooms = [
+      { id: 'sala-1a', name: '1º A', votes: 0 },
+      { id: 'sala-1b', name: '1º B', votes: 0 },
+      { id: 'sala-1c', name: '1º C', votes: 0 },
+      { id: 'sala-2a', name: '2º A', votes: 0 },
+      { id: 'sala-2b', name: '2º B', votes: 0 },
+      { id: 'sala-2c', name: '2º C', votes: 0 },
+      { id: 'sala-3a', name: '3º A', votes: 0 },
+      { id: 'sala-3b', name: '3º B', votes: 0 },
+      { id: 'sala-3c', name: '3º C', votes: 0 }
+    ];
+
+    // ==========================================
+    // 4. EVENT POLL DATA
+    // ==========================================
+    const defaultEventPoll = [
+      { id: 'ev-1', name: '🎭 Dia Temático (Votado pelas Salas)', votes: 0 },
+      { id: 'ev-2', name: '🏆 Torneio Interclasses de Futsal, Vôlei & Ping-Pong', votes: 0 },
+      { id: 'ev-3', name: '🍿 Sessão de Cinema com Pipoca na Escola', votes: 0 },
+      { id: 'ev-4', name: '🔥 Gincana Escolar com Desafios entre Turmas', votes: 0 }
+    ];
+
+    // ==========================================
+    // 5. INITIAL SUGGESTIONS WALL (Começa limpo para a galera real enviar)
+    // ==========================================
+    const defaultSuggestions = [];
+
+    // ==========================================
+    // 6. 13 MEMBERS DATA (CHAPA ARC 07)
+    // ==========================================
+    const defaultTeamMembers = [
+      { id: 1, name: 'Presidente', role: 'Presidência', turma: 'Chapa ARC 07', quote: 'Compromisso, liderança e transparência para nossa escola.', photo: '' },
+      { id: 2, name: 'Vice-Presidente', role: 'Vice-Presidência', turma: 'Chapa ARC 07', quote: 'Unindo todas as turmas por um grêmio que faz acontecer.', photo: '' },
+      { id: 3, name: 'Secretário(a) Geral', role: 'Secretaria Geral', turma: 'Chapa ARC 07', quote: 'Organização, agilidade e voz ativa para cada estudante.', photo: '' },
+      { id: 4, name: 'Tesoureiro(a)', role: 'Tesouraria & Vendinha', turma: 'Chapa ARC 07', quote: '100% do lucro do comércio escolar revertido aos alunos.', photo: '' },
+      { id: 5, name: 'Diretor(a) de Esportes', role: 'Diretoria de Esportes', turma: 'Chapa ARC 07', quote: 'Bolas novas, redes oficiais, ping-pong e campeonatos.', photo: '' },
+      { id: 6, name: 'Diretor(a) de Torneios', role: 'Esportes & Torneios', turma: 'Chapa ARC 07', quote: 'Mais jogos, interclasses organizados e coletes novos.', photo: '' },
+      { id: 7, name: 'Diretor(a) de Eventos', role: 'Eventos & Cultura', turma: 'Chapa ARC 07', quote: 'Dias temáticos, feiras culturais e cinema escolar.', photo: '' },
+      { id: 8, name: 'Coordenador(a) de Lazer', role: 'Recreio & Lazer', turma: 'Chapa ARC 07', quote: 'Música, jogos e um recreio muito mais animado.', photo: '' },
+      { id: 9, name: 'Comunicação & Mídias', role: 'Comunicação & Redes', turma: 'Chapa ARC 07', quote: 'Informação clara nas redes e prestação de contas diária.', photo: '' },
+      { id: 10, name: 'Assistência & Estrutura', role: 'Assistência & Estrutura', turma: 'Chapa ARC 07', quote: 'Papel higiênico garantido em todos os banheiros.', photo: '' },
+      { id: 11, name: 'Comissão Sala Nota 10', role: 'Sala Mais Limpa', turma: 'Chapa ARC 07', quote: 'Premiação justa todo mês para a sala mais conservada.', photo: '' },
+      { id: 12, name: 'Ações Solidárias', role: 'Ações Solidárias', turma: 'Chapa ARC 07', quote: 'Campanhas de apoio mútuo à comunidade escolar.', photo: '' },
+      { id: 13, name: 'Ouvidoria Estudantil', role: 'Voz do Aluno', turma: 'Chapa ARC 07', quote: 'Caixinha de sugestões aberta o ano inteiro.', photo: '' },
+      { id: 14, name: 'Comissão de Apoio', role: 'Apoio & Representação', turma: 'Chapa ARC 07', quote: 'União e força de todas as turmas para fazermos história.', photo: '' },
+      { id: 15, name: 'Mobilização Estudantil', role: 'Apoio & Mobilização', turma: 'Chapa ARC 07', quote: 'Engajando e unindo os estudantes por uma escola melhor.', photo: '' },
+      { id: 16, name: 'Projetos e Ações', role: 'Apoio & Projetos', turma: 'Chapa ARC 07', quote: 'Dando suporte aos eventos e projetos da ARC 07.', photo: '' }
+    ];
+
+    // Cache-buster: Garante que visitantes anteriores tenham seus caches limpos e recebam as salas oficiais 1A a 3C
+    const ARC07_STORAGE_VERSION = 'arc07_clean_zero_v4_salas_oficiais';
+    if (localStorage.getItem('arc07_clean_v') !== ARC07_STORAGE_VERSION) {
+      localStorage.removeItem('arc07_proposals');
+      localStorage.removeItem('arc07_store');
+      localStorage.removeItem('arc07_classrooms');
+      localStorage.removeItem('arc07_eventpoll');
+      localStorage.removeItem('arc07_suggestions');
+      localStorage.removeItem('arc07_hero_supported');
+      localStorage.setItem('arc07_clean_v', ARC07_STORAGE_VERSION);
+    }
+
+    // State Variables Loaded from LocalStorage (ou padrões zerados)
+    let rawStoredProposals = null;
+    try { rawStoredProposals = JSON.parse(localStorage.getItem('arc07_proposals')); } catch(e){}
+    let proposals = defaultProposals.map(def => {
+      const found = rawStoredProposals && Array.isArray(rawStoredProposals) ? rawStoredProposals.find(p => p.id === def.id) : null;
+      return found ? { ...def, ...found } : def;
+    });
+
+    let courses = defaultCourses;
+    try {
+      const cachedCourses = JSON.parse(localStorage.getItem('arc07_cursos'));
+      if (Array.isArray(cachedCourses)) {
+        courses = cachedCourses;
+      }
+    } catch(e) {}
+
+    let storeItems = JSON.parse(localStorage.getItem('arc07_store')) || defaultStoreItems;
+    let classrooms = JSON.parse(localStorage.getItem('arc07_classrooms')) || defaultClassrooms;
+    let eventPoll = JSON.parse(localStorage.getItem('arc07_eventpoll')) || defaultEventPoll;
+    let suggestions = JSON.parse(localStorage.getItem('arc07_suggestions')) || defaultSuggestions;
+    let rawTeam = null;
+    const candidates = [
+      localStorage.getItem('arc07_team_members'),
+      localStorage.getItem('arc07_team'),
+      localStorage.getItem('arc07_equipe')
+    ];
+    for (const c of candidates) {
+      if (c) {
+        try {
+          const parsed = JSON.parse(c);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            rawTeam = parsed;
+            break;
+          }
+        } catch(e) {}
+      }
+    }
+    const teamMapInit = {};
+    defaultTeamMembers.forEach(m => teamMapInit[m.id] = { ...m });
+    if (Array.isArray(rawTeam)) {
+      rawTeam.forEach(m => {
+        if (m && m.id) teamMapInit[m.id] = { ...(teamMapInit[m.id] || {}), ...m };
+      });
+    }
+    let teamMembers = Object.values(teamMapInit).sort((a, b) => a.id - b.id);
+    defaultTeamMembers.forEach(def => {
+      if (!teamMembers.some(m => m.id === def.id)) {
+        teamMembers.push({ ...def });
+      }
+    });
+    teamMembers.sort((a, b) => a.id - b.id);
+    let currentFilter = 'all';
+    let editMode = false;
+    let tempModalPhotoData = '';
+
+    // Exposição global para o módulo js/supabaseClient.js
+    window.proposals = proposals;
+    window.courses = courses;
+    window.storeItems = storeItems;
+    window.classrooms = classrooms;
+    window.eventPoll = eventPoll;
+    window.suggestions = suggestions;
+    window.teamMembers = teamMembers;
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // ==========================================
+    // TOAST HELPER
+    // ==========================================
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMessage');
+      text.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 3400);
+    }
+
+    // ==========================================
+    // RENDER CURSOS GRATUITOS
+    // ==========================================
+    function renderCourses() {
+      const container = document.getElementById('coursesGrid');
+      if (!container) return;
+
+      const list = window.courses || courses;
+      if (!list || list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-zinc-400 liquid-glass rounded-3xl border border-white/10">
+            <i class="bi bi-mortarboard text-4xl text-arc-yellow/60 mb-2 block"></i>
+            <p class="font-display font-bold">Nenhum curso cadastrado no momento.</p>
+            <p class="text-xs text-zinc-500 mt-1">Acompanhe as novidades pelo nosso painel e redes sociais!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(c => {
+        return `
+          <div class="liquid-glass rounded-3xl p-6 border border-white/10 hover:border-arc-yellow/50 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-1 rounded-xl bg-arc-yellow/20 text-arc-yellow text-xs font-display font-black uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="bi bi-building"></i> ${escapeHtml(c.institution || 'Parceiro')}
+                </span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase flex items-center gap-1">
+                  <i class="bi bi-check-circle-fill"></i> 100% Gratuito
+                </span>
+              </div>
+
+              <h3 class="font-display font-black text-lg text-white group-hover:text-arc-yellow transition mb-2">
+                ${escapeHtml(c.title)}
+              </h3>
+
+              <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-4">
+                ${escapeHtml(c.description || '')}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-white/10 space-y-3">
+              <div class="flex items-center justify-between text-xs text-zinc-400">
+                <span class="flex items-center gap-1 font-semibold">
+                  <i class="bi bi-clock-history text-arc-yellow"></i> ${escapeHtml(c.duration || 'Online')}
+                </span>
+                <span class="flex items-center gap-1 text-emerald-300 font-bold">
+                  <i class="bi bi-award-fill"></i> Certificado Incluso
+                </span>
+              </div>
+
+              <a href="${c.link || '#'}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-arc-yellow to-yellow-400 text-black font-display font-black text-xs uppercase text-center flex items-center justify-center gap-2 hover:scale-[1.02] shadow-md transition">
+                <span>Inscrição Gratuita</span>
+                <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    window.renderCourses = renderCourses;
+
+    // ==========================================
+    // RENDER 10 PROPOSALS
+    // ==========================================
+    function renderProposals() {
+      const grid = document.getElementById('proposalsGrid');
+      const filtered = currentFilter === 'all'
+        ? proposals
+        : proposals.filter(p => p.category === currentFilter);
+
+      grid.innerHTML = filtered.map(p => {
+        const isPink = p.accent === 'pink';
+        const borderClass = isPink ? 'border-arc-pink/35 hover:border-arc-pink' : 'border-arc-yellow/35 hover:border-arc-yellow';
+        const iconBg = isPink ? 'bg-arc-pink text-white shadow-neon-pink' : 'bg-arc-yellow text-black shadow-neon-yellow';
+        const badgeBg = isPink ? 'bg-arc-pink/20 text-arc-pink border-arc-pink/40' : 'bg-arc-yellow/20 text-arc-yellow border-arc-yellow/40';
+
+        return `
+          <div class="liquid-glass rounded-3xl p-6 border ${borderClass} transition duration-300 flex flex-col justify-between group">
+            <div>
+              <!-- Header -->
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-11 h-11 rounded-2xl ${iconBg} flex items-center justify-center text-xl font-bold">
+                    <i class="bi ${p.icon}"></i>
+                  </div>
+                  <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Proposta #${p.number}</span>
+                    <span class="block text-xs font-extrabold text-white">${p.categoryLabel}</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-bold border ${badgeBg}">
+                  ${p.badge}
+                </span>
+              </div>
+
+              <!-- Title & Summary -->
+              <h3 class="font-display font-black text-xl text-white mb-2 group-hover:text-arc-yellow transition">
+                ${p.title}
+              </h3>
+              <p class="text-zinc-300 text-sm leading-relaxed mb-4">
+                ${p.summary}
+              </p>
+
+              <!-- Expandable How We Will Do It -->
+              <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 mb-5">
+                <span class="text-[11px] font-display font-extrabold uppercase text-arc-yellow flex items-center gap-1 mb-1">
+                  <i class="bi bi-gear-wide-connected"></i> Como vamos fazer na prática:
+                </span>
+                <p class="text-xs text-zinc-300 leading-relaxed">
+                  ${p.howItWorks}
+                </p>
+              </div>
+            </div>
+
+            <!-- Card Footer Actions -->
+            <div class="flex items-center justify-between gap-2 pt-3 border-t border-white/10">
+              <button onclick="upvoteProposal('${p.id}')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs flex items-center justify-center gap-1.5 transition ${p.voted ? 'bg-arc-pink text-white shadow-neon-pink' : 'bg-white/10 hover:bg-arc-pink/30 text-white'}">
+                <i class="bi ${p.voted ? 'bi-heart-fill text-arc-yellow' : 'bi-heart'}"></i>
+                <span>${p.voted ? 'Apoiado!' : 'Apoiar Ideia'}</span>
+                <span class="ml-1 px-2 py-0.5 rounded-full bg-black/40 text-[11px]">${p.votes}</span>
+              </button>
+
+              <button onclick="shareSingleProposal('${p.id}')" class="p-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-black border border-emerald-500/30 transition" title="Compartilhar esta proposta no WhatsApp">
+                <i class="bi bi-whatsapp text-base"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateTotalSupportersCount();
+    }
+
+    function filterProposals(cat) {
+      currentFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === cat) {
+          btn.className = 'filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-arc-pink text-white shadow-neon-pink transition';
+        } else {
+          btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 transition';
+        }
+      });
+      renderProposals();
+    }
+
+    function upvoteProposal(id) {
+      const prop = proposals.find(p => p.id === id);
+      if (!prop) return;
+      if (prop.voted) {
+        showToast('Você já apoiou esta proposta da ARC 07! 💛🩷');
+        return;
+      }
+      prop.votes += 1;
+      prop.voted = true;
+      localStorage.setItem('arc07_proposals', JSON.stringify(proposals));
+      renderProposals();
+      showToast(`Apoio registrado na Proposta #${prop.number}! Vote 07!`);
+
+      // Persiste no Supabase
+      if (window.supabaseARC07?.registrarVotoGeral) {
+        window.supabaseARC07.registrarVotoGeral('proposta', id);
+      }
+    }
+
+    function updateTotalSupportersCount(forceValue) {
+      let count = 116; // Número base consolidado de apoios
+      const stored = localStorage.getItem('arc07_total_supporters');
+      if (stored !== null) {
+        count = Math.max(count, parseInt(stored, 10) || 0);
+      }
+      if (typeof forceValue === 'number' && !isNaN(forceValue)) {
+        count = Math.max(count, forceValue);
+      }
+      localStorage.setItem('arc07_total_supporters', String(count));
+      const el = document.getElementById('heroTotalSupporters');
+      if (el) el.textContent = count;
+    }
+
+    async function declareSupportHero() {
+      const btn = document.getElementById('heroSupportBtn');
+      if (localStorage.getItem('arc07_hero_supported')) {
+        showToast('Seu apoio à Chapa ARC 07 já está confirmado! Tamo junto! 🦜');
+        return;
+      }
+
+      localStorage.setItem('arc07_hero_supported', 'true');
+      if (btn) {
+        btn.innerHTML = `<i class="bi bi-patch-check-fill text-arc-pink"></i> APOIO CONFIRMADO • VOTE 07!`;
+        btn.classList.replace('bg-white', 'bg-arc-yellow');
+      }
+
+      let current = parseInt(localStorage.getItem('arc07_total_supporters') || '116', 10);
+      current = Math.max(116, current) + 1;
+      localStorage.setItem('arc07_total_supporters', String(current));
+      updateTotalSupportersCount(current);
+
+      showToast('Valeu pelo apoio! Juntos por uma escola melhor! Vote 07! 🦜🔥');
+
+      if (window.supabaseARC07?.registrarVotoGeral) {
+        window.supabaseARC07.registrarVotoGeral('apoio', 'hero-apoio');
+      }
+      if (window.supabaseARC07?.salvarConfiguracao) {
+        window.supabaseARC07.salvarConfiguracao('total_apoios', String(current));
+      }
+    }
+
+    // ==========================================
+    // RENDER STORE PRIORITY POLL
+    // ==========================================
+    function renderStorePoll() {
+      const container = document.getElementById('storePriorityList');
+      if (!container || !Array.isArray(storeItems)) return;
+      const totalVotes = storeItems.reduce((sum, item) => sum + (Number(item.votes) || 0), 0);
+      const totalBadge = document.getElementById('storeTotalVotesBadge');
+      if (totalBadge) totalBadge.textContent = `${totalVotes} votos`;
+
+      container.innerHTML = storeItems.map((item, idx) => {
+        const itemVotes = Number(item.votes) || 0;
+        const pct = totalVotes > 0 ? Math.round((itemVotes / totalVotes) * 100) : 0;
+        const barColor = idx % 2 === 0 ? 'from-arc-pink to-pink-500' : 'from-arc-yellow to-amber-500';
+        return `
+          <button data-store-id="${item.id}" onclick="voteStoreItem('${item.id}')" class="w-full text-left p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-arc-yellow/50 transition group">
+            <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-2">
+              <span class="text-white group-hover:text-arc-yellow transition">${item.name}</span>
+              <span class="text-arc-yellow font-display font-black">${pct}% <span class="text-zinc-400 font-normal text-xs">(${itemVotes})</span></span>
+            </div>
+            <div class="w-full h-2.5 bg-black rounded-full overflow-hidden p-0.5">
+              <div class="h-full rounded-full bg-gradient-to-r ${barColor} transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+    window.renderStorePoll = renderStorePoll;
+    window.renderSuggestionsWall = renderSuggestionsWall;
+
+    function voteStoreItem(id) {
+      const item = storeItems.find(i => i.id === id);
+      if (!item) return;
+      item.votes = (Number(item.votes) || 0) + 1;
+      localStorage.setItem('arc07_store', JSON.stringify(storeItems));
+      renderStorePoll();
+      showToast(`Voto registrado para comprar: ${item.name}!`);
+
+      if (window.supabaseARC07?.registrarVotoComercio) {
+        window.supabaseARC07.registrarVotoComercio(id);
+      }
+    }
+
+    // ==========================================
+    // RENDER CLASSROOM LEADERBOARD (SALA MAIS LIMPA)
+    // ==========================================
+    function renderClassrooms() {
+      const container = document.getElementById('classroomLeaderboard');
+      const sorted = [...classrooms].sort((a, b) => b.votes - a.votes);
+      const maxVotes = sorted[0]?.votes || 1;
+
+      container.innerHTML = sorted.map((c, idx) => {
+        const pct = Math.max(12, Math.round((c.votes / maxVotes) * 100));
+        const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : '🏫';
+        return `
+          <div class="flex items-center justify-between gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between text-xs font-bold mb-1 gap-2">
+                <span class="text-white truncate">${medal} ${c.name}</span>
+                <span class="text-arc-yellow whitespace-nowrap text-[11px] sm:text-xs">${c.votes} apoios</span>
+              </div>
+              <div class="w-full h-1.5 bg-black rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-arc-pink to-arc-yellow" style="width: ${pct}%"></div>
+              </div>
+            </div>
+            <button onclick="voteClassroom('${c.id}')" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-arc-yellow/20 hover:bg-arc-yellow text-arc-yellow hover:text-black font-bold text-xs transition shrink-0 whitespace-nowrap">
+              +1 Torcida
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function voteClassroom(id) {
+      const room = classrooms.find(c => c.id === id);
+      if (!room) return;
+      room.votes += 1;
+      localStorage.setItem('arc07_classrooms', JSON.stringify(classrooms));
+      renderClassrooms();
+      showToast(`Torcida registrada para a sala ${room.name}! 🏆`);
+
+      if (window.supabaseARC07?.registrarVotoGeral) {
+        window.supabaseARC07.registrarVotoGeral('sala', id);
+      }
+    }
+
+    function addCustomClassroom() {
+      const input = document.getElementById('newClassroomInput');
+      const name = input.value.trim();
+      if (!name) {
+        showToast('Digite o nome da sua sala primeiro!');
+        return;
+      }
+      classrooms.push({
+        id: 'sala-' + Date.now(),
+        name: name,
+        votes: 0
+      });
+      input.value = '';
+      localStorage.setItem('arc07_classrooms', JSON.stringify(classrooms));
+      renderClassrooms();
+      showToast(`Sala ${name} adicionada na disputa da Sala Mais Limpa!`);
+    }
+
+    // ==========================================
+    // RENDER EVENT POLL & SUGGESTIONS WALL
+    // ==========================================
+    function renderEventPoll() {
+      const container = document.getElementById('eventPollList');
+      if (!container || !Array.isArray(eventPoll)) return;
+      const total = eventPoll.reduce((sum, e) => sum + (Number(e.votes) || 0), 0);
+      const totalBadge = document.getElementById('eventPollTotalBadge');
+      if (totalBadge) totalBadge.textContent = `${total} votos`;
+
+      container.innerHTML = eventPoll.map(ev => {
+        const itemVotes = Number(ev.votes) || 0;
+        const pct = total > 0 ? Math.round((itemVotes / total) * 100) : 0;
+        return `
+          <button onclick="voteEventPoll('${ev.id}')" class="p-3.5 rounded-2xl bg-black/50 hover:bg-arc-pink/15 border border-white/10 hover:border-arc-pink/50 text-left transition">
+            <div class="flex items-center justify-between text-xs font-bold mb-2">
+              <span class="text-white">${ev.name}</span>
+              <span class="text-arc-pink font-display font-black">${pct}% <span class="text-zinc-400 font-normal text-xs">(${itemVotes})</span></span>
+            </div>
+            <div class="w-full h-2 bg-zinc-900 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-arc-pink to-arc-yellow" style="width: ${pct}%"></div>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function voteEventPoll(id) {
+      const ev = eventPoll.find(e => e.id === id);
+      if (!ev) return;
+      ev.votes = (Number(ev.votes) || 0) + 1;
+      localStorage.setItem('arc07_eventpoll', JSON.stringify(eventPoll));
+      renderEventPoll();
+      showToast(`Voto registrado para o evento: ${ev.name}!`);
+
+      if (window.supabaseARC07?.registrarVotoGeral) {
+        window.supabaseARC07.registrarVotoGeral('evento', id);
+      }
+    }
+
+    function renderSuggestionsWall() {
+      const wall = document.getElementById('suggestionsWall');
+      if (!wall) return;
+      if (!suggestions || suggestions.length === 0) {
+        wall.innerHTML = `
+          <div class="p-6 text-center text-zinc-400 bg-black/40 rounded-2xl border border-white/5 space-y-2">
+            <i class="bi bi-chat-heart text-2xl text-arc-pink block"></i>
+            <strong class="text-white block text-sm">A Caixinha de Sugestões está aberta!</strong>
+            <p class="text-xs text-zinc-400">Seja o primeiro da sua turma a enviar uma ideia, torneio ou melhoria no formulário ao lado.</p>
+          </div>
+        `;
+        return;
+      }
+      wall.innerHTML = suggestions.map(s => `
+        <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 space-y-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-md bg-arc-pink/20 text-arc-pink font-bold text-[11px]">${s.turma}</span>
+              <span class="font-bold text-xs text-white">${s.name || 'Estudante Anônimo'}</span>
+            </div>
+            <span class="text-[10px] text-arc-yellow font-semibold">${s.category}</span>
+          </div>
+          <p class="text-xs text-zinc-300 leading-relaxed">${s.message}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderComunicadosPublicos(posts) {
+      const secao = document.getElementById('comunicados');
+      const navLink = document.getElementById('navLinkComunicados');
+      const mobileNavLink = document.getElementById('mobileNavLinkComunicados');
+      const container = document.getElementById('listaComunicadosPublicos');
+      if (!container) return;
+
+      if (!posts || posts.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-zinc-400 liquid-glass rounded-3xl border border-white/10 p-6 sm:p-8">
+            <i class="bi bi-megaphone text-4xl text-arc-pink mb-3 block"></i>
+            <h4 class="font-display font-black text-lg text-white">Nenhum Comunicado Ativo no Momento</h4>
+            <p class="text-xs text-zinc-400 mt-1 max-w-md mx-auto">Os novos avisos, reuniões e novidades da gestão da Chapa ARC 07 serão publicados diretamente aqui pelo Painel da Presidência.</p>
+          </div>
+        `;
+        if (secao) secao.classList.remove('hidden');
+        if (navLink) navLink.classList.remove('hidden');
+        if (mobileNavLink) mobileNavLink.classList.remove('hidden');
+        return;
+      }
+
+      if (secao) secao.classList.remove('hidden');
+      if (navLink) navLink.classList.remove('hidden');
+      if (mobileNavLink) mobileNavLink.classList.remove('hidden');
+
+      container.innerHTML = posts.map(p => `
+        <div class="liquid-glass rounded-3xl overflow-hidden border border-arc-pink/30 hover:border-arc-pink transition duration-300 flex flex-col justify-between group">
+          <div>
+            ${p.imagem ? `
+              <div class="aspect-video w-full overflow-hidden bg-zinc-950">
+                <img src="${p.imagem}" alt="${p.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              </div>
+            ` : ''}
+
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-arc-pink/20 text-arc-pink border border-arc-pink/30 text-xs font-bold font-display">
+                  ${p.categoria}
+                </span>
+                <span class="text-xs text-zinc-400 font-mono flex items-center gap-1">
+                  <i class="bi bi-clock"></i> ${p.data}
+                </span>
+              </div>
+
+              <h3 class="font-display font-black text-lg text-white leading-snug group-hover:text-arc-yellow transition">
+                ${p.titulo}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed whitespace-pre-line">
+                ${p.mensagem}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-5 pt-2 border-t border-white/5 flex items-center justify-between text-xs text-zinc-400">
+            <span class="font-semibold text-arc-yellow flex items-center gap-1">
+              <i class="bi bi-patch-check-fill"></i> Presidência ARC 07
+            </span>
+            <span class="text-[11px]">Grêmio 2026</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    window.renderComunicadosPublicos = renderComunicadosPublicos;
+
+    function submitStudentSuggestion(e) {
+      e.preventDefault();
+      const name = document.getElementById('sugName').value.trim() || 'Anônimo';
+      const turma = document.getElementById('sugTurma').value.trim();
+      const category = document.getElementById('sugCategory').value;
+      const message = document.getElementById('sugMessage').value.trim();
+
+      if (!turma || !message) return;
+
+      suggestions.unshift({
+        name,
+        turma,
+        category,
+        message,
+        time: 'Agora mesmo'
+      });
+
+      localStorage.setItem('arc07_suggestions', JSON.stringify(suggestions));
+      document.getElementById('sugMessage').value = '';
+      renderSuggestionsWall();
+      showToast('Sua ideia foi enviada para a Caixinha da Chapa ARC 07! 🦜');
+    }
+
+    function prefillBathroomAlert() {
+      const select = document.getElementById('sugCategory');
+      const textarea = document.getElementById('sugMessage');
+      if (select) select.value = '🧻 Alerta: Banheiro / Papel Higiênico';
+      if (textarea) {
+        textarea.value = 'Falta reposição de papel higiênico no banheiro ';
+        textarea.focus();
+      }
+    }
+
+    // ==========================================
+    // RENDER 13 TEAM MEMBERS (Exibição 100% Protegida)
+    // ==========================================
+    function renderTeam() {
+      const grid = document.getElementById('teamGrid');
+      if (!grid) return;
+
+      const countEl = document.getElementById('teamTotalDisplay');
+      if (countEl) countEl.textContent = `${teamMembers.length} Integrantes`;
+      const navCountEl = document.getElementById('navTeamCount');
+      if (navCountEl) navCountEl.textContent = `(${teamMembers.length})`;
+      const mobileNavCountEl = document.getElementById('mobileNavTeamCount');
+      if (mobileNavCountEl) mobileNavCountEl.textContent = `(${teamMembers.length})`;
+
+      grid.innerHTML = teamMembers.map((m, idx) => {
+        const isEven = idx % 2 === 0;
+        const borderGlow = isEven ? 'border-arc-pink/40 hover:border-arc-pink' : 'border-arc-yellow/40 hover:border-arc-yellow';
+        const roleBadge = isEven ? 'bg-arc-pink text-white' : 'bg-arc-yellow text-black';
+
+        const avatarContent = m.photo
+          ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" decoding="async" class="w-full h-full object-cover" />`
+          : `<div class="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-black flex flex-col items-center justify-center p-3 text-center select-none">
+              <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-arc-pink to-arc-yellow p-0.5 mb-2 shadow-md">
+                <div class="w-full h-full rounded-full bg-zinc-950 flex items-center justify-center font-display font-black text-base sm:text-xl text-white">
+                  ${String(m.id).padStart(2, '0')}
+                </div>
+              </div>
+              <span class="text-[10px] sm:text-xs text-zinc-400 font-semibold tracking-wide uppercase">
+                Chapa ARC 07
+              </span>
+            </div>`;
+
+        return `
+          <div class="liquid-glass rounded-2xl sm:rounded-3xl overflow-hidden border ${borderGlow} flex flex-col justify-between transition hover:-translate-y-1 duration-300">
+            <div>
+              <div class="relative aspect-[4/5] w-full overflow-hidden bg-zinc-950">
+                ${avatarContent}
+                <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-[10px] font-display font-black text-white border border-white/15">
+                  #${String(m.id).padStart(2, '0')}
+                </div>
+              </div>
+
+              <div class="p-3 sm:p-3.5 space-y-1">
+                <span class="inline-block px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-display font-black uppercase ${roleBadge}">
+                  ${m.role}
+                </span>
+                <h4 class="font-display font-extrabold text-xs sm:text-sm text-white truncate" title="${m.name}">${m.name}</h4>
+                <p class="text-[10px] sm:text-[11px] text-zinc-400 line-clamp-2 leading-tight">“${m.quote}”</p>
+              </div>
+            </div>
+
+            <div class="px-3 pb-2.5 pt-1 text-[10px] text-zinc-400 border-t border-white/5 flex items-center justify-between">
+              <span><i class="bi bi-mortarboard-fill text-arc-pink"></i> ${m.turma}</span>
+              <span class="text-arc-yellow font-bold text-[9px]">ARC 07</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function applyPosterImage(dataUrl) {
+      if (!dataUrl) return;
+      const posterImg = document.getElementById('heroPosterImg');
+      const posterArtwork = document.getElementById('heroPosterArtwork');
+      const navImg = document.getElementById('navEmblemImg');
+      const navSvg = document.getElementById('navEmblemSvg');
+
+      if (posterImg && posterArtwork) {
+        posterImg.src = dataUrl;
+        posterImg.classList.remove('hidden');
+        posterArtwork.classList.add('hidden');
+      }
+
+      if (navImg && navSvg) {
+        navImg.src = dataUrl;
+        navImg.classList.remove('hidden');
+        navSvg.classList.add('hidden');
+      }
+    }
+
+    // ==========================================
+    // WHATSAPP SHARE & CLIPBOARD FUNCTIONS
+    // ==========================================
+    function shareCampaignWhatsApp() {
+      const text = `🦜🔥 *CHAPA ARC 07 — MAIS QUE UMA CHAPA, UMA EQUIPE!* 💛🩷\n\nConheçam nossas propostas oficiais para o Grêmio Estudantil:\n✅ *Comércio Escolar (Vendinha)* p/ comprar bolas de futebol e vôlei, redes, mesa de ping-pong, raquetes e coletes!\n✅ *Papel higiênico em todos os banheiros* e *filas mais arrumadas e rápidas*!\n✅ *Prêmio todo mês para a Sala Mais Limpa*!\n✅ *Dias temáticos, cinema, torneios interclasses, música no recreio e ações solidárias*!\n\n🗳️ Juntos por uma escola melhor: *VOTE 07!*`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function shareSingleProposal(id) {
+      const p = proposals.find(item => item.id === id);
+      if (!p) return;
+      const text = `🦜 *Proposta #${p.number} da CHAPA ARC 07:* *${p.title}*\n\n📌 ${p.howItWorks}\n\n💛🩷 Juntos por uma escola melhor — *VOTE 07!*`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function copyCampaignMessage() {
+      const text = document.getElementById('whatsappCopyBox').innerText;
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast('Mensagem da Chapa ARC 07 copiada! Agora é só colar no WhatsApp!');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      menu.classList.toggle('hidden');
+      icon.className = menu.classList.contains('hidden') ? 'bi bi-list text-2xl' : 'bi bi-x-lg text-2xl';
+    }
+
+    // ==========================================
+    // COUNTDOWN TIMER (DATA OFICIAL FIXA: 03 DE NOVEMBRO)
+    // ==========================================
+    function startCountdown() {
+      // Votação Oficial: 03 de Novembro de 2026 às 08:00 (Não reseta ao atualizar)
+      const targetDate = new Date('2026-11-03T08:00:00').getTime();
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = Math.max(0, targetDate - now);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const d = document.getElementById('cd-days');
+        const h = document.getElementById('cd-hours');
+        const m = document.getElementById('cd-mins');
+        const s = document.getElementById('cd-secs');
+
+        if (d) d.textContent = String(days).padStart(2, '0');
+        if (h) h.textContent = String(hours).padStart(2, '0');
+        if (m) m.textContent = String(mins).padStart(2, '0');
+        if (s) s.textContent = String(secs).padStart(2, '0');
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    // ==========================================
+    // INITIALIZE ON WINDOW LOAD
+    // ==========================================
+    window.onload = async function() {
+      // 1. Sincroniza fotos e dados da equipe configurados pela presidência
+      if (window.supabaseARC07?.obterEquipeMembros) {
+        try {
+          const res = await window.supabaseARC07.obterEquipeMembros();
+          if (res?.data && res.data.length > 0) {
+            const mapSync = {};
+            defaultTeamMembers.forEach(m => mapSync[m.id] = { ...m });
+            res.data.forEach(m => {
+              if (m && m.id) mapSync[m.id] = { ...(mapSync[m.id] || {}), ...m };
+            });
+            teamMembers = Object.values(mapSync).sort((a, b) => a.id - b.id);
+            defaultTeamMembers.forEach(def => {
+              if (!teamMembers.some(m => m.id === def.id)) teamMembers.push({ ...def });
+            });
+            teamMembers.sort((a, b) => a.id - b.id);
+            window.teamMembers = teamMembers;
+          }
+        } catch (e) {}
+      }
+
+      // 2. Sincroniza cartaz oficial configurado pela presidência
+      if (window.supabaseARC07?.obterConfiguracao) {
+        try {
+          const resPoster = await window.supabaseARC07.obterConfiguracao('poster');
+          if (resPoster?.valor) {
+            applyPosterImage(resPoster.valor);
+          }
+        } catch (e) {}
+      } else {
+        const savedPoster = localStorage.getItem('arc07_poster');
+        if (savedPoster) applyPosterImage(savedPoster);
+      }
+
+      // Sincroniza listas dinâmicas da vendinha e eventos se disponíveis no cache
+      try {
+        const localStore = JSON.parse(localStorage.getItem('arc07_store'));
+        if (Array.isArray(localStore)) {
+          storeItems = localStore.map(item => ({ ...item, votes: Number(item.votes) || 0 }));
+          window.storeItems = storeItems;
+        }
+        const localEv = JSON.parse(localStorage.getItem('arc07_eventpoll'));
+        if (Array.isArray(localEv)) {
+          eventPoll = localEv.map(item => ({ ...item, votes: Number(item.votes) || 0 }));
+          window.eventPoll = eventPoll;
+        }
+      } catch(e) {}
+
+      // Sincroniza comunicados do cache imediatamente
+      try {
+        const localPosts = JSON.parse(localStorage.getItem('arc07_comunicados'));
+        if (Array.isArray(localPosts)) {
+          renderComunicadosPublicos(localPosts);
+        }
+      } catch(e) {}
+
+      renderProposals();
+      renderCourses();
+      renderStorePoll();
+      renderClassrooms();
+      renderEventPoll();
+      renderSuggestionsWall();
+      renderTeam();
+      updateTotalSupportersCount();
+      startCountdown();
+
+      if (localStorage.getItem('arc07_hero_supported')) {
+        const btn = document.getElementById('heroSupportBtn');
+        if (btn) {
+          btn.innerHTML = `<i class="bi bi-patch-check-fill text-arc-pink"></i> APOIO CONFIRMADO • VOTE 07!`;
+          btn.classList.replace('bg-white', 'bg-arc-yellow');
+        }
+      }
+
+      // Sincroniza todos os votos reais e mensagens do mural gravados no Supabase
+      if (window.supabaseARC07?.sincronizarTudoSupabase) {
+        window.supabaseARC07.sincronizarTudoSupabase();
+      }
+    };
+
+    // Alternância do Badge Flutuante de Deploy a cada 5 segundos (Nome <-> Instagram)
+    (function () {
+      const badgeContent = document.getElementById('devBadgeContent');
+      if (!badgeContent) return;
+
+      let showName = true;
+      const htmlName = '<span class="text-zinc-400">Deployed for:</span><span class="text-white font-bold">Gustavo Agostinho</span>';
+      const htmlInsta = '<i class="bi bi-instagram text-arc-pink"></i><span class="text-white font-bold">@sexcdarskinarchiives_</span>';
+
+      setInterval(() => {
+        badgeContent.style.opacity = '0';
+        setTimeout(() => {
+          showName = !showName;
+          badgeContent.innerHTML = showName ? htmlName : htmlInsta;
+          badgeContent.style.opacity = '1';
+        }, 300);
+      }, 5000);
+    })();
+  </script>
+
+  <!-- Supabase Client & Event Listeners Integration -->
+  <script type="module" src="js/supabaseClient.js"></script>
+</body>
+</html>

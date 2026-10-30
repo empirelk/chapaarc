@@ -1,0 +1,10 @@
+# ========================================================
+# Netlify Clean Redirects & Rewrites - Chapa ARC 07
+# ========================================================
+
+# Painel Administrativo / Gestão
+/gestao-arc/dashboard   /admin-dashboard.html   200
+/gestao-arc             /admin-login.html       200
+
+# Fallback para rotas limpas (Single Page / Static SPA)
+/*                      /index.html             200

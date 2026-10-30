@@ -1,0 +1,3391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Dashboard Presidência — Gestão Grêmio | Chapa ARC 07</title>
+
+  <!-- Otimizações de Conexão e Desempenho (Preconnect & DNS-Prefetch) -->
+  <link rel="dns-prefetch" href="https://mwjrivlmeixfysfycedj.supabase.co" />
+  <link rel="preconnect" href="https://mwjrivlmeixfysfycedj.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Supabase JS Client (UMD Global) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            arc: {
+              pink: '#ff007f',
+              magenta: '#ec4899',
+              yellow: '#ffe600',
+              gold: '#eab308',
+              dark: '#09090b',
+              card: '#121218',
+            }
+          },
+          boxShadow: {
+            'neon-pink': '0 0 25px rgba(255, 0, 127, 0.4)',
+            'neon-yellow': '0 0 25px rgba(255, 230, 0, 0.35)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.6)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f8fafc;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.14) 0%, transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(255, 230, 0, 0.12) 0%, transparent 35%),
+        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 45%);
+      background-attachment: fixed;
+    }
+
+    /* Liquid Glass Effect */
+    .liquid-glass {
+      background: rgba(18, 18, 26, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .liquid-glass-pink {
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.12) 0%, rgba(18, 18, 26, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 0, 127, 0.3);
+    }
+
+    .liquid-glass-yellow {
+      background: linear-gradient(135deg, rgba(255, 230, 0, 0.10) 0%, rgba(18, 18, 26, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 230, 0, 0.3);
+    }
+
+    .text-gradient-arc {
+      background: linear-gradient(90deg, #ff007f 0%, #ff4da6 45%, #ffe600 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #ff007f, #ffe600);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-arc-pink selection:text-white pb-16">
+
+  <!-- ========================================================
+       TOP HEADER (Brasão, Presidência Ativa, Logout)
+       ======================================================== -->
+  <header class="sticky top-0 z-40 liquid-glass border-b border-white/10 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3.5">
+        <!-- Brasão Oficial ARC 07 -->
+        <div class="relative w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-arc-pink via-arc-yellow to-arc-pink shadow-neon-pink flex items-center justify-center shrink-0">
+          <svg viewBox="0 0 100 100" class="w-full h-full bg-black rounded-full p-1">
+            <circle cx="50" cy="50" r="47" fill="#09090b" stroke="#ff007f" stroke-width="4"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#ffe600" stroke-width="2" stroke-dasharray="12 6"/>
+            <!-- Stylized Macaw Head -->
+            <path d="M20,65 C15,40 30,18 55,18 C72,18 82,28 82,42 C72,36 60,36 52,44 C45,52 44,68 32,78 Z" fill="#ff007f"/>
+            <path d="M26,48 C32,26 48,20 68,24 C56,28 45,35 38,52 Z" fill="#ffe600"/>
+            <path d="M44,34 C56,30 68,34 72,44 C64,48 55,52 46,48 Z" fill="#FFFFFF"/>
+            <circle cx="56" cy="39" r="4.5" fill="#ffe600" stroke="#000" stroke-width="2"/>
+            <circle cx="56" cy="39" r="2" fill="#000"/>
+            <path d="M68,36 C82,39 88,52 78,66 C74,56 68,50 60,50 Z" fill="#18181b" stroke="#FFFFFF" stroke-width="1.5"/>
+            <text x="43" y="84" font-family="Montserrat, sans-serif" font-weight="900" font-style="italic" font-size="30" fill="#FFFFFF" stroke="#ff007f" stroke-width="2">07</text>
+          </svg>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-black text-lg text-white">CHAPA <span class="text-arc-pink">ARC</span> 07</span>
+            <!-- Badge Presidência Ativa -->
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-bold text-[11px] flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>Presidência Ativa</span>
+            </span>
+          </div>
+          <p class="text-[11px] text-zinc-400 flex items-center gap-1.5">
+            <i class="bi bi-person-check-fill text-arc-yellow"></i>
+            <span id="userEmailBadge">Carregando sessão...</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Site Público Link -->
+        <a href="index.html" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-zinc-300 hover:text-white bg-white/5 border border-white/10 hover:border-white/25 transition">
+          <i class="bi bi-box-arrow-up-right text-arc-yellow"></i>
+          <span>Ver Site</span>
+        </a>
+
+        <!-- Logout Button -->
+        <button 
+          id="logoutBtn" 
+          onclick="handleLogout()" 
+          class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-arc-pink/15 text-pink-200 border border-arc-pink/40 hover:bg-arc-pink hover:text-white transition flex items-center gap-1.5 shadow-sm"
+        >
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Encerrar Sessão</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MAIN DASHBOARD CONTAINER
+       ======================================================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
+
+    <!-- SUPABASE CONNECTION & DATABASE STATUS BANNER -->
+    <div id="supabaseStatusBanner" class="transition-all duration-300">
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between text-xs text-zinc-400">
+        <span class="flex items-center gap-2">
+          <i class="bi bi-arrow-repeat animate-spin text-arc-yellow"></i>
+          <span>Verificando conexão com o banco de dados Supabase...</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Top Stats Overview Bar -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <!-- Stat 1: Total Feedbacks -->
+      <div class="liquid-glass rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-zinc-400 font-bold uppercase tracking-wider">Feedbacks da Caixinha</span>
+          <h3 id="statTotalFeedbacks" class="text-2xl font-display font-black text-white mt-0.5">0</h3>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-arc-pink/20 text-arc-pink flex items-center justify-center text-xl">
+          <i class="bi bi-chat-heart-fill"></i>
+        </div>
+      </div>
+
+      <!-- Stat 2: Alertas Abertos -->
+      <div class="liquid-glass rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-zinc-400 font-bold uppercase tracking-wider">Alertas de Banheiro Abertos</span>
+          <h3 id="statAlertasAbertos" class="text-2xl font-display font-black text-arc-yellow mt-0.5">0</h3>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-arc-yellow/20 text-arc-yellow flex items-center justify-center text-xl">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+      </div>
+
+      <!-- Stat 3: Total Votos Vendinha -->
+      <div class="liquid-glass rounded-2xl p-4 border border-white/10 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-zinc-400 font-bold uppercase tracking-wider">Votos Comércio Escolar</span>
+          <h3 id="statTotalVotos" class="text-2xl font-display font-black text-white mt-0.5">0</h3>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+          <i class="bi bi-trophy-fill"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION BAR -->
+    <div class="liquid-glass rounded-2xl p-1.5 border border-white/10 flex flex-wrap gap-1.5 sm:gap-2">
+      <button 
+        id="tabBtnPosts"
+        onclick="switchTab('posts')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-arc-pink text-white shadow-neon-pink"
+      >
+        <i class="bi bi-megaphone-fill text-arc-yellow"></i>
+        <span>Fazer Post</span>
+        <span id="tabBadgePosts" class="ml-1 px-1.5 py-0.5 text-[10px] rounded-full bg-black/40 text-white font-mono">0</span>
+      </button>
+
+      <button 
+        id="tabBtnEquipe"
+        onclick="switchTab('equipe')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-person-badge-fill text-arc-pink"></i>
+        <span>Equipe & Fotos (<span id="tabBadgeEquipe">16</span>)</span>
+      </button>
+
+      <button 
+        id="tabBtnConfig"
+        onclick="switchTab('config')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-sliders2 text-arc-yellow"></i>
+        <span>Personalizar Site</span>
+      </button>
+
+      <button 
+        id="tabBtnFeedbacks"
+        onclick="switchTab('feedbacks')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-chat-quote-fill"></i>
+        <span>Voz do Aluno</span>
+        <span id="tabBadgeFeedbacks" class="ml-1 px-1.5 py-0.5 text-[10px] rounded-full bg-black/40 text-white font-mono">0</span>
+      </button>
+
+      <button 
+        id="tabBtnInfra"
+        onclick="switchTab('infra')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-cone-striped"></i>
+        <span>Infraestrutura</span>
+        <span id="tabBadgeInfra" class="ml-1 px-1.5 py-0.5 text-[10px] rounded-full bg-arc-yellow text-black font-mono font-bold">0</span>
+      </button>
+
+      <button 
+        id="tabBtnComercio"
+        onclick="switchTab('comercio')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-bar-chart-fill"></i>
+        <span>Votos & Vendinha</span>
+      </button>
+
+      <button 
+        id="tabBtnCursos"
+        onclick="switchTab('cursos')" 
+        class="flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5"
+      >
+        <i class="bi bi-mortarboard-fill text-arc-yellow"></i>
+        <span>Cursos Gratuitos</span>
+        <span id="tabBadgeCursos" class="ml-1 px-1.5 py-0.5 text-[10px] rounded-full bg-arc-yellow text-black font-mono font-bold">0</span>
+      </button>
+    </div>
+
+    <!-- ========================================================
+         ABA: FAZER POST & COMUNICADOS DA PRESIDÊNCIA
+         ======================================================== -->
+    <section id="tabContentPosts" class="space-y-6">
+      
+      <!-- Criar Novo Comunicado -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-pink/40 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-pencil-square text-arc-pink"></i>
+              Criar Novo Comunicado / Post Oficial
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Escreva comunicados, avisos de reuniões, datas de debate ou fotos da chapa para aparecerem no site oficial!
+            </p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-arc-pink/20 text-arc-pink text-xs font-bold border border-arc-pink/30 flex items-center gap-1.5 self-start sm:self-auto">
+            <i class="bi bi-broadcast"></i> Ao Vivo no Site
+          </span>
+        </div>
+
+        <form id="formCriarPost" onsubmit="handlePublicarPost(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Título do Comunicado *</label>
+              <input type="text" id="postTitulo" required placeholder="Ex: Oficial: Data e Horário do Debate Estudantil!" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arc-pink" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Categoria / Tag *</label>
+              <select id="postCategoria" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-arc-pink">
+                <option value="📢 Comunicado Oficial">📢 Comunicado Oficial</option>
+                <option value="🏆 Esportes & Torneios">🏆 Esportes & Torneios</option>
+                <option value="🎉 Eventos & Cultura">🎉 Eventos & Cultura</option>
+                <option value="🍫 Vendinha 07">🍫 Vendinha 07</option>
+                <option value="🧻 Infraestrutura">🧻 Infraestrutura</option>
+                <option value="🗳️ Reta Final da Campanha">🗳️ Reta Final da Campanha</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Mensagem / Conteúdo Oficial *</label>
+            <textarea id="postMensagem" required rows="4" placeholder="Escreva a mensagem oficial da presidência para todos os alunos da escola..." class="w-full bg-black/60 border border-white/15 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-arc-pink leading-relaxed"></textarea>
+          </div>
+
+          <!-- Upload de Imagem para o Post -->
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <div id="postImgPreviewBox" class="w-16 h-16 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center shrink-0 overflow-hidden relative">
+                <i id="postImgIcon" class="bi bi-image text-2xl text-zinc-500"></i>
+                <img id="postImgPreview" src="" alt="Preview" class="w-full h-full object-cover hidden" />
+              </div>
+              <div class="text-xs">
+                <strong class="text-white block font-bold">Foto ou Imagem do Comunicado (Opcional)</strong>
+                <span class="text-zinc-400">Adicione uma foto de campanha, cartaz ou banner para o post</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <label class="cursor-pointer px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition flex items-center gap-1.5 border border-white/15">
+                <i class="bi bi-upload text-arc-yellow"></i>
+                <span>Anexar Foto</span>
+                <input type="file" id="postFileInput" accept="image/*" class="hidden" onchange="handlePostImageUpload(event)" />
+              </label>
+              <button type="button" id="btnRemoverPostImg" onclick="removerPostImagePreview()" class="hidden px-3 py-2 rounded-xl bg-red-500/20 text-red-300 hover:bg-red-500 hover:text-white text-xs font-bold transition">
+                Remover
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button type="submit" id="btnPublicarPost" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-arc-pink via-pink-600 to-arc-yellow text-white font-display font-black text-sm uppercase tracking-wider shadow-neon-pink hover:scale-[1.02] transition flex items-center justify-center gap-2">
+              <i class="bi bi-send-check-fill text-arc-yellow text-base"></i>
+              <span>Publicar Comunicado no Site</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Lista de Comunicados Publicados -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-white/10 space-y-4">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <h3 class="font-display font-black text-lg text-white flex items-center gap-2">
+            <i class="bi bi-newspaper text-arc-yellow"></i>
+            Comunicados Ativos no Site
+          </h3>
+          <span id="badgeTotalPosts" class="px-2.5 py-0.5 rounded-full bg-white/10 text-xs font-bold text-zinc-300 font-mono">0 posts</span>
+        </div>
+
+        <div id="adminPostsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         ABA: PERSONALIZAR O SITE (Slogan, Instagram, Textos)
+         ======================================================== -->
+    <section id="tabContentConfig" class="hidden space-y-6">
+
+      <!-- 🎃 Modo Temático Especial: Halloween (Edição Especial) -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-purple-500/40 relative overflow-hidden space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 via-purple-600 to-zinc-900 border border-orange-500/30 flex items-center justify-center text-2xl shadow-lg shrink-0">
+              🎃
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="font-display font-black text-xl text-white">Modo Especial de Halloween</h2>
+                <span id="badgeHalloweenStatus" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-zinc-800 text-zinc-400 uppercase tracking-wider">Desativado</span>
+              </div>
+              <p class="text-xs text-zinc-300 mt-1 max-w-2xl leading-relaxed">
+                Transforma o site em uma edição especial assustadora: cores dinâmicas em Laranja Abóbora e Roxo Bruxa, teias nos cantos superiores e fantasminhas/morcegos flutuando suavemente pelo fundo a 60 FPS.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 self-end sm:self-center shrink-0">
+            <button 
+              id="btnToggleHalloween"
+              type="button"
+              onclick="handleToggleAdminHalloween()" 
+              class="px-5 py-3 rounded-2xl font-display font-black text-xs uppercase tracking-wider transition flex items-center gap-2 bg-gradient-to-r from-orange-500 to-purple-600 hover:brightness-110 text-white shadow-lg"
+            >
+              <i class="bi bi-moon-stars-fill"></i>
+              <span id="btnToggleHalloweenText">Ativar Halloween 🎃</span>
+            </button>
+          </div>
+        </div>
+        <div class="bg-black/40 rounded-2xl p-3 border border-white/10 flex items-center justify-between text-xs text-zinc-300">
+          <div class="flex items-center gap-2">
+            <i class="bi bi-info-circle text-orange-400 text-base"></i>
+            <span>Quando o Halloween passar (ou no dia da votação, 03/11), basta clicar em <strong>Desativar</strong> aqui para restaurar o azul original da Chapa ARC 07 na mesma hora para todos os alunos!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-yellow/30 space-y-6">
+        <div class="border-b border-white/10 pb-4">
+          <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+            <i class="bi bi-sliders2 text-arc-yellow"></i>
+            Personalização de Textos e Redes do Site
+          </h2>
+          <p class="text-xs text-zinc-400">
+            Mude o slogan da campanha, Instagram oficial e informações principais que aparecem na landing page para todos os alunos.
+          </p>
+        </div>
+
+        <form id="formSiteConfig" onsubmit="handleSalvarConfiguracoesSite(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Slogan Oficial da Chapa</label>
+              <input type="text" id="cfgSlogan" placeholder="Ex: Mais que uma chapa, uma equipe!" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arc-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Instagram Oficial da Chapa</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-2.5 text-zinc-500 font-bold">@</span>
+                <input type="text" id="cfgInstagram" placeholder="chapaarc07" class="w-full bg-black/60 border border-white/15 rounded-xl pl-8 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-arc-yellow" />
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Link de WhatsApp / Grupo da Campanha</label>
+              <input type="url" id="cfgWhatsapp" placeholder="https://chat.whatsapp.com/..." class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arc-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase mb-1">Frase de Destaque no Rodapé</label>
+              <input type="text" id="cfgRodape" placeholder="“Mais que uma chapa, uma equipe!” • Assistência • Revolução • Cooperação" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arc-yellow" />
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-arc-yellow to-amber-400 text-black font-display font-black text-xs uppercase tracking-wider shadow-sm hover:brightness-110 transition flex items-center justify-center gap-2">
+              <i class="bi bi-save2-fill"></i>
+              <span>Salvar Textos no Site Oficial</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ABA: VOZ DO ALUNO (Tabela de Feedbacks + Filtros + CSV)
+         ======================================================== -->
+    <section id="tabContentFeedbacks" class="hidden space-y-4">
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-pink/30 space-y-5">
+        
+        <!-- Controls Header: Filter and Export CSV -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-inbox-fill text-arc-pink"></i>
+              Feedbacks & Sugestões da Caixinha
+            </h2>
+            <p class="text-xs text-zinc-400">Mensagens enviadas pelos estudantes via formulário da landing page.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Status Filter -->
+            <div class="flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10 text-xs">
+              <span class="text-zinc-500 px-2 font-bold hidden md:inline">Filtrar:</span>
+              <button onclick="setFilterFeedback('todos')" id="filterFbTodos" class="px-2.5 py-1 rounded-lg font-bold bg-white/20 text-white transition">Todos</button>
+              <button onclick="setFilterFeedback('pendente')" id="filterFbPendente" class="px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition">Pendentes</button>
+              <button onclick="setFilterFeedback('em_analise')" id="filterFbAnalise" class="px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition">Em Análise</button>
+              <button onclick="setFilterFeedback('atendido')" id="filterFbAtendido" class="px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition">Atendidos</button>
+            </div>
+
+            <!-- Export CSV Button -->
+            <button 
+              onclick="exportarFeedbacksCSV()" 
+              class="px-3.5 py-2 rounded-xl text-xs font-display font-bold bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500 hover:text-black transition flex items-center gap-1.5 shadow-sm"
+              title="Baixar planilha compatível com Excel"
+            >
+              <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+              <span>Exportar CSV</span>
+            </button>
+
+            <!-- Refresh Button -->
+            <button onclick="carregarFeedbacks()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition" title="Recarregar">
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feedbacks Table Responsive Container -->
+        <div class="overflow-x-auto rounded-2xl border border-white/10">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-black/80 text-zinc-400 font-bold uppercase text-[11px] tracking-wider border-b border-white/10">
+              <tr>
+                <th class="py-3 px-4">Data / Hora</th>
+                <th class="py-3 px-4">Turma</th>
+                <th class="py-3 px-4">Categoria</th>
+                <th class="py-3 px-4">Mensagem</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="feedbacksTableBody" class="divide-y divide-white/5 text-zinc-300 font-medium">
+              <!-- Rendered via JS -->
+              <tr>
+                <td colspan="6" class="py-8 text-center text-zinc-500">
+                  <i class="bi bi-hourglass-split animate-spin text-arc-yellow text-xl"></i>
+                  <p class="mt-2 text-xs">Carregando feedbacks do Supabase...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ABA 2: RADAR DE INFRAESTRUTURA (Banheiros & Manutenção)
+         ======================================================== -->
+    <section id="tabContentInfra" class="hidden space-y-4">
+      <div class="liquid-glass-yellow rounded-3xl p-5 sm:p-7 space-y-5">
+        
+        <!-- Controls Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-heart-pulse-fill text-arc-yellow"></i>
+              Radar de Infraestrutura & Banheiros Dignos
+            </h2>
+            <p class="text-xs text-zinc-300">
+              Alertas imediatos reportados por estudantes sobre falta de papel higiênico, sabonete e conservação.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <!-- Filter by Status -->
+            <div class="flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/10 text-xs">
+              <button onclick="setFilterInfra('todos')" id="filterInfraTodos" class="px-2.5 py-1 rounded-lg font-bold bg-white/20 text-white transition">Todos</button>
+              <button onclick="setFilterInfra('aberto')" id="filterInfraAberto" class="px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition">Abertos</button>
+              <button onclick="setFilterInfra('resolvido')" id="filterInfraResolvido" class="px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition">Resolvidos</button>
+            </div>
+
+            <button onclick="carregarAlertasInfra()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition" title="Recarregar">
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Alert Cards Grid -->
+        <div id="infraAlertsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Rendered via JS -->
+          <div class="col-span-full py-8 text-center text-zinc-500">
+            <i class="bi bi-hourglass-split animate-spin text-arc-yellow text-xl"></i>
+            <p class="mt-2 text-xs">Carregando alertas de infraestrutura...</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ABA 3: VOTAÇÕES DA GALERA (Comércio/Vendinha & Enquetes de Eventos)
+         ======================================================== -->
+    <section id="tabContentComercio" class="hidden space-y-6">
+      
+      <!-- SEÇÃO 1: O QUE DEVEMOS COMPRAR PRIMEIRO? (VENDINHA) -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-yellow/30 space-y-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-arc-yellow/20 text-arc-yellow text-[11px] font-bold uppercase mb-1">
+              <i class="bi bi-shop-window"></i> Comércio Escolar ARC 07
+            </div>
+            <h2 class="font-display font-black text-xl text-white">
+              O Que Devemos Comprar Primeiro? (Votação da Vendinha)
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Gerencie os materiais em votação. Todo final de mês, o Grêmio pode cadastrar novos itens para os alunos votarem!
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="carregarVotosComercio()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+              <i class="bi bi-arrow-repeat text-arc-yellow"></i>
+              <span>Atualizar Votos</span>
+            </button>
+            <button onclick="handleRestaurarItensVendinhaPadrao()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+              <i class="bi bi-arrow-counterclockwise text-arc-yellow"></i>
+              <span>Restaurar Padrão</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Formulário para Adicionar Novo Item de Compra -->
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-3">
+          <h4 class="font-display font-bold text-xs text-arc-yellow uppercase flex items-center gap-1.5">
+            <i class="bi bi-plus-circle-fill"></i> Cadastrar Novo Item para Votação de Compras
+          </h4>
+          <form onsubmit="handleAdicionarItemVendinha(event)" class="flex flex-col sm:flex-row items-center gap-3">
+            <input 
+              type="text" 
+              id="novoItemVendinhaNome" 
+              required 
+              placeholder="Ex: 🏀 Bolas de Basquete + Tabela Nova ou ♟️ Jogos de Tabuleiro e Xadrez" 
+              class="flex-1 w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/10 focus:border-arc-yellow text-white text-xs outline-none transition" 
+            />
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-arc-yellow hover:bg-yellow-300 text-black font-display font-black text-xs uppercase whitespace-nowrap transition flex items-center justify-center gap-1.5 shadow-md"
+            >
+              <i class="bi bi-plus-lg"></i>
+              <span>Adicionar à Votação</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Material Poll Cards Grid -->
+        <div id="comercioCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+          <span class="text-xs text-zinc-400">Total de votos na vendinha: <strong id="statTotalVotos" class="text-white">0</strong></span>
+          <button onclick="handleZerarVotosVendinha()" class="px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-300 border border-red-500/30 text-xs transition flex items-center gap-1">
+            <i class="bi bi-arrow-clockwise"></i> Reiniciar Votos Deste Mês
+          </button>
+        </div>
+
+        <!-- Commitment Banner -->
+        <div class="p-4 rounded-2xl bg-arc-pink/10 border border-arc-pink/30 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-arc-pink text-white flex items-center justify-center text-lg shrink-0">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <div class="text-xs">
+            <strong class="text-white block font-bold">Compromisso da Presidência ARC 07:</strong>
+            <span class="text-zinc-300">
+              O item que liderar a votação será a prioridade absoluta de compra com os lucros da vendinha escolar.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEÇÃO 2: ENQUETE DE PRÓXIMOS EVENTOS -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-pink/30 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-arc-pink/20 text-pink-300 text-[11px] font-bold uppercase mb-1">
+              <i class="bi bi-calendar-event"></i> Eventos & Recreio
+            </div>
+            <h2 class="font-display font-black text-xl text-white">
+              Enquete de Próximos Eventos da Escola
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Altere as opções de eventos para os alunos escolherem. Coloque novos temas de eventos a cada mês!
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="carregarVotosEventosAdmin()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+              <i class="bi bi-arrow-repeat text-arc-pink"></i>
+              <span>Atualizar Eventos</span>
+            </button>
+            <button onclick="handleRestaurarEventosPadrao()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+              <i class="bi bi-arrow-counterclockwise text-arc-pink"></i>
+              <span>Restaurar Padrão</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Formulário para Adicionar Nova Opção de Evento -->
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-3">
+          <h4 class="font-display font-bold text-xs text-arc-pink uppercase flex items-center gap-1.5">
+            <i class="bi bi-plus-circle-fill"></i> Cadastrar Nova Opção de Evento
+          </h4>
+          <form onsubmit="handleAdicionarOpcaoEvento(event)" class="flex flex-col sm:flex-row items-center gap-3">
+            <input 
+              type="text" 
+              id="novoEventoNome" 
+              required 
+              placeholder="Ex: 🎧 Intervalo com DJ e Batalha de Rima ou 👕 Dia do Pijama / Fantasia" 
+              class="flex-1 w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/10 focus:border-arc-pink text-white text-xs outline-none transition" 
+            />
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-arc-pink to-pink-600 hover:brightness-110 text-white font-display font-black text-xs uppercase whitespace-nowrap transition flex items-center justify-center gap-1.5 shadow-neon-pink"
+            >
+              <i class="bi bi-plus-lg"></i>
+              <span>Adicionar Evento</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Event Poll Cards Grid -->
+        <div id="eventosCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+          <span class="text-xs text-zinc-400">Total de votos em eventos: <strong id="statTotalVotosEventos" class="text-white">0</strong></span>
+          <button onclick="handleZerarVotosEventos()" class="px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-300 border border-red-500/30 text-xs transition flex items-center gap-1">
+            <i class="bi bi-arrow-clockwise"></i> Reiniciar Enquete de Eventos
+          </button>
+        </div>
+      </div>
+
+      <!-- SEÇÃO 3: LIMPEZA DE TESTES / RESET GERAL -->
+      <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/25 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-lg shrink-0">
+            <i class="bi bi-shield-slash"></i>
+          </div>
+          <div class="text-xs">
+            <strong class="text-white block font-bold">Reiniciar / Limpar Todos os Votos do Banco</strong>
+            <span class="text-zinc-400">
+              Fez testes clicando para votar e quer começar a votação oficial da escola totalmente zerada?
+            </span>
+          </div>
+        </div>
+        <button onclick="handleZerarVotosBanco()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 text-xs font-bold transition shrink-0 flex items-center justify-center gap-1.5">
+          <i class="bi bi-trash3"></i> Zerar Todos os Votos
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         ABA 4: EQUIPE & CARTAZ (13 Integrantes + Upload de Fotos)
+         ======================================================== -->
+    <section id="tabContentEquipe" class="hidden space-y-6">
+      
+      <!-- Cartaz Oficial da Campanha -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-yellow/30 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-file-earmark-image text-arc-yellow"></i>
+              Cartaz Oficial da Campanha (Hero)
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Suba a imagem oficial do cartaz da chapa. Ela será exibida no topo do site para todos os visitantes.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="cursor-pointer px-4 py-2 rounded-xl bg-gradient-to-r from-arc-yellow to-amber-400 hover:brightness-110 text-black font-display font-black text-xs uppercase tracking-wider transition flex items-center gap-2 shadow-sm">
+              <i class="bi bi-upload"></i>
+              <span>Escolher Cartaz</span>
+              <input type="file" id="adminPosterInput" accept="image/*" class="hidden" onchange="handleAdminPosterUpload(event)" />
+            </label>
+            <button onclick="removerCartazPersonalizado()" class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-400 hover:text-red-400 transition" title="Restaurar arte padrão">
+              Restaurar Padrão
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <div class="w-36 h-44 rounded-2xl overflow-hidden bg-black/60 border-2 border-arc-yellow/40 flex items-center justify-center shrink-0 shadow-lg">
+            <img id="adminPosterPreview" src="" alt="Cartaz" class="w-full h-full object-cover hidden" />
+            <div id="adminPosterPlaceholder" class="p-3 text-center text-zinc-500 text-xs">
+              <i class="bi bi-image text-3xl text-arc-yellow/40 block mb-1"></i>
+              Arte Padrão Ativa
+            </div>
+          </div>
+          <div class="text-xs text-zinc-300 space-y-2">
+            <p><i class="bi bi-info-circle text-arc-yellow mr-1"></i> O cartaz fica salvo no Supabase e na memória do site.</p>
+            <p><i class="bi bi-check-circle text-emerald-400 mr-1"></i> Otimizado automaticamente para carregar instantaneamente em celulares 3G/4G.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 Integrantes Management -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-pink/30 space-y-5">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-people-fill text-arc-pink"></i>
+              Integrantes da Chapa ARC 07 (<span id="adminTotalTeam">16</span>)
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Coloque a foto real de cada integrante, nome, cargo e turma. Se entrar mais alguém, adicione abaixo sem precisar mexer no código!
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <label class="cursor-pointer px-4 py-2.5 rounded-xl bg-gradient-to-r from-arc-pink to-pink-600 hover:brightness-110 text-white font-display font-black text-xs uppercase tracking-wider transition flex items-center gap-2 shadow-neon-pink">
+              <i class="bi bi-images text-arc-yellow"></i>
+              <span>Subir Fotos da Galeria</span>
+              <input type="file" id="adminBulkPhotosInput" accept="image/*" multiple class="hidden" onchange="handleAdminBulkPhotos(event)" />
+            </label>
+            <button onclick="salvarTodaEquipeSupabase()" class="px-4 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500 hover:text-black font-display font-black text-xs uppercase transition flex items-center gap-1.5 shadow-sm">
+              <i class="bi bi-cloud-arrow-up-fill"></i>
+              <span>Salvar Todos no Supabase</span>
+            </button>
+            <button onclick="exportarFotosJSON()" class="px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-xs uppercase transition flex items-center gap-1.5" title="Baixar arquivo com as fotos para transferir para outro aparelho">
+              <i class="bi bi-download text-arc-yellow"></i>
+              <span>Baixar Fotos (.json)</span>
+            </button>
+            <label class="cursor-pointer px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-xs uppercase transition flex items-center gap-1.5" title="Carregar arquivo de fotos baixado no outro aparelho">
+              <i class="bi bi-upload text-arc-pink"></i>
+              <span>Carregar Fotos (.json)</span>
+              <input type="file" accept=".json" class="hidden" onchange="importarFotosJSON(event)" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Formulário Dinâmico: Adicionar Novo Integrante sem Mexer no Código -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-zinc-900/90 border border-arc-pink/40 space-y-3">
+          <div class="flex items-center gap-2.5 border-b border-white/10 pb-2.5">
+            <div class="w-8 h-8 rounded-xl bg-arc-pink/20 text-arc-pink flex items-center justify-center text-sm font-bold">
+              <i class="bi bi-person-plus-fill"></i>
+            </div>
+            <div>
+              <h3 class="font-display font-black text-sm text-white">Adicionar Novo Integrante à Chapa</h3>
+              <p class="text-[11px] text-zinc-400">Entrou mais alguém na equipe? Preencha os dados e foto abaixo para criar um novo card automaticamente no site e no painel!</p>
+            </div>
+          </div>
+
+          <form id="formAddMember" onsubmit="handleAdicionarMembro(event)" class="space-y-3 pt-1">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold text-zinc-300 uppercase mb-1">Nome Completo *</label>
+                <input type="text" id="newMemberName" required placeholder="Ex: Lucas Henrique" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/10 focus:border-arc-pink text-white text-xs outline-none transition" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-zinc-300 uppercase mb-1">Função / Cargo Oficial *</label>
+                <input type="text" id="newMemberRole" required placeholder="Ex: Comissão de Eventos & Torneios" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/10 focus:border-arc-pink text-white text-xs outline-none transition" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-zinc-300 uppercase mb-1">Turma / Sala</label>
+                <input type="text" id="newMemberTurma" placeholder="Ex: 2º A ou Chapa ARC 07" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/10 focus:border-arc-pink text-white text-xs outline-none transition" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold text-zinc-300 uppercase mb-1">Frase de Efeito / Citação</label>
+                <input type="text" id="newMemberQuote" placeholder="Ex: Trabalhando juntos por um grêmio de verdade!" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/10 focus:border-arc-pink text-white text-xs outline-none transition" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-zinc-300 uppercase mb-1">Foto do Integrante (Galeria/Câmera)</label>
+                <div class="flex items-center gap-2">
+                  <input type="file" id="newMemberPhotoInput" accept="image/*" class="w-full text-xs text-zinc-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-white/10 file:text-white hover:file:bg-white/20" onchange="handleNewMemberPhotoPreview(event)" />
+                  <img id="newMemberPhotoPreview" class="hidden w-8 h-8 rounded-lg object-cover border border-arc-pink shrink-0" alt="Preview" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-1">
+              <button type="submit" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-arc-pink to-pink-600 text-white font-display font-black text-xs uppercase hover:brightness-110 shadow-neon-pink transition flex items-center gap-2">
+                <i class="bi bi-person-check-fill"></i>
+                <span>Adicionar Integrante e Salvar PARA TODOS</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 13 Members Admin Cards Grid -->
+        <div id="adminTeamGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         ABA: CURSOS GRATUITOS (Sebrae, SENAI & Plataformas Confiáveis)
+         ======================================================== -->
+    <section id="tabContentCursos" class="hidden space-y-6">
+      
+      <!-- Card: Cadastrar Novo Curso Gratuito -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-arc-yellow/40 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h2 class="font-display font-black text-xl text-white flex items-center gap-2">
+              <i class="bi bi-mortarboard-fill text-arc-yellow"></i>
+              Cadastrar Novo Curso Gratuito
+            </h2>
+            <p class="text-xs text-zinc-400">
+              Divulgue cursos 100% gratuitos oferecidos por instituições de ponta (Sebrae, SENAI, Fundação Bradesco, etc.) para qualificar os estudantes.
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button onclick="handleRestaurarCursosPadrao()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+              <i class="bi bi-arrow-counterclockwise text-arc-yellow"></i>
+              <span>Restaurar Cursos Padrão</span>
+            </button>
+          </div>
+        </div>
+
+        <form id="formCadastrarCurso" onsubmit="handleCadastrarCurso(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Nome / Título do Curso *
+              </label>
+              <input 
+                type="text" 
+                id="cursoTitulo" 
+                required 
+                placeholder="Ex: Empreendedorismo e Criação de Negócios" 
+                class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Instituição Ofertante *
+              </label>
+              <input 
+                type="text" 
+                id="cursoInstituicao" 
+                required 
+                placeholder="Ex: Sebrae, SENAI, Fundação Bradesco" 
+                class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Carga Horária / Duração
+              </label>
+              <input 
+                type="text" 
+                id="cursoDuracao" 
+                placeholder="Ex: 15 horas" 
+                class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Área / Categoria
+              </label>
+              <input 
+                type="text" 
+                id="cursoCategoria" 
+                placeholder="Ex: Tecnologia, Negócios, Carreira" 
+                class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Link de Inscrição Oficial *
+              </label>
+              <input 
+                type="url" 
+                id="cursoLink" 
+                required 
+                placeholder="https://..." 
+                class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1.5">
+              Breve Descrição do Curso *
+            </label>
+            <textarea 
+              id="cursoDescricao" 
+              required 
+              rows="2" 
+              placeholder="Explique o que os estudantes vão aprender e as vantagens para a formação profissional..." 
+              class="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 focus:border-arc-yellow text-white text-sm outline-none transition"
+            ></textarea>
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button 
+              type="submit" 
+              class="px-5 py-3 rounded-xl bg-gradient-to-r from-arc-yellow to-yellow-400 text-black font-display font-black text-xs uppercase tracking-wider hover:scale-[1.02] shadow-neon-yellow transition flex items-center gap-2"
+            >
+              <i class="bi bi-plus-circle-fill"></i>
+              <span>Cadastrar Curso e Publicar PARA TODOS</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Card: Cursos Cadastrados -->
+      <div class="liquid-glass rounded-3xl p-5 sm:p-7 border border-white/10 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div>
+            <h3 class="font-display font-black text-lg text-white flex items-center gap-2">
+              <i class="bi bi-collection-fill text-arc-yellow"></i>
+              Cursos Disponíveis no Site (<span id="adminTotalCursos">0</span>)
+            </h3>
+            <p class="text-xs text-zinc-400">
+              Esses cursos estão visíveis na seção exclusiva de Cursos Gratuitos para todos os alunos da escola.
+            </p>
+          </div>
+
+          <button onclick="carregarCursosAdmin()" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 transition">
+            <i class="bi bi-arrow-repeat text-arc-yellow"></i>
+            <span>Atualizar Lista</span>
+          </button>
+        </div>
+
+        <!-- Grid de Cursos Cadastrados -->
+        <div id="adminCoursesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       TOAST NOTIFICATION COMPONENT
+       ======================================================== -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 max-w-sm liquid-glass border border-arc-yellow/60 rounded-2xl p-4 shadow-2xl transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3">
+    <div class="w-9 h-9 rounded-xl bg-arc-yellow text-black flex items-center justify-center text-lg font-bold shrink-0">
+      <i class="bi bi-check2-circle"></i>
+    </div>
+    <div class="text-xs sm:text-sm font-semibold text-white" id="toastMessage">Ação realizada com sucesso!</div>
+  </div>
+
+  <!-- ========================================================
+       DASHBOARD SCRIPT & LOGIC
+       ======================================================== -->
+    <script>
+    // ========================================================
+    // SUPABASE CLIENT & CONFIGURAÇÕES GLOBAIS
+    // ========================================================
+    const SUPABASE_URL = 'https://mwjrivlmeixfysfycedj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13anJpdmxtZWl4ZnlzZnljZWRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxMjI0MTcsImV4cCI6MjEwODY5ODQxN30._zir0suagC0tNpW9QHSo2NYWpSiMR8fP5UUGv0fh1SE';
+
+    const supabaseClient = (window.supabase && window.supabase.createClient)
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
+
+    // SQL Schema para cópia rápida se as tabelas estiverem pendentes
+    window.ARC07_SQL_SCHEMA = "-- ========================================================\n-- Script Oficial Supabase (PostgreSQL) - Chapa ARC 07\n-- Execute este script no SQL Editor do Supabase:\n-- https://supabase.com/dashboard/project/mwjrivlmeixfysfycedj/sql/new\n-- ========================================================\n\n-- 1. CRIAÇÃO DAS TABELAS\n\n-- Tabela: feedbacks (Voz do Aluno & Sugestões)\nCREATE TABLE IF NOT EXISTS public.feedbacks (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n    tipo TEXT,\n    turma TEXT,\n    mensagem TEXT,\n    status TEXT NOT NULL DEFAULT 'pendente'\n);\n\n-- Tabela: alertas_infra (Radar de Infraestrutura & Papel Higiênico)\nCREATE TABLE IF NOT EXISTS public.alertas_infra (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n    tipo TEXT DEFAULT 'papel_higienico',\n    localizacao TEXT,\n    status TEXT NOT NULL DEFAULT 'aberto'\n);\n\n-- Tabela: votos_comercio (Vendinha & Materiais Esportivos)\nCREATE TABLE IF NOT EXISTS public.votos_comercio (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n    item_id TEXT,\n    turma TEXT\n);\n\n-- Tabela: votos_geral (Ranking das Salas 1A-3C e Enquetes de Eventos)\nCREATE TABLE IF NOT EXISTS public.votos_geral (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n    tipo TEXT NOT NULL,\n    item_id TEXT NOT NULL,\n    turma TEXT\n);\n\n-- Tabela: equipe_membros (Fotos e dados oficiais dos 13 integrantes)\nCREATE TABLE IF NOT EXISTS public.equipe_membros (\n    id INT PRIMARY KEY,\n    name TEXT NOT NULL,\n    role TEXT NOT NULL,\n    turma TEXT,\n    quote TEXT,\n    photo TEXT,\n    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n\n-- Tabela: configuracoes_site (Cartaz oficial, Instagram, WhatsApp, Slogan)\nCREATE TABLE IF NOT EXISTS public.configuracoes_site (\n    chave TEXT PRIMARY KEY,\n    valor TEXT,\n    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n\n-- Tabela: comunicados (Posts e avisos oficiais da presidência)\nCREATE TABLE IF NOT EXISTS public.comunicados (\n    id TEXT PRIMARY KEY,\n    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),\n    titulo TEXT NOT NULL,\n    categoria TEXT NOT NULL,\n    mensagem TEXT NOT NULL,\n    imagem TEXT,\n    data TEXT\n);\n\n-- ========================================================\n-- 2. HABILITAÇÃO DE ROW LEVEL SECURITY (RLS)\n-- ========================================================\n\nALTER TABLE public.feedbacks ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.alertas_infra ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.votos_comercio ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.votos_geral ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.equipe_membros ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.configuracoes_site ENABLE ROW LEVEL SECURITY;\nALTER TABLE public.comunicados ENABLE ROW LEVEL SECURITY;\n\n-- ========================================================\n-- 3. POLÍTICAS DE ACESSO (Leitura e Escrita Sincronizada)\n-- ========================================================\n\n-- Remoção preventiva de políticas existentes para evitar duplicidade ao reexecutar\nDROP POLICY IF EXISTS \"Acesso publico feedbacks\" ON public.feedbacks;\nDROP POLICY IF EXISTS \"Acesso publico alertas_infra\" ON public.alertas_infra;\nDROP POLICY IF EXISTS \"Acesso publico votos_comercio\" ON public.votos_comercio;\nDROP POLICY IF EXISTS \"Acesso publico votos_geral\" ON public.votos_geral;\nDROP POLICY IF EXISTS \"Acesso publico equipe_membros\" ON public.equipe_membros;\nDROP POLICY IF EXISTS \"Acesso publico configuracoes_site\" ON public.configuracoes_site;\nDROP POLICY IF EXISTS \"Acesso publico comunicados\" ON public.comunicados;\n\n-- Políticas universais de leitura e gravação\nCREATE POLICY \"Acesso publico feedbacks\" ON public.feedbacks FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico alertas_infra\" ON public.alertas_infra FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico votos_comercio\" ON public.votos_comercio FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico votos_geral\" ON public.votos_geral FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico equipe_membros\" ON public.equipe_membros FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico configuracoes_site\" ON public.configuracoes_site FOR ALL USING (true) WITH CHECK (true);\nCREATE POLICY \"Acesso publico comunicados\" ON public.comunicados FOR ALL USING (true) WITH CHECK (true);\n";
+
+    // Helper de Toast Visual
+    window.exibirToast = function(mensagem, isError = false) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastMessage');
+      if (!toast || !text) {
+        alert(mensagem);
+        return;
+      }
+      text.textContent = mensagem;
+      const iconContainer = toast.querySelector('div:first-child');
+      const icon = toast.querySelector('i');
+      if (isError) {
+        toast.classList.remove('border-arc-yellow/60');
+        toast.classList.add('border-arc-pink', 'bg-zinc-950/95');
+        if (iconContainer) iconContainer.className = 'w-9 h-9 rounded-xl bg-arc-pink text-white flex items-center justify-center text-lg font-bold shrink-0';
+        if (icon) icon.className = 'bi bi-exclamation-triangle-fill';
+      } else {
+        toast.classList.remove('border-arc-pink');
+        toast.classList.add('border-arc-yellow/60');
+        if (iconContainer) iconContainer.className = 'w-9 h-9 rounded-xl bg-arc-yellow text-black flex items-center justify-center text-lg font-bold shrink-0';
+        if (icon) icon.className = 'bi bi-check2-circle';
+      }
+      toast.classList.remove('opacity-0', 'translate-y-24', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-24', 'pointer-events-none');
+      }, 3500);
+    };
+
+    window.copiarSqlEditor = function() {
+      navigator.clipboard.writeText(window.ARC07_SQL_SCHEMA).then(() => {
+        exibirToast('Script SQL copiado com sucesso! Cole no SQL Editor do Supabase.');
+      }).catch(() => {
+        exibirToast('Não foi possível copiar automaticamente. Acesse o arquivo schema.sql na pasta do projeto.', true);
+      });
+    };
+
+    // Variáveis de Estado
+    let currentFeedbacks = [];
+    let currentInfraAlerts = [];
+    let currentPosts = [];
+    let tempPostImg = '';
+    let filterFb = 'todos';
+    let filterInfra = 'todos';
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    // ==========================================
+    // 1. VERIFICAÇÃO DE AUTENTICAÇÃO E INICIALIZAÇÃO
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isDemo = urlParams.get('demo') === 'true';
+
+      try {
+        if (supabaseClient) {
+          const { data: { session }, error } = await supabaseClient.auth.getSession();
+          if (!session || !session.user) {
+            if (!isDemo) {
+              // Sem sessão ativa -> Redireciona imediatamente para index.html
+              window.location.href = 'index.html';
+              return;
+            } else {
+              document.getElementById('userEmailBadge').textContent = 'Modo Demonstração (Sem Login)';
+            }
+          } else {
+            document.getElementById('userEmailBadge').textContent = session.user.email || 'Admin Presidência';
+          }
+        } else {
+          if (!isDemo) {
+            window.location.href = 'index.html';
+            return;
+          }
+        }
+      } catch (err) {
+        console.error('Erro na validação de sessão:', err);
+        if (!isDemo) {
+          window.location.href = 'index.html';
+          return;
+        }
+      }
+
+      // Checa se o banco de dados no Supabase está pronto para sincronizar PARA TODOS
+      await verificarTabelasSupabase();
+
+      // Inicializa todas as abas do Dashboard
+      await carregarPostsAdmin();
+      await carregarEquipeAdmin();
+      await carregarCursosAdmin();
+      await carregarConfiguracoesSiteAdmin();
+      await carregarFeedbacks();
+      await carregarAlertasInfra();
+      await carregarVotosComercio();
+      await carregarVotosEventosAdmin();
+    });
+
+    // ==========================================
+    // STATUS DO BANCO DE DADOS SUPABASE
+    // ==========================================
+    window.verificarTabelasSupabase = async function() {
+      const banner = document.getElementById('supabaseStatusBanner');
+      if (!banner || !supabaseClient) return;
+
+      try {
+        const { data, error } = await supabaseClient.from('equipe_membros').select('id', { count: 'exact', head: true });
+        
+        if (error && (error.code === 'PGRST205' || error.message?.includes('schema cache') || error.message?.includes('relation') || error.code === '42P01')) {
+          banner.innerHTML = `
+            <div class="p-4 sm:p-5 rounded-2xl bg-amber-500/15 border-2 border-amber-400 text-amber-200 shadow-2xl space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-400 text-black flex items-center justify-center text-xl shrink-0 font-bold">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-display font-black text-white text-base">Atenção: Tabelas do Banco de Dados Pendentes no Supabase!</h4>
+                    <p class="text-xs text-amber-200/90 mt-0.5">
+                      Para garantir que fotos dos integrantes e configurações fiquem salvas <strong>PARA TODOS OS ALUNOS</strong> (em qualquer celular), execute o <code class="bg-black/40 px-1 py-0.5 rounded text-white font-mono">schema.sql</code> uma única vez no Supabase.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://supabase.com/dashboard/project/mwjrivlmeixfysfycedj/sql/new" target="_blank" class="px-3.5 py-2 rounded-xl bg-arc-yellow hover:bg-yellow-300 text-black font-display font-black text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-md transition">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span>Abrir SQL Editor</span>
+                  </a>
+                  <button onclick="copiarSqlEditor()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 transition">
+                    <i class="bi bi-clipboard-check"></i>
+                    <span>Copiar SQL</span>
+                  </button>
+                  <button onclick="verificarTabelasSupabase()" class="px-3 py-2 rounded-xl bg-black/40 hover:bg-black/60 text-zinc-300 hover:text-white text-xs font-bold transition flex items-center gap-1">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Verificar Novamente</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          banner.innerHTML = `
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 flex items-center justify-between text-xs">
+              <span class="flex items-center gap-2">
+                <i class="bi bi-cloud-check-fill text-emerald-400 text-base"></i>
+                <span><strong>Supabase Conectado na Nuvem:</strong> As fotos, posts e enquetes salvam no banco e aparecem <strong>PARA TODOS</strong> em tempo real!</span>
+              </span>
+              <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded-full hidden sm:inline-block">Status: Ativo</span>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.warn('Erro ao checar status do Supabase:', err);
+      }
+    };
+
+    // ==========================================
+    // LOGOUT ACTION (INCONDICIONAL PARA INDEX.HTML)
+    // ==========================================
+    window.handleLogout = async function() {
+      if (confirm('Deseja realmente encerrar a sessão da Presidência?')) {
+        try {
+          if (supabaseClient && supabaseClient.auth) {
+            await supabaseClient.auth.signOut();
+          }
+        } catch (e) {
+          console.warn('SignOut erro:', e);
+        }
+        try {
+          for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k && (k.startsWith('sb-') || k.includes('auth-token') || k.includes('arc07_admin'))) {
+              localStorage.removeItem(k);
+            }
+          }
+          sessionStorage.clear();
+        } catch (e) {}
+        window.location.href = 'index.html';
+      }
+    };
+
+    // ==========================================
+    // TAB SWITCHING
+    // ==========================================
+    window.switchTab = function(tabName) {
+      const tabs = ['posts', 'equipe', 'cursos', 'config', 'feedbacks', 'infra', 'comercio'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn${capitalize(t)}`);
+        const content = document.getElementById(`tabContent${capitalize(t)}`);
+        if (btn && content) {
+          if (t === tabName) {
+            content.classList.remove('hidden');
+            btn.className = 'flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-arc-pink text-white shadow-neon-pink';
+            if (t === 'comercio') {
+              carregarVotosComercio();
+              carregarVotosEventosAdmin();
+            }
+          } else {
+            content.classList.add('hidden');
+            btn.className = 'flex-1 min-w-[130px] py-3 px-3.5 rounded-xl font-display font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 text-zinc-400 hover:text-white hover:bg-white/5';
+          }
+        }
+      });
+    };
+
+    // ==========================================
+    // ABA 1: FEEDBACKS / VOZ DO ALUNO
+    // ==========================================
+    window.carregarFeedbacks = async function() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('feedbacks')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && data) {
+            currentFeedbacks = data;
+          } else {
+            currentFeedbacks = JSON.parse(localStorage.getItem('arc07_feedbacks') || '[]');
+          }
+        } catch(e) {
+          currentFeedbacks = JSON.parse(localStorage.getItem('arc07_feedbacks') || '[]');
+        }
+      } else {
+        currentFeedbacks = JSON.parse(localStorage.getItem('arc07_feedbacks') || '[]');
+      }
+
+      document.getElementById('statTotalFeedbacks').textContent = currentFeedbacks.length;
+      document.getElementById('tabBadgeFeedbacks').textContent = currentFeedbacks.length;
+      renderFeedbacksTable();
+    };
+
+    window.setFilterFeedback = function(status) {
+      filterFb = status;
+      ['Todos', 'Pendente', 'Analise', 'Atendido'].forEach(btn => {
+        const el = document.getElementById(`filterFb${btn}`);
+        if (el) el.className = 'px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition';
+      });
+      const activeBtn = status === 'todos' ? 'Todos' : status === 'pendente' ? 'Pendente' : status === 'em_analise' ? 'Analise' : 'Atendido';
+      const elActive = document.getElementById(`filterFb${activeBtn}`);
+      if (elActive) elActive.className = 'px-2.5 py-1 rounded-lg font-bold bg-white/20 text-white transition';
+      renderFeedbacksTable();
+    };
+
+    function renderFeedbacksTable() {
+      const tbody = document.getElementById('feedbacksTableBody');
+      if (!tbody) return;
+
+      const filtered = currentFeedbacks.filter(fb => {
+        if (filterFb === 'todos') return true;
+        return fb.status === filterFb;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="py-8 text-center text-zinc-500">
+              <i class="bi bi-chat-square-dots text-2xl block mb-1"></i>
+              Nenhum feedback encontrado com o filtro selecionado.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(fb => {
+        const dataFormatada = new Date(fb.created_at).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+        
+        let statusBadge = '';
+        if (fb.status === 'pendente') {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30 text-[11px] font-bold">Pendente</span>`;
+        } else if (fb.status === 'em_analise') {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 text-[11px] font-bold">Em Análise</span>`;
+        } else if (fb.status === 'atendido') {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold">Atendido</span>`;
+        }
+
+        return `
+          <tr class="hover:bg-white/5 transition">
+            <td class="py-3 px-4 text-zinc-400 whitespace-nowrap text-xs">${dataFormatada}</td>
+            <td class="py-3 px-4 font-bold text-white whitespace-nowrap">${fb.turma || '-'}</td>
+            <td class="py-3 px-4 text-xs font-semibold text-arc-yellow max-w-xs truncate">${fb.tipo || 'Geral'}</td>
+            <td class="py-3 px-4 text-zinc-200 max-w-md break-words">${fb.mensagem || ''}</td>
+            <td class="py-3 px-4 whitespace-nowrap">${statusBadge}</td>
+            <td class="py-3 px-4 whitespace-nowrap text-center">
+              <select onchange="handleMudarStatusFeedback('${fb.id}', this.value)" class="bg-zinc-900 border border-white/15 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-arc-pink cursor-pointer">
+                <option value="pendente" ${fb.status === 'pendente' ? 'selected' : ''}>Pendente</option>
+                <option value="em_analise" ${fb.status === 'em_analise' ? 'selected' : ''}>Em Análise</option>
+                <option value="atendido" ${fb.status === 'atendido' ? 'selected' : ''}>Atendido</option>
+              </select>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    window.handleMudarStatusFeedback = async function(id, novoStatus) {
+      exibirToast(`Atualizando status para "${novoStatus}"...`);
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('feedbacks').update({ status: novoStatus }).eq('id', id);
+        } catch (e) {}
+      }
+      
+      const item = currentFeedbacks.find(f => f.id === id);
+      if (item) item.status = novoStatus;
+
+      renderFeedbacksTable();
+      exibirToast(`Feedback atualizado com sucesso!`);
+    };
+
+    // Export CSV
+    window.exportarFeedbacksCSV = function() {
+      if (!currentFeedbacks.length) {
+        exibirToast('Não há feedbacks para exportar!', true);
+        return;
+      }
+
+      let csvContent = '\uFEFF';
+      csvContent += 'Data;Turma;Categoria;Mensagem;Status\n';
+
+      currentFeedbacks.forEach(fb => {
+        const data = new Date(fb.created_at).toLocaleString('pt-BR');
+        const turma = (fb.turma || '').replace(/;/g, ',');
+        const tipo = (fb.tipo || '').replace(/;/g, ',');
+        const msg = (fb.mensagem || '').replace(/"/g, '""').replace(/[\r\n]+/g, ' ');
+        const status = fb.status || 'pendente';
+        csvContent += `"${data}";"${turma}";"${tipo}";"${msg}";"${status}"\n`;
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `relatorio-feedbacks-arc07-${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      exibirToast('Relatório CSV baixado com sucesso!');
+    };
+
+    // ==========================================
+    // ABA 2: RADAR DE INFRAESTRUTURA
+    // ==========================================
+    window.carregarAlertasInfra = async function() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('alertas_infra')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && data) {
+            currentInfraAlerts = data;
+          } else {
+            currentInfraAlerts = JSON.parse(localStorage.getItem('arc07_alertas_infra') || '[]');
+          }
+        } catch(e) {
+          currentInfraAlerts = JSON.parse(localStorage.getItem('arc07_alertas_infra') || '[]');
+        }
+      } else {
+        currentInfraAlerts = JSON.parse(localStorage.getItem('arc07_alertas_infra') || '[]');
+      }
+
+      const abertos = currentInfraAlerts.filter(a => a.status === 'aberto').length;
+      document.getElementById('statAlertasAbertos').textContent = abertos;
+      document.getElementById('tabBadgeInfra').textContent = abertos;
+      renderInfraAlerts();
+    };
+
+    window.setFilterInfra = function(status) {
+      filterInfra = status;
+      ['Todos', 'Aberto', 'Resolvido'].forEach(btn => {
+        const el = document.getElementById(`filterInfra${btn}`);
+        if (el) el.className = 'px-2.5 py-1 rounded-lg font-bold text-zinc-400 hover:text-white transition';
+      });
+      const activeBtn = status === 'todos' ? 'Todos' : status === 'aberto' ? 'Aberto' : 'Resolvido';
+      const elActive = document.getElementById(`filterInfra${activeBtn}`);
+      if (elActive) elActive.className = 'px-2.5 py-1 rounded-lg font-bold bg-white/20 text-white transition';
+      renderInfraAlerts();
+    };
+
+    function renderInfraAlerts() {
+      const grid = document.getElementById('infraAlertsGrid');
+      if (!grid) return;
+
+      const filtered = currentInfraAlerts.filter(a => {
+        if (filterInfra === 'todos') return true;
+        return a.status === filterInfra;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-8 text-center text-zinc-400">
+            <i class="bi bi-shield-check text-2xl text-emerald-400 block mb-1"></i>
+            Nenhum alerta de infraestrutura no momento!
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(a => {
+        const isAberto = a.status === 'aberto';
+        const dataFormatada = new Date(a.created_at).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+        const badgeStatus = isAberto
+          ? `<span class="px-2.5 py-1 rounded-full bg-arc-pink/20 text-arc-pink border border-arc-pink/40 text-xs font-bold flex items-center gap-1.5 animate-pulse"><span class="w-2 h-2 rounded-full bg-arc-pink"></span>Aberto</span>`
+          : `<span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-bold flex items-center gap-1.5"><i class="bi bi-check-circle-fill"></i>Resolvido</span>`;
+
+        const actionBtn = isAberto
+          ? `<button onclick="handleResolverAlerta('${a.id}')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-arc-yellow to-amber-400 hover:brightness-110 text-black font-display font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5">
+               <i class="bi bi-check2-circle text-base"></i>
+               <span>Marcar como Resolvido</span>
+             </button>`
+          : `<div class="text-center text-xs text-zinc-500 font-semibold py-1">Reposição concluída</div>`;
+
+        return `
+          <div class="p-5 rounded-2xl liquid-glass border ${isAberto ? 'border-arc-yellow/40' : 'border-white/10'} space-y-3.5 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] text-zinc-400 flex items-center gap-1">
+                  <i class="bi bi-clock-fill text-arc-yellow"></i>
+                  ${dataFormatada}
+                </span>
+                ${badgeStatus}
+              </div>
+
+              <div>
+                <span class="text-[11px] font-bold uppercase text-arc-pink">Localização Informada</span>
+                <h4 class="font-display font-black text-base text-white mt-0.5">${a.localizacao || 'Banheiro Escolar'}</h4>
+              </div>
+
+              <div class="text-xs text-zinc-300 bg-black/40 p-2.5 rounded-xl border border-white/5 flex items-center gap-2">
+                <i class="bi bi-heart-pulse-fill text-arc-yellow text-sm"></i>
+                <span>Tipo: <strong>${a.tipo === 'papel_higienico' ? 'Papel Higiênico & Higiene' : a.tipo}</strong></span>
+              </div>
+            </div>
+
+            <div>
+              ${actionBtn}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.handleResolverAlerta = async function(id) {
+      exibirToast('Atualizando status para resolvido...');
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('alertas_infra').update({ status: 'resolvido' }).eq('id', id);
+        } catch (e) {}
+      }
+      
+      const item = currentInfraAlerts.find(a => a.id === id);
+      if (item) item.status = 'resolvido';
+
+      const abertos = currentInfraAlerts.filter(a => a.status === 'aberto').length;
+      document.getElementById('statAlertasAbertos').textContent = abertos;
+      document.getElementById('tabBadgeInfra').textContent = abertos;
+
+      renderInfraAlerts();
+      exibirToast('Alerta marcado como resolvido! Papel higiênico reposto! 🧻');
+    };
+
+    // ==========================================
+    // ABA 3: VOTAÇÕES DA GALERA (VENDINHA & EVENTOS)
+    // ==========================================
+    const DEFAULT_STORE_ITEMS = [
+      { id: 'kit-pingpong', name: '🏓 Mesa de Ping-Pong + Raquetes e Bolinhas', votes: 0 },
+      { id: 'kit-futsal', name: '⚽ Bolas de Futebol + Redes Novas de Gol', votes: 0 },
+      { id: 'kit-volei', name: '🏐 Bolas de Vôlei + Rede de Vôlei Oficial', votes: 0 },
+      { id: 'kit-coletes', name: '🎽 Coletes Coloridos para Jogos e Interclasse', votes: 0 }
+    ];
+    let adminStoreItems = [...DEFAULT_STORE_ITEMS];
+
+    const DEFAULT_EVENT_POLL = [
+      { id: 'ev-1', name: '🎭 Dia Temático (Votado pelas Salas)', votes: 0 },
+      { id: 'ev-2', name: '🏆 Torneio Interclasses de Futsal, Vôlei & Ping-Pong', votes: 0 },
+      { id: 'ev-3', name: '🍿 Sessão de Cinema com Pipoca na Escola', votes: 0 },
+      { id: 'ev-4', name: '🔥 Gincana Escolar com Desafios entre Turmas', votes: 0 }
+    ];
+    let adminEventPoll = [...DEFAULT_EVENT_POLL];
+
+    // 1. CARREGAR E RENDERIZAR ITENS DA VENDINHA
+    window.carregarVotosComercio = async function() {
+      // Carrega itens da Vendinha do Supabase ou Cache Local
+      let carregouItens = false;
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient
+            .from('configuracoes_site')
+            .select('valor')
+            .eq('chave', 'store_items_list')
+            .maybeSingle();
+          if (data && data.valor !== undefined && data.valor !== null) {
+            const parsed = JSON.parse(data.valor);
+            if (Array.isArray(parsed)) {
+              adminStoreItems = parsed;
+              localStorage.setItem('arc07_store', JSON.stringify(parsed));
+              carregouItens = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      if (!carregouItens) {
+        try {
+          const localStr = localStorage.getItem('arc07_store');
+          if (localStr !== null) {
+            const local = JSON.parse(localStr);
+            if (Array.isArray(local)) {
+              adminStoreItems = local;
+              carregouItens = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      if (!carregouItens && (!adminStoreItems || !Array.isArray(adminStoreItems))) {
+        adminStoreItems = [...DEFAULT_STORE_ITEMS];
+      }
+
+      // Contagem de votos do Supabase
+      let contagem = {};
+      let totalVotos = 0;
+
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('votos_comercio').select('item_id');
+          if (!error && data) {
+            data.forEach(v => {
+              if (v && v.item_id) {
+                contagem[v.item_id] = (contagem[v.item_id] || 0) + 1;
+              }
+            });
+          }
+        } catch(e) {}
+      }
+
+      const items = adminStoreItems.map(item => {
+        const votes = (contagem[item.id] !== undefined) ? Number(contagem[item.id]) : (Number(item.votes) || 0);
+        return { ...item, votes };
+      });
+      adminStoreItems = items;
+
+      totalVotos = items.reduce((acc, i) => acc + (Number(i.votes) || 0), 0);
+      const totalBadge = document.getElementById('statTotalVotos');
+      if (totalBadge) totalBadge.textContent = totalVotos;
+
+      renderComercioCards(items, totalVotos);
+    };
+
+    function renderComercioCards(items, total) {
+      const container = document.getElementById('comercioCardsGrid');
+      if (!container) return;
+      
+      const sorted = [...items].sort((a, b) => b.votes - a.votes);
+
+      if (sorted.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-8 text-center text-zinc-400">
+            <i class="bi bi-shop text-3xl text-arc-yellow/50 mb-2 block"></i>
+            <p class="font-bold text-sm">Nenhum item em votação no momento.</p>
+            <p class="text-xs text-zinc-500 mt-1">Cadastre novos itens acima para iniciar a votação deste mês!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = sorted.map((item, idx) => {
+        const pct = total > 0 ? Math.round((item.votes / total) * 100) : 0;
+        const isLeader = idx === 0 && total > 0;
+        const barColor = isLeader ? 'from-arc-pink via-pink-500 to-arc-yellow' : 'from-arc-yellow to-amber-500';
+        const rankBadge = isLeader 
+          ? `<span class="px-2.5 py-0.5 rounded-full bg-arc-pink text-white font-black text-xs uppercase shadow-neon-pink flex items-center gap-1">🏆 1º Lugar</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-300 font-bold text-xs">#${idx + 1}</span>`;
+
+        return `
+          <div class="p-5 rounded-2xl liquid-glass border ${isLeader ? 'border-arc-pink shadow-neon-pink' : 'border-white/10'} space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <div>
+                  <h4 class="font-display font-black text-base text-white">${escapeHtmlAdmin(item.name)}</h4>
+                  <span class="text-xs text-zinc-400 font-medium">Meta de aquisição da Vendinha</span>
+                </div>
+                ${rankBadge}
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                  <span class="text-zinc-300">Votos computados: <strong class="text-white">${item.votes}</strong></span>
+                  <span class="text-arc-yellow font-display font-black text-sm">${pct}%</span>
+                </div>
+                <div class="w-full h-3 bg-black rounded-full overflow-hidden p-0.5 border border-white/10">
+                  <div class="h-full rounded-full bg-gradient-to-r ${barColor} transition-all duration-700" style="width: ${pct}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end pt-2 border-t border-white/5">
+              <button onclick="handleExcluirItemVendinha('${item.id}')" class="px-2.5 py-1 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 text-xs transition flex items-center gap-1" title="Excluir este item da votação">
+                <i class="bi bi-trash3"></i> <span>Remover Item</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 2. CARREGAR E RENDERIZAR ENQUETE DE EVENTOS
+    window.carregarVotosEventosAdmin = async function() {
+      // Carrega opções de eventos do Supabase ou Cache Local
+      let carregouEventos = false;
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient
+            .from('configuracoes_site')
+            .select('valor')
+            .eq('chave', 'event_poll_list')
+            .maybeSingle();
+          if (data && data.valor !== undefined && data.valor !== null) {
+            const parsed = JSON.parse(data.valor);
+            if (Array.isArray(parsed)) {
+              adminEventPoll = parsed;
+              localStorage.setItem('arc07_eventpoll', JSON.stringify(parsed));
+              carregouEventos = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      if (!carregouEventos) {
+        try {
+          const localStr = localStorage.getItem('arc07_eventpoll');
+          if (localStr !== null) {
+            const local = JSON.parse(localStr);
+            if (Array.isArray(local)) {
+              adminEventPoll = local;
+              carregouEventos = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      if (!carregouEventos && (!adminEventPoll || !Array.isArray(adminEventPoll))) {
+        adminEventPoll = [...DEFAULT_EVENT_POLL];
+      }
+
+      // Contagem de votos de eventos
+      let contagem = {};
+      let totalVotos = 0;
+
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient
+            .from('votos_comercio')
+            .select('item_id, turma');
+          if (data) {
+            data.forEach(v => {
+              if (v && v.item_id && (v.turma?.startsWith('evento:') || v.item_id.startsWith('ev-'))) {
+                contagem[v.item_id] = (contagem[v.item_id] || 0) + 1;
+              }
+            });
+          }
+        } catch(e) {}
+      }
+
+      const items = adminEventPoll.map(item => {
+        const votes = (contagem[item.id] !== undefined) ? Number(contagem[item.id]) : (Number(item.votes) || 0);
+        return { ...item, votes };
+      });
+      adminEventPoll = items;
+
+      totalVotos = items.reduce((acc, i) => acc + (Number(i.votes) || 0), 0);
+      const totalBadge = document.getElementById('statTotalVotosEventos');
+      if (totalBadge) totalBadge.textContent = totalVotos;
+
+      renderEventosAdminCards(items, totalVotos);
+    };
+
+    function renderEventosAdminCards(items, total) {
+      const container = document.getElementById('eventosCardsGrid');
+      if (!container) return;
+
+      const sorted = [...items].sort((a, b) => b.votes - a.votes);
+
+      if (sorted.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-8 text-center text-zinc-400">
+            <i class="bi bi-calendar-event text-3xl text-arc-pink/50 mb-2 block"></i>
+            <p class="font-bold text-sm">Nenhuma opção de evento cadastrada no momento.</p>
+            <p class="text-xs text-zinc-500 mt-1">Cadastre novas opções de eventos acima para os alunos votarem!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = sorted.map((item, idx) => {
+        const pct = total > 0 ? Math.round((item.votes / total) * 100) : 0;
+        const isLeader = idx === 0 && total > 0;
+        const barColor = isLeader ? 'from-arc-pink to-arc-yellow' : 'from-arc-pink/80 to-purple-500';
+        const rankBadge = isLeader 
+          ? `<span class="px-2.5 py-0.5 rounded-full bg-arc-pink text-white font-black text-xs uppercase shadow-neon-pink flex items-center gap-1">🏆 Mais Votado</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-300 font-bold text-xs">#${idx + 1}</span>`;
+
+        return `
+          <div class="p-5 rounded-2xl liquid-glass border ${isLeader ? 'border-arc-pink shadow-neon-pink' : 'border-white/10'} space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <div>
+                  <h4 class="font-display font-black text-base text-white">${escapeHtmlAdmin(item.name)}</h4>
+                  <span class="text-xs text-zinc-400 font-medium">Enquete Oficial de Eventos ARC 07</span>
+                </div>
+                ${rankBadge}
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                  <span class="text-zinc-300">Votos computados: <strong class="text-white">${item.votes}</strong></span>
+                  <span class="text-arc-pink font-display font-black text-sm">${pct}%</span>
+                </div>
+                <div class="w-full h-3 bg-black rounded-full overflow-hidden p-0.5 border border-white/10">
+                  <div class="h-full rounded-full bg-gradient-to-r ${barColor} transition-all duration-700" style="width: ${pct}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end pt-2 border-t border-white/5">
+              <button onclick="handleExcluirOpcaoEvento('${item.id}')" class="px-2.5 py-1 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 text-xs transition flex items-center gap-1" title="Excluir este evento da enquete">
+                <i class="bi bi-trash3"></i> <span>Remover Evento</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 3. AÇÕES DA VENDINHA (ADICIONAR / EXCLUIR / RESTAURAR / ZERAR)
+    window.handleAdicionarItemVendinha = async function(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById('novoItemVendinhaNome');
+      const nome = input?.value.trim();
+      if (!nome) return;
+
+      const novoItem = {
+        id: 'kit-' + Date.now(),
+        name: nome,
+        votes: 0
+      };
+
+      adminStoreItems.push(novoItem);
+      const jsonStore = JSON.stringify(adminStoreItems);
+      localStorage.setItem('arc07_store', jsonStore);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      input.value = '';
+      await carregarVotosComercio();
+      exibirToast(`Item "${nome}" adicionado à votação de compras com sucesso! 🛒`);
+    };
+
+    window.handleExcluirItemVendinha = async function(id) {
+      const item = adminStoreItems.find(i => i.id === id);
+      const nome = item ? item.name : 'este item';
+      if (!confirm(`Deseja remover "${nome}" da lista de compras da vendinha?`)) return;
+
+      adminStoreItems = adminStoreItems.filter(i => i.id !== id);
+      const jsonStore = JSON.stringify(adminStoreItems);
+      localStorage.setItem('arc07_store', jsonStore);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      await carregarVotosComercio();
+      exibirToast('Item removido da votação!');
+    };
+
+    window.handleRestaurarItensVendinhaPadrao = async function() {
+      if (!confirm('Deseja restaurar os itens padrão da vendinha (Ping-Pong, Futsal, Vôlei e Coletes)?')) return;
+
+      adminStoreItems = [...DEFAULT_STORE_ITEMS];
+      const jsonStore = JSON.stringify(adminStoreItems);
+      localStorage.setItem('arc07_store', jsonStore);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'store_items_list',
+            valor: jsonStore,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      await carregarVotosComercio();
+      exibirToast('Itens padrão da vendinha restaurados! 🏆');
+    };
+
+    window.handleZerarVotosVendinha = async function() {
+      if (!confirm('Deseja zerar os votos da Vendinha para iniciar a nova votação deste mês?')) return;
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('votos_comercio').delete().not('turma', 'like', 'evento:%');
+        } catch(e) {}
+      }
+
+      localStorage.removeItem('arc07_store_votes');
+      localStorage.removeItem('arc07_user_voted_store');
+
+      await carregarVotosComercio();
+      exibirToast('Votação da vendinha zerada para o novo mês! 🚀');
+    };
+
+    // 4. AÇÕES DE EVENTOS (ADICIONAR / EXCLUIR / RESTAURAR / ZERAR)
+    window.handleAdicionarOpcaoEvento = async function(event) {
+      if (event) event.preventDefault();
+      const input = document.getElementById('novoEventoNome');
+      const nome = input?.value.trim();
+      if (!nome) return;
+
+      const novoEvento = {
+        id: 'ev-' + Date.now(),
+        name: nome,
+        votes: 0
+      };
+
+      adminEventPoll.push(novoEvento);
+      const jsonEvent = JSON.stringify(adminEventPoll);
+      localStorage.setItem('arc07_eventpoll', jsonEvent);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      input.value = '';
+      await carregarVotosEventosAdmin();
+      exibirToast(`Evento "${nome}" adicionado à enquete com sucesso! 🎬`);
+    };
+
+    window.handleExcluirOpcaoEvento = async function(id) {
+      const item = adminEventPoll.find(i => i.id === id);
+      const nome = item ? item.name : 'este evento';
+      if (!confirm(`Deseja remover "${nome}" da enquete de eventos?`)) return;
+
+      adminEventPoll = adminEventPoll.filter(i => i.id !== id);
+      const jsonEvent = JSON.stringify(adminEventPoll);
+      localStorage.setItem('arc07_eventpoll', jsonEvent);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      await carregarVotosEventosAdmin();
+      exibirToast('Opção de evento removida da enquete!');
+    };
+
+    window.handleRestaurarEventosPadrao = async function() {
+      if (!confirm('Deseja restaurar as opções de eventos padrão?')) return;
+
+      adminEventPoll = [...DEFAULT_EVENT_POLL];
+      const jsonEvent = JSON.stringify(adminEventPoll);
+      localStorage.setItem('arc07_eventpoll', jsonEvent);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'event_poll_list',
+            valor: jsonEvent,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      await carregarVotosEventosAdmin();
+      exibirToast('Opções padrão de eventos restauradas! 🎭');
+    };
+
+    window.handleZerarVotosEventos = async function() {
+      if (!confirm('Deseja zerar os votos da enquete de eventos para iniciar o novo mês?')) return;
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('votos_comercio').delete().like('turma', 'evento:%');
+        } catch(e) {}
+      }
+
+      localStorage.removeItem('arc07_event_votes');
+      localStorage.removeItem('arc07_user_voted_events');
+
+      await carregarVotosEventosAdmin();
+      exibirToast('Enquete de eventos zerada para o novo mês! 🍿');
+    };
+
+    // ==========================================
+    // ABA 4: GESTÃO DA EQUIPE E CARTAZ OFICIAL
+    // ==========================================
+    const defaultTeamData = [
+      { id: 1, name: 'Presidente', role: 'Presidência', turma: 'Chapa ARC 07', quote: 'Compromisso, liderança e transparência para nossa escola.', photo: '' },
+      { id: 2, name: 'Vice-Presidente', role: 'Vice-Presidência', turma: 'Chapa ARC 07', quote: 'Unindo todas as turmas por um grêmio que faz acontecer.', photo: '' },
+      { id: 3, name: 'Secretário(a) Geral', role: 'Secretaria Geral', turma: 'Chapa ARC 07', quote: 'Organização, agilidade e voz ativa para cada estudante.', photo: '' },
+      { id: 4, name: 'Tesoureiro(a)', role: 'Tesouraria & Vendinha', turma: 'Chapa ARC 07', quote: '100% do lucro do comércio escolar revertido aos alunos.', photo: '' },
+      { id: 5, name: 'Diretor(a) de Esportes', role: 'Diretoria de Esportes', turma: 'Chapa ARC 07', quote: 'Bolas novas, redes oficiais, ping-pong e campeonatos.', photo: '' },
+      { id: 6, name: 'Diretor(a) de Torneios', role: 'Esportes & Torneios', turma: 'Chapa ARC 07', quote: 'Mais jogos, interclasses organizados e coletes novos.', photo: '' },
+      { id: 7, name: 'Diretor(a) de Eventos', role: 'Eventos & Cultura', turma: 'Chapa ARC 07', quote: 'Dias temáticos, feiras culturais e cinema escolar.', photo: '' },
+      { id: 8, name: 'Coordenador(a) de Lazer', role: 'Recreio & Lazer', turma: 'Chapa ARC 07', quote: 'Música, jogos e um recreio muito mais animado.', photo: '' },
+      { id: 9, name: 'Comunicação & Mídias', role: 'Comunicação & Redes', turma: 'Chapa ARC 07', quote: 'Informação clara nas redes e prestação de contas diária.', photo: '' },
+      { id: 10, name: 'Assistência & Estrutura', role: 'Assistência & Estrutura', turma: 'Chapa ARC 07', quote: 'Papel higiênico garantido em todos os banheiros.', photo: '' },
+      { id: 11, name: 'Comissão Sala Nota 10', role: 'Sala Mais Limpa', turma: 'Chapa ARC 07', quote: 'Premiação justa todo mês para a sala mais conservada.', photo: '' },
+      { id: 12, name: 'Ações Solidárias', role: 'Ações Solidárias', turma: 'Chapa ARC 07', quote: 'Campanhas de apoio mútuo à comunidade escolar.', photo: '' },
+      { id: 13, name: 'Ouvidoria Estudantil', role: 'Voz do Aluno', turma: 'Chapa ARC 07', quote: 'Caixinha de sugestões aberta o ano inteiro.', photo: '' },
+      { id: 14, name: 'Comissão de Apoio', role: 'Apoio & Representação', turma: 'Chapa ARC 07', quote: 'União e força de todas as turmas para fazermos história.', photo: '' },
+      { id: 15, name: 'Mobilização Estudantil', role: 'Apoio & Mobilização', turma: 'Chapa ARC 07', quote: 'Engajando e unindo os estudantes por uma escola melhor.', photo: '' },
+      { id: 16, name: 'Projetos e Ações', role: 'Apoio & Projetos', turma: 'Chapa ARC 07', quote: 'Dando suporte aos eventos e projetos da ARC 07.', photo: '' }
+    ];
+
+    let currentTeam = [];
+
+    window.carregarEquipeAdmin = async function() {
+      // 1. Carrega poster atual do Supabase
+      let posterValor = '';
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient.from('configuracoes_site').select('valor').eq('chave', 'poster').single();
+          if (data?.valor) posterValor = data.valor;
+        } catch (e) {}
+      }
+      if (!posterValor) {
+        posterValor = localStorage.getItem('arc07_poster') || '';
+      }
+
+      const previewImg = document.getElementById('adminPosterPreview');
+      const placeholder = document.getElementById('adminPosterPlaceholder');
+      if (previewImg && placeholder) {
+        if (posterValor) {
+          previewImg.src = posterValor;
+          previewImg.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+        } else {
+          previewImg.classList.add('hidden');
+          placeholder.classList.remove('hidden');
+        }
+      }
+
+      // 2. Carrega integrantes do Supabase ou Cache Local
+      let loadedTeam = null;
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('equipe_membros').select('*').order('id', { ascending: true });
+          if (!error && data && data.length > 0) {
+            loadedTeam = data;
+          }
+        } catch (e) {}
+      }
+
+      function persistirEquipeTodosCaches(equipe) {
+        const json = JSON.stringify(equipe);
+        localStorage.setItem('arc07_team_members', json);
+        localStorage.setItem('arc07_team', json);
+        localStorage.setItem('arc07_equipe', json);
+      }
+      window.persistirEquipeTodosCaches = persistirEquipeTodosCaches;
+
+      if (!loadedTeam) {
+        const localTeam = localStorage.getItem('arc07_team_members') 
+                       || localStorage.getItem('arc07_team') 
+                       || localStorage.getItem('arc07_equipe');
+        if (localTeam) {
+          try { loadedTeam = JSON.parse(localTeam); } catch(e) {}
+        }
+      }
+
+      // GARANTIA DE TODOS OS INTEGRANTES (16 base + dinâmicos)
+      const teamMap = {};
+      defaultTeamData.forEach(m => {
+        teamMap[m.id] = { ...m };
+      });
+
+      if (Array.isArray(loadedTeam)) {
+        loadedTeam.forEach(m => {
+          if (m && m.id) {
+            teamMap[m.id] = { ...(teamMap[m.id] || {}), ...m };
+          }
+        });
+      }
+
+      currentTeam = Object.values(teamMap).sort((a, b) => a.id - b.id);
+      defaultTeamData.forEach(def => {
+        if (!currentTeam.some(m => m.id === def.id)) {
+          currentTeam.push({ ...def });
+        }
+      });
+      currentTeam.sort((a, b) => a.id - b.id);
+
+      renderAdminTeamGrid();
+    };
+
+    function renderAdminTeamGrid() {
+      const container = document.getElementById('adminTeamGrid');
+      const badge = document.getElementById('tabBadgeEquipe');
+      const totalSpan = document.getElementById('adminTotalTeam');
+
+      if (badge) badge.textContent = currentTeam.length;
+      if (totalSpan) totalSpan.textContent = currentTeam.length;
+
+      if (!container) return;
+
+      container.innerHTML = currentTeam.map((m) => {
+        const avatar = m.photo 
+          ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-xl" />`
+          : `<div class="w-full h-full rounded-xl bg-zinc-950 flex flex-col items-center justify-center p-2 text-center text-zinc-500">
+               <span class="font-display font-black text-lg text-white">#${String(m.id).padStart(2, '0')}</span>
+               <span class="text-[9px]">Sem foto</span>
+             </div>`;
+
+        return `
+          <div class="liquid-glass rounded-2xl p-4 border border-white/10 space-y-3 flex flex-col justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-20 rounded-xl bg-black/60 border border-white/10 shrink-0 relative overflow-hidden group">
+                ${avatar}
+                <label class="cursor-pointer absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-[10px] font-bold">
+                  <i class="bi bi-camera-fill text-arc-yellow text-sm"></i>
+                  <span>Trocar</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleFotoIndividual(${m.id}, event)" />
+                </label>
+              </div>
+
+              <div class="flex-1 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-arc-yellow font-bold">#${String(m.id).padStart(2, '0')}</span>
+                  <div class="flex items-center gap-1.5">
+                    <label class="cursor-pointer text-[11px] text-arc-pink hover:underline font-bold flex items-center gap-1">
+                      <i class="bi bi-upload"></i> Subir Foto
+                      <input type="file" accept="image/*" class="hidden" onchange="handleFotoIndividual(${m.id}, event)" />
+                    </label>
+                    ${m.photo ? `<button onclick="removerFotoIndividual(${m.id})" class="text-[10px] text-zinc-400 hover:text-red-400 transition" title="Remover Foto"><i class="bi bi-x-circle"></i></button>` : ''}
+                  </div>
+                </div>
+                <input type="text" id="member_role_${m.id}" value="${m.role || ''}" placeholder="Cargo" class="w-full bg-black/60 border border-white/10 rounded-lg px-2.5 py-1 text-xs text-arc-pink font-bold focus:outline-none focus:border-arc-pink" />
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div>
+                <label class="block text-[10px] font-bold text-zinc-400 uppercase mb-0.5">Nome do Aluno</label>
+                <input type="text" id="member_name_${m.id}" value="${m.name || ''}" placeholder="Nome do integrante" class="w-full bg-black/60 border border-white/15 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-arc-yellow" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-zinc-400 uppercase mb-0.5">Turma / Série</label>
+                  <input type="text" id="member_turma_${m.id}" value="${m.turma || ''}" placeholder="Ex: 9º A" class="w-full bg-black/60 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-arc-yellow" />
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-zinc-400 uppercase mb-0.5">Compromisso</label>
+                  <input type="text" id="member_quote_${m.id}" value="${m.quote || ''}" placeholder="Frase" class="w-full bg-black/60 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-arc-yellow" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <button onclick="salvarMembroAdmin(${m.id})" class="flex-1 py-2 rounded-xl bg-arc-pink/20 hover:bg-arc-pink text-pink-200 hover:text-white border border-arc-pink/40 font-display font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5">
+                <i class="bi bi-check2"></i>
+                <span>Salvar #${m.id}</span>
+              </button>
+              ${m.id > 14 ? `
+                <button onclick="handleExcluirMembro(${m.id})" class="p-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 transition text-xs" title="Excluir integrante #${m.id}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.tempNewMemberPhoto = '';
+    window.handleNewMemberPhotoPreview = async function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const compressed = await compressImageFile(file, 480, 0.78);
+      window.tempNewMemberPhoto = compressed;
+      const preview = document.getElementById('newMemberPhotoPreview');
+      if (preview) {
+        preview.src = compressed;
+        preview.classList.remove('hidden');
+      }
+    };
+
+    window.handleAdicionarMembro = async function(event) {
+      if (event) event.preventDefault();
+
+      const name = document.getElementById('newMemberName')?.value.trim();
+      const role = document.getElementById('newMemberRole')?.value.trim();
+      const turma = document.getElementById('newMemberTurma')?.value.trim() || 'Chapa ARC 07';
+      const quote = document.getElementById('newMemberQuote')?.value.trim() || 'Compromisso com a nossa escola!';
+      const photo = window.tempNewMemberPhoto || '';
+
+      if (!name || !role) {
+        exibirToast('Preencha o nome e o cargo do integrante!', true);
+        return;
+      }
+
+      const maxId = currentTeam.reduce((max, m) => Math.max(max, m.id || 0), 0);
+      const novoMembro = {
+        id: maxId + 1,
+        name,
+        role,
+        turma,
+        quote,
+        photo
+      };
+
+      currentTeam.push(novoMembro);
+      if (typeof window.persistirEquipeTodosCaches === 'function') {
+        window.persistirEquipeTodosCaches(currentTeam);
+      }
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('equipe_membros').upsert([{
+            id: novoMembro.id,
+            name: novoMembro.name,
+            role: novoMembro.role,
+            turma: novoMembro.turma,
+            quote: novoMembro.quote,
+            photo: novoMembro.photo,
+            updated_at: new Date().toISOString()
+          }]);
+        } catch(e) {
+          console.warn('Erro ao salvar novo membro no Supabase:', e);
+        }
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/equipe_membros`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify([{
+            id: novoMembro.id,
+            name: novoMembro.name,
+            role: novoMembro.role,
+            turma: novoMembro.turma,
+            quote: novoMembro.quote,
+            photo: novoMembro.photo,
+            updated_at: new Date().toISOString()
+          }])
+        });
+      } catch(e) {}
+
+      document.getElementById('formAddMember')?.reset();
+      window.tempNewMemberPhoto = '';
+      const preview = document.getElementById('newMemberPhotoPreview');
+      if (preview) {
+        preview.src = '';
+        preview.classList.add('hidden');
+      }
+
+      renderAdminTeamGrid();
+      exibirToast(`Novo integrante #${novoMembro.id} (${name}) cadastrado e sincronizado PARA TODOS! 🎉`);
+    };
+
+    window.handleExcluirMembro = async function(id) {
+      const membro = currentTeam.find(m => m.id === id);
+      const nome = membro ? membro.name : `integrante #${id}`;
+      if (!confirm(`Tem certeza que deseja remover ${nome} da equipe?`)) {
+        return;
+      }
+
+      currentTeam = currentTeam.filter(m => m.id !== id);
+      if (typeof window.persistirEquipeTodosCaches === 'function') {
+        window.persistirEquipeTodosCaches(currentTeam);
+      }
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('equipe_membros').delete().eq('id', id);
+        } catch(e) {
+          console.warn('Erro ao excluir membro do Supabase:', e);
+        }
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/equipe_membros?id=eq.${id}`, {
+          method: 'DELETE',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          }
+        });
+      } catch(e) {}
+
+      renderAdminTeamGrid();
+      exibirToast(`Integrante #${id} removido da equipe com sucesso!`);
+    };
+
+    function compressImageFile(file, maxWidth = 600, quality = 0.78) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    window.handleFotoIndividual = async function(memberId, event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      exibirToast(`Comprimindo foto do integrante #${memberId}...`);
+      const compressed = await compressImageFile(file, 480, 0.78);
+
+      const m = currentTeam.find(item => item.id === memberId);
+      if (m) {
+        m.photo = compressed;
+        await salvarMembroNoBanco(m);
+        renderAdminTeamGrid();
+        exibirToast(`Foto do integrante #${memberId} salva no Supabase PARA TODOS! 🦜`);
+      }
+    };
+
+    async function salvarMembroNoBanco(m) {
+      if (typeof window.persistirEquipeTodosCaches === 'function') {
+        window.persistirEquipeTodosCaches(currentTeam);
+      } else {
+        localStorage.setItem('arc07_team_members', JSON.stringify(currentTeam));
+        localStorage.setItem('arc07_team', JSON.stringify(currentTeam));
+      }
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient
+            .from('equipe_membros')
+            .upsert({
+              id: m.id,
+              name: m.name,
+              role: m.role,
+              turma: m.turma,
+              quote: m.quote,
+              photo: m.photo,
+              updated_at: new Date().toISOString()
+            });
+          if (error) {
+            console.warn('Erro ao salvar no Supabase (verifique schema.sql):', error);
+          }
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/equipe_membros`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify([{
+            id: m.id,
+            name: m.name,
+            role: m.role,
+            turma: m.turma,
+            quote: m.quote,
+            photo: m.photo,
+            updated_at: new Date().toISOString()
+          }])
+        });
+      } catch(e) {}
+
+      return { success: true };
+    }
+
+    window.salvarMembroAdmin = async function(memberId) {
+      const m = currentTeam.find(item => item.id === memberId);
+      if (!m) return;
+
+      m.name = document.getElementById(`member_name_${memberId}`)?.value.trim() || m.name;
+      m.role = document.getElementById(`member_role_${memberId}`)?.value.trim() || m.role;
+      m.turma = document.getElementById(`member_turma_${memberId}`)?.value.trim() || m.turma;
+      m.quote = document.getElementById(`member_quote_${memberId}`)?.value.trim() || m.quote;
+
+      exibirToast(`Salvando ${m.name}...`);
+      const res = await salvarMembroNoBanco(m);
+      if (res.success) {
+        exibirToast(`Dados de ${m.name} salvos com sucesso!`);
+      } else {
+        exibirToast(`Salvo localmente! (Execute o script SQL no Supabase para sincronizar na nuvem)`, true);
+      }
+    };
+
+    window.handleAdminBulkPhotos = async function(event) {
+      const files = Array.from(event.target.files).slice(0, currentTeam.length);
+      if (!files.length) return;
+
+      exibirToast(`Processando ${files.length} foto(s) da equipe...`);
+      for (let i = 0; i < files.length; i++) {
+        const compressed = await compressImageFile(files[i], 480, 0.75);
+        if (currentTeam[i]) {
+          currentTeam[i].photo = compressed;
+        }
+      }
+
+      await window.salvarTodaEquipeSupabase();
+      renderAdminTeamGrid();
+      exibirToast(`${files.length} fotos salvas com sucesso para os integrantes!`);
+    };
+
+    window.salvarTodaEquipeSupabase = async function() {
+      currentTeam.forEach(m => {
+        m.name = document.getElementById(`member_name_${m.id}`)?.value.trim() || m.name;
+        m.role = document.getElementById(`member_role_${m.id}`)?.value.trim() || m.role;
+        m.turma = document.getElementById(`member_turma_${m.id}`)?.value.trim() || m.turma;
+        m.quote = document.getElementById(`member_quote_${m.id}`)?.value.trim() || m.quote;
+      });
+
+      if (typeof window.persistirEquipeTodosCaches === 'function') {
+        window.persistirEquipeTodosCaches(currentTeam);
+      } else {
+        localStorage.setItem('arc07_team_members', JSON.stringify(currentTeam));
+        localStorage.setItem('arc07_team', JSON.stringify(currentTeam));
+      }
+      exibirToast(`Salvando todos os ${currentTeam.length} integrantes...`);
+
+      if (supabaseClient) {
+        try {
+          const payload = currentTeam.map(m => ({
+            id: m.id,
+            name: m.name,
+            role: m.role,
+            turma: m.turma,
+            quote: m.quote,
+            photo: m.photo || '',
+            updated_at: new Date().toISOString()
+          }));
+          const { error } = await supabaseClient.from('equipe_membros').upsert(payload);
+          if (!error) {
+            exibirToast(`Todos os ${currentTeam.length} integrantes foram salvos no Supabase PARA TODOS! 🏆`);
+            return;
+          }
+        } catch(e) {}
+      }
+      exibirToast(`Salvo localmente! (${currentTeam.length} integrantes sincronizados no navegador)`);
+    };
+
+    window.exportarFotosJSON = function() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentTeam));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "fotos-equipe-arc07.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      exibirToast(`Arquivo com as fotos dos ${currentTeam.length} integrantes baixado! Você pode importá-lo no celular ou no PC.`);
+    };
+
+    window.importarFotosJSON = function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            imported.forEach(m => {
+              const target = currentTeam.find(item => item.id === m.id);
+              if (target) {
+                if (m.photo) target.photo = m.photo;
+                if (m.name) target.name = m.name;
+                if (m.role) target.role = m.role;
+                if (m.turma) target.turma = m.turma;
+                if (m.quote) target.quote = m.quote;
+              }
+            });
+            if (typeof window.persistirEquipeTodosCaches === 'function') {
+              window.persistirEquipeTodosCaches(currentTeam);
+            }
+            renderAdminTeamGrid();
+            await window.salvarTodaEquipeSupabase();
+            exibirToast('Todas as fotos e dados foram importados com sucesso! 🏆');
+          }
+        } catch(err) {
+          exibirToast('Arquivo inválido!', true);
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    window.handleAdminPosterUpload = async function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      exibirToast('Otimizando cartaz oficial...');
+      const compressed = await compressImageFile(file, 800, 0.85);
+
+      localStorage.setItem('arc07_poster', compressed);
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({ chave: 'poster', valor: compressed });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({ chave: 'poster', valor: compressed })
+        });
+      } catch(e) {}
+      
+      const previewImg = document.getElementById('adminPosterPreview');
+      const placeholder = document.getElementById('adminPosterPlaceholder');
+      if (previewImg && placeholder) {
+        previewImg.src = compressed;
+        previewImg.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+      }
+
+      exibirToast('Cartaz oficial salvo! Agora aparece para todos no site!');
+    };
+
+    window.removerCartazPersonalizado = async function() {
+      if (confirm('Deseja restaurar a arte original padrão do cartaz?')) {
+        localStorage.removeItem('arc07_poster');
+        if (supabaseClient) {
+          try {
+            await supabaseClient.from('configuracoes_site').upsert({ chave: 'poster', valor: '' });
+          } catch(e) {}
+        }
+        try {
+          await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({ chave: 'poster', valor: '' })
+          });
+        } catch(e) {}
+        const previewImg = document.getElementById('adminPosterPreview');
+        const placeholder = document.getElementById('adminPosterPlaceholder');
+        if (previewImg && placeholder) {
+          previewImg.classList.add('hidden');
+          placeholder.classList.remove('hidden');
+        }
+        exibirToast('Arte padrão restaurada com sucesso!');
+      }
+    };
+
+    window.removerFotoIndividual = async function(memberId) {
+      const m = currentTeam.find(item => item.id === memberId);
+      if (m) {
+        m.photo = '';
+        await salvarMembroNoBanco(m);
+        renderAdminTeamGrid();
+        exibirToast(`Foto do integrante #${memberId} removida!`);
+      }
+    };
+
+    // ==========================================
+    // ABA: COMUNICADOS E POSTS OFICIAIS
+    // ==========================================
+    window.carregarPostsAdmin = async function() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('comunicados').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            currentPosts = data;
+          } else {
+            currentPosts = JSON.parse(localStorage.getItem('arc07_comunicados') || '[]');
+          }
+        } catch(e) {
+          currentPosts = JSON.parse(localStorage.getItem('arc07_comunicados') || '[]');
+        }
+      } else {
+        currentPosts = JSON.parse(localStorage.getItem('arc07_comunicados') || '[]');
+      }
+
+      const badge = document.getElementById('badgeTotalPosts');
+      const tabBadge = document.getElementById('tabBadgePosts');
+      if (badge) badge.textContent = `${currentPosts.length} posts`;
+      if (tabBadge) tabBadge.textContent = currentPosts.length;
+      renderAdminPostsList();
+    };
+
+    function renderAdminPostsList() {
+      const container = document.getElementById('adminPostsList');
+      if (!container) return;
+
+      if (currentPosts.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-10 text-center text-zinc-500 bg-black/40 rounded-2xl border border-white/5 space-y-2">
+            <i class="bi bi-megaphone text-3xl text-arc-yellow block"></i>
+            <strong class="text-white block text-sm">Nenhum comunicado publicado ainda!</strong>
+            <p class="text-xs text-zinc-400">Preencha o formulário acima para postar uma notícia oficial no site da Chapa ARC 07.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = currentPosts.map(p => `
+        <div class="liquid-glass rounded-2xl p-4 border border-white/10 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            ${p.imagem ? `<div class="aspect-video w-full rounded-xl overflow-hidden bg-black/60 border border-white/10"><img src="${p.imagem}" alt="${p.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover" /></div>` : ''}
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-arc-pink/20 text-arc-pink border border-arc-pink/30 text-[10px] font-bold">${p.categoria}</span>
+              <span class="text-[11px] text-zinc-400 font-mono">${p.data}</span>
+            </div>
+            <h4 class="font-display font-black text-base text-white leading-snug">${p.titulo}</h4>
+            <p class="text-xs text-zinc-300 leading-relaxed break-words">${p.mensagem}</p>
+          </div>
+
+          <div class="pt-2 border-t border-white/10 flex justify-end">
+            <button onclick="handleExcluirPost('${p.id}')" class="px-3 py-1.5 rounded-lg bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 text-xs font-bold transition flex items-center gap-1.5">
+              <i class="bi bi-trash3"></i>
+              <span>Excluir Post</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.handlePostImageUpload = async function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      exibirToast('Otimizando foto do comunicado...');
+      tempPostImg = await compressImageFile(file, 900, 0.82);
+
+      const preview = document.getElementById('postImgPreview');
+      const icon = document.getElementById('postImgIcon');
+      const btnRemove = document.getElementById('btnRemoverPostImg');
+
+      preview.src = tempPostImg;
+      preview.classList.remove('hidden');
+      icon.classList.add('hidden');
+      btnRemove.classList.remove('hidden');
+      exibirToast('Foto anexada com sucesso!');
+    };
+
+    window.removerPostImagePreview = function() {
+      tempPostImg = '';
+      const preview = document.getElementById('postImgPreview');
+      const icon = document.getElementById('postImgIcon');
+      const btnRemove = document.getElementById('btnRemoverPostImg');
+      const input = document.getElementById('postFileInput');
+
+      if (preview) { preview.src = ''; preview.classList.add('hidden'); }
+      if (icon) icon.classList.remove('hidden');
+      if (btnRemove) btnRemove.classList.add('hidden');
+      if (input) input.value = '';
+    };
+
+    window.handlePublicarPost = async function(event) {
+      event.preventDefault();
+
+      const titulo = document.getElementById('postTitulo').value.trim();
+      const categoria = document.getElementById('postCategoria').value;
+      const mensagem = document.getElementById('postMensagem').value.trim();
+
+      if (!titulo || !mensagem) {
+        exibirToast('Preencha o título e o texto do comunicado!', true);
+        return;
+      }
+
+      const novoPost = {
+        id: 'post-' + Date.now(),
+        titulo,
+        categoria,
+        mensagem,
+        imagem: tempPostImg || '',
+        data: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      };
+
+      exibirToast('Publicando comunicado no Supabase...');
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('comunicados').insert([novoPost]);
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/comunicados`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          },
+          body: JSON.stringify(novoPost)
+        });
+      } catch(e) {}
+
+      currentPosts.unshift(novoPost);
+      localStorage.setItem('arc07_comunicados', JSON.stringify(currentPosts));
+
+      exibirToast('Comunicado publicado com sucesso no site oficial! 📢');
+      document.getElementById('postTitulo').value = '';
+      document.getElementById('postMensagem').value = '';
+      removerPostImagePreview();
+      await carregarPostsAdmin();
+    };
+
+    window.handleExcluirPost = async function(id) {
+      if (!confirm('Deseja realmente excluir este comunicado do site oficial?')) return;
+
+      exibirToast('Excluindo comunicado...');
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('comunicados').delete().eq('id', id);
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/comunicados?id=eq.${id}`, {
+          method: 'DELETE',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          }
+        });
+      } catch(e) {}
+
+      currentPosts = currentPosts.filter(p => p.id !== id);
+      localStorage.setItem('arc07_comunicados', JSON.stringify(currentPosts));
+
+      exibirToast('Comunicado removido com sucesso!');
+      await carregarPostsAdmin();
+    };
+
+    // ==========================================
+    // ABA: CONFIGURAÇÕES E TEXTOS DO SITE
+    // ==========================================
+    window.carregarConfiguracoesSiteAdmin = async function() {
+      let slogan = '', insta = '', whats = '', rodape = '', temaAtivo = 'padrao';
+      if (supabaseClient) {
+        try {
+          const { data } = await supabaseClient.from('configuracoes_site').select('*');
+          if (data) {
+            data.forEach(cfg => {
+              if (cfg.chave === 'site_slogan') slogan = cfg.valor;
+              if (cfg.chave === 'site_instagram') insta = cfg.valor;
+              if (cfg.chave === 'site_whatsapp') whats = cfg.valor;
+              if (cfg.chave === 'site_rodape') rodape = cfg.valor;
+              if (cfg.chave === 'tema_ativo') temaAtivo = cfg.valor;
+            });
+          }
+        } catch(e) {}
+      }
+
+      if (!slogan) slogan = localStorage.getItem('arc07_site_slogan') || '';
+      if (!insta) insta = localStorage.getItem('arc07_site_instagram') || '';
+      if (!whats) whats = localStorage.getItem('arc07_site_whatsapp') || '';
+      if (!rodape) rodape = localStorage.getItem('arc07_site_rodape') || '';
+      if (temaAtivo === 'padrao') {
+        const localTema = localStorage.getItem('chapa_arc_tema');
+        if (localTema) temaAtivo = localTema;
+      }
+
+      if (slogan) document.getElementById('cfgSlogan').value = slogan;
+      if (insta) document.getElementById('cfgInstagram').value = insta.replace('@', '');
+      if (whats) document.getElementById('cfgWhatsapp').value = whats;
+      if (rodape) document.getElementById('cfgRodape').value = rodape;
+
+      window.atualizarVisualStatusHalloween(temaAtivo === 'halloween');
+    };
+
+    window.atualizarVisualStatusHalloween = function(isAtivo) {
+      const badge = document.getElementById('badgeHalloweenStatus');
+      const btnText = document.getElementById('btnToggleHalloweenText');
+      const btn = document.getElementById('btnToggleHalloween');
+      if (!badge || !btn || !btnText) return;
+
+      if (isAtivo) {
+        badge.textContent = 'Ativado 🎃';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/20 text-orange-400 border border-orange-500/40 uppercase tracking-wider animate-pulse';
+        btnText.textContent = 'Desativar Halloween';
+        btn.className = 'px-5 py-3 rounded-2xl font-display font-black text-xs uppercase tracking-wider transition flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-white/20';
+      } else {
+        badge.textContent = 'Desativado';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-zinc-800 text-zinc-400 uppercase tracking-wider';
+        btnText.textContent = 'Ativar Halloween 🎃';
+        btn.className = 'px-5 py-3 rounded-2xl font-display font-black text-xs uppercase tracking-wider transition flex items-center gap-2 bg-gradient-to-r from-orange-500 to-purple-600 hover:brightness-110 text-white shadow-lg';
+      }
+    };
+
+    window.handleToggleAdminHalloween = async function() {
+      const currentTema = localStorage.getItem('chapa_arc_tema') || 'padrao';
+      const novoTema = currentTema === 'halloween' ? 'padrao' : 'halloween';
+      
+      localStorage.setItem('chapa_arc_tema', novoTema);
+      window.atualizarVisualStatusHalloween(novoTema === 'halloween');
+      
+      exibirToast(novoTema === 'halloween' ? '🎃 Modo Halloween ATIVADO para todos os alunos!' : '💙 Modo Padrão Restaurado com Sucesso!');
+
+      // 1. Salva via Supabase Client
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert({ chave: 'tema_ativo', valor: novoTema });
+        } catch(e) {
+          console.warn('Erro ao salvar tema_ativo no Supabase Client:', e);
+        }
+      }
+
+      // 2. Salva via REST direto para redundância absoluta instantânea
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({ chave: 'tema_ativo', valor: novoTema })
+        });
+      } catch(e) {}
+    };
+
+    window.handleSalvarConfiguracoesSite = async function(event) {
+      event.preventDefault();
+
+      const slogan = document.getElementById('cfgSlogan').value.trim();
+      const instagram = document.getElementById('cfgInstagram').value.trim();
+      const whatsapp = document.getElementById('cfgWhatsapp').value.trim();
+      const rodape = document.getElementById('cfgRodape').value.trim();
+
+      exibirToast('Salvando textos no Supabase...');
+
+      const updates = [];
+      if (slogan) { updates.push({ chave: 'site_slogan', valor: slogan }); localStorage.setItem('arc07_site_slogan', slogan); }
+      if (instagram) { 
+        const formatted = instagram.startsWith('@') ? instagram : '@' + instagram;
+        updates.push({ chave: 'site_instagram', valor: formatted }); 
+        localStorage.setItem('arc07_site_instagram', formatted); 
+      }
+      if (whatsapp) { updates.push({ chave: 'site_whatsapp', valor: whatsapp }); localStorage.setItem('arc07_site_whatsapp', whatsapp); }
+      if (rodape) { updates.push({ chave: 'site_rodape', valor: rodape }); localStorage.setItem('arc07_site_rodape', rodape); }
+
+      if (supabaseClient && updates.length > 0) {
+        try {
+          await supabaseClient.from('configuracoes_site').upsert(updates);
+        } catch(e) {}
+      }
+
+      if (updates.length > 0) {
+        try {
+          await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify(updates)
+          });
+        } catch(e) {}
+      }
+
+      exibirToast('Configurações salvas! Atualizadas no site oficial PARA TODOS! 🏆');
+    };
+
+    window.handleZerarVotosBanco = async function() {
+      const confirmacao = prompt('ATENÇÃO: Isso zerará TODOS os votos do banco de dados para a eleição oficial!\n\nDigite ZERAR para confirmar:');
+      if (confirmacao !== 'ZERAR') {
+        exibirToast('Operação cancelada.', true);
+        return;
+      }
+
+      exibirToast('Zerando votos no Supabase...');
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('votos_comercio').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+          await supabaseClient.from('votos_geral').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+        } catch(e) {}
+      }
+
+      localStorage.removeItem('arc07_store_votes');
+      localStorage.removeItem('arc07_classroom_votes');
+      localStorage.removeItem('arc07_event_votes');
+      localStorage.removeItem('arc07_user_voted_rooms');
+      localStorage.removeItem('arc07_user_voted_store');
+      localStorage.removeItem('arc07_user_voted_events');
+
+      exibirToast('Todos os votos foram zerados com sucesso! O site está pronto para a eleição real! 🚀');
+      await carregarVotosComercio();
+    };
+
+    // ==========================================
+    // ABA: GERENCIADOR DE CURSOS GRATUITOS
+    // ==========================================
+    const DEFAULT_COURSES_ADMIN = [
+      {
+        id: 'curso-1',
+        title: 'Empreendedorismo e Criação de Negócios',
+        institution: 'Sebrae',
+        category: 'Gestão & Negócios',
+        duration: '15 horas',
+        description: 'Aprenda os passos práticos para transformar ideias em projetos e empreendimentos com metodologia do Sebrae.',
+        link: 'https://sebrae.com.br/sites/PortalSebrae/cursosonline'
+      },
+      {
+        id: 'curso-2',
+        title: 'Inteligência Artificial e Tecnologias Digitais',
+        institution: 'SENAI',
+        category: 'Tecnologia & TI',
+        duration: '20 horas',
+        description: 'Conceitos de IA, automação e inovação tecnológica para estudantes se destacarem no mercado atual.',
+        link: 'https://www.mundosenai.com.br/cursos/gratuitos/'
+      },
+      {
+        id: 'curso-3',
+        title: 'Comunicação Assertiva e Falar em Público',
+        institution: 'Fundação Bradesco',
+        category: 'Desenvolvimento Pessoal',
+        duration: '10 horas',
+        description: 'Como apresentar seminários e trabalhos com clareza, perder a timidez e dominar a comunicação oral.',
+        link: 'https://www.ev.org.br/cursos'
+      },
+      {
+        id: 'curso-4',
+        title: 'Marketing Digital e Redes Sociais',
+        institution: 'Sebrae',
+        category: 'Marketing & Mídias',
+        duration: '12 horas',
+        description: 'Como criar presença profissional nas redes sociais, produzir conteúdo de qualidade e atrair oportunidades.',
+        link: 'https://sebrae.com.br/sites/PortalSebrae/cursosonline'
+      },
+      {
+        id: 'curso-5',
+        title: 'Lógica de Programação para Iniciantes',
+        institution: 'SENAI',
+        category: 'Tecnologia & Programação',
+        duration: '14 horas',
+        description: 'Fundamentos de programação, algoritmos e raciocínio lógico computacional para jovens que querem aprender a programar.',
+        link: 'https://www.mundosenai.com.br/cursos/gratuitos/'
+      },
+      {
+        id: 'curso-6',
+        title: 'Excel do Básico ao Intermediário',
+        institution: 'Fundação Bradesco',
+        category: 'Produtividade',
+        duration: '15 horas',
+        description: 'Planilhas, fórmulas essenciais, gráficos dinâmicos e organização de dados para a escola e o mercado de trabalho.',
+        link: 'https://www.ev.org.br/cursos'
+      }
+    ];
+
+    window.adminCourses = [...DEFAULT_COURSES_ADMIN];
+
+    window.carregarCursosAdmin = async function() {
+      let carregouComSucesso = false;
+
+      // 1. Tenta carregar do Supabase via Client primeiro
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('configuracoes_site')
+            .select('valor')
+            .eq('chave', 'cursos_lista')
+            .maybeSingle();
+
+          if (!error && data && data.valor !== undefined && data.valor !== null) {
+            const parsed = JSON.parse(data.valor);
+            if (Array.isArray(parsed)) {
+              window.adminCourses = parsed;
+              localStorage.setItem('arc07_cursos', JSON.stringify(parsed));
+              carregouComSucesso = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 2. Se não carregou, tenta via REST direto (sem falha de cache)
+      if (!carregouComSucesso) {
+        try {
+          const resp = await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site?chave=eq.cursos_lista&select=valor&_t=${Date.now()}`, {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+            }
+          });
+          if (resp.ok) {
+            const rows = await resp.json();
+            if (Array.isArray(rows) && rows.length > 0 && rows[0].valor !== undefined && rows[0].valor !== null) {
+              const parsed = JSON.parse(rows[0].valor);
+              if (Array.isArray(parsed)) {
+                window.adminCourses = parsed;
+                localStorage.setItem('arc07_cursos', JSON.stringify(parsed));
+                carregouComSucesso = true;
+              }
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 3. Fallback para cache local se ainda não carregou do Supabase
+      if (!carregouComSucesso) {
+        try {
+          const localStr = localStorage.getItem('arc07_cursos');
+          if (localStr !== null) {
+            const cached = JSON.parse(localStr);
+            if (Array.isArray(cached)) {
+              window.adminCourses = cached;
+              carregouComSucesso = true;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 4. Apenas se for primeira execução absoluta (sem nenhum dado prévio)
+      if (!carregouComSucesso && (!window.adminCourses || !Array.isArray(window.adminCourses))) {
+        window.adminCourses = [...DEFAULT_COURSES_ADMIN];
+      }
+
+      renderCursosAdmin();
+    };
+
+    function renderCursosAdmin() {
+      const container = document.getElementById('adminCoursesList');
+      const badge = document.getElementById('tabBadgeCursos');
+      const totalSpan = document.getElementById('adminTotalCursos');
+
+      const count = window.adminCourses ? window.adminCourses.length : 0;
+      if (badge) badge.textContent = count;
+      if (totalSpan) totalSpan.textContent = count;
+
+      if (!container) return;
+
+      if (!window.adminCourses || window.adminCourses.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-8 text-center text-zinc-400">
+            <i class="bi bi-mortarboard text-3xl text-arc-yellow/50 mb-2 block"></i>
+            <p class="font-bold text-sm">Nenhum curso cadastrado no momento.</p>
+            <p class="text-xs text-zinc-500 mt-1">Preencha o formulário acima para cadastrar o primeiro curso gratuito!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = window.adminCourses.map(c => `
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 hover:border-arc-yellow/40 transition flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2 py-0.5 rounded-lg bg-arc-yellow/20 text-arc-yellow text-[11px] font-display font-black uppercase">
+                ${escapeHtmlAdmin(c.institution || 'Parceiro')}
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold">
+                100% Gratuito
+              </span>
+            </div>
+
+            <h4 class="font-display font-bold text-white text-sm mb-1 group-hover:text-arc-yellow transition">
+              ${escapeHtmlAdmin(c.title)}
+            </h4>
+
+            <p class="text-zinc-400 text-xs line-clamp-3 mb-3">
+              ${escapeHtmlAdmin(c.description || '')}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-white/10 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-zinc-400">
+              <span><i class="bi bi-clock-history text-arc-yellow mr-1"></i>${escapeHtmlAdmin(c.duration || 'Online')}</span>
+              <span class="text-zinc-500">${escapeHtmlAdmin(c.category || 'Geral')}</span>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <a href="${c.link || '#'}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold text-center flex items-center justify-center gap-1.5 transition">
+                <i class="bi bi-box-arrow-up-right text-[11px]"></i>
+                <span>Testar Link</span>
+              </a>
+
+              <button onclick="handleExcluirCurso('${c.id}')" class="p-1.5 px-2.5 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 text-xs transition" title="Excluir curso">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.handleCadastrarCurso = async function(event) {
+      if (event) event.preventDefault();
+
+      const titulo = document.getElementById('cursoTitulo')?.value.trim();
+      const instituicao = document.getElementById('cursoInstituicao')?.value.trim();
+      const duracao = document.getElementById('cursoDuracao')?.value.trim() || 'Online com Certificado';
+      const categoria = document.getElementById('cursoCategoria')?.value.trim() || 'Geral';
+      const link = document.getElementById('cursoLink')?.value.trim();
+      const descricao = document.getElementById('cursoDescricao')?.value.trim();
+
+      if (!titulo || !instituicao || !link || !descricao) {
+        exibirToast('Por favor, preencha todos os campos obrigatórios!', true);
+        return;
+      }
+
+      const novoCurso = {
+        id: 'curso-' + Date.now(),
+        title: titulo,
+        institution: instituicao,
+        duration: duracao,
+        category: categoria,
+        link: link,
+        description: descricao
+      };
+
+      if (!Array.isArray(window.adminCourses)) {
+        window.adminCourses = [];
+      }
+
+      window.adminCourses.unshift(novoCurso);
+      const jsonCourses = JSON.stringify(window.adminCourses);
+      localStorage.setItem('arc07_cursos', jsonCourses);
+
+      // 1. Salva no Supabase via Client
+      if (supabaseClient) {
+        try {
+          await supabaseClient
+            .from('configuracoes_site')
+            .upsert({
+              chave: 'cursos_lista',
+              valor: jsonCourses,
+              updated_at: new Date().toISOString()
+            });
+        } catch(e) {
+          console.warn('Erro ao salvar cursos_lista no Supabase Client:', e);
+        }
+      }
+
+      // 2. Salva via REST direto para sincronização infalível
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'cursos_lista',
+            valor: jsonCourses,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      document.getElementById('formCadastrarCurso')?.reset();
+      renderCursosAdmin();
+      exibirToast(`Curso "${titulo}" cadastrado e publicado com sucesso no site oficial! 🎓`);
+    };
+
+    window.handleExcluirCurso = async function(id) {
+      const curso = window.adminCourses.find(c => c.id === id);
+      const nome = curso ? curso.title : 'este curso';
+      if (!confirm(`Tem certeza que deseja excluir o curso "${nome}"?`)) {
+        return;
+      }
+
+      window.adminCourses = window.adminCourses.filter(c => c.id !== id);
+      const jsonCourses = JSON.stringify(window.adminCourses);
+      localStorage.setItem('arc07_cursos', jsonCourses);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient
+            .from('configuracoes_site')
+            .upsert({
+              chave: 'cursos_lista',
+              valor: jsonCourses,
+              updated_at: new Date().toISOString()
+            });
+        } catch(e) {
+          console.warn('Erro ao atualizar cursos_lista no Supabase Client:', e);
+        }
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'cursos_lista',
+            valor: jsonCourses,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      renderCursosAdmin();
+      exibirToast('Curso removido com sucesso!');
+    };
+
+    window.handleRestaurarCursosPadrao = async function() {
+      if (!confirm('Deseja restaurar a lista com os cursos padrão recomendados (Sebrae, SENAI, Fundação Bradesco)?')) {
+        return;
+      }
+
+      window.adminCourses = [...DEFAULT_COURSES_ADMIN];
+      const jsonCourses = JSON.stringify(window.adminCourses);
+      localStorage.setItem('arc07_cursos', jsonCourses);
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient
+            .from('configuracoes_site')
+            .upsert({
+              chave: 'cursos_lista',
+              valor: jsonCourses,
+              updated_at: new Date().toISOString()
+            });
+        } catch(e) {}
+      }
+
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/configuracoes_site`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            chave: 'cursos_lista',
+            valor: jsonCourses,
+            updated_at: new Date().toISOString()
+          })
+        });
+      } catch(e) {}
+
+      renderCursosAdmin();
+      exibirToast('Cursos padrão restaurados com sucesso! 🏆');
+    };
+
+    function escapeHtmlAdmin(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+
+</body>
+</html>
